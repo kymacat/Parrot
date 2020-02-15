@@ -13,25 +13,56 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
+    var window: UIWindow?
+    
+    // MARK: - Application lifecycle
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        #if SHOWLIFECYCLE
+        print("Application moved from <Not running> to <Inactive>")
+        print(#function + "\n")
+        #endif
+        
         return true
     }
-
-    // MARK: UISceneSession Lifecycle
-
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        #if SHOWLIFECYCLE
+        print("Application moved from <Inactive> to <Active>")
+        print(#function + "\n")
+        #endif
     }
-
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    
+    func applicationWillResignActive(_ application: UIApplication) {
+        #if SHOWLIFECYCLE
+        print("Application will move from <Active> to <Inactive>")
+        print(#function + "\n")
+        #endif
     }
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        #if SHOWLIFECYCLE
+        print("Application moved from <Inactive> to <Background>")
+        print(#function + "\n")
+        #endif
+    }
+    
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        #if SHOWLIFECYCLE
+        print("Application will move from <Background> to <Inactive>")
+        print(#function + "\n")
+        #endif
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        #if SHOWLIFECYCLE
+        print("Application will move from <Suspended> to <Not running>")
+        print(#function + "\n")
+        #endif
+    }
+    
+    
 
     // MARK: - Core Data stack
 
