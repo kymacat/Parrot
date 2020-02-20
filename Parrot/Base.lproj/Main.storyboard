@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -8,20 +8,86 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Parrot" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ProfileViewController" customModule="Parrot" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.62660712827033405" green="0.99904916511380948" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-user" translatesAutoresizingMaskIntoConstraints="NO" id="GaO-dW-UJl">
+                                <rect key="frame" x="40" y="41" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="GaO-dW-UJl" secondAttribute="height" multiplier="1:1" id="Kt4-GL-5Qi"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Владислав Яндола" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NL-Jc-ZG1">
+                                <rect key="frame" x="40" y="295" width="240" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="3NL-Jc-ZG1" secondAttribute="height" multiplier="240:31" id="VCr-xU-G22"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Люблю программировать под iOS,                         изучать что-то новое и не стоять на месте" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qO-GY-IqM">
+                                <rect key="frame" x="20" y="334" width="280" height="54"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9L-oP-0Dy">
+                                <rect key="frame" x="40" y="505" width="240" height="34"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="i9L-oP-0Dy" secondAttribute="height" multiplier="120:17" id="qAQ-bo-66j"/>
+                                </constraints>
+                                <state key="normal" title="Редактировать">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fpb-RH-Ocw" customClass="CustomButton" customModule="Parrot" customModuleProvider="target">
+                                <rect key="frame" x="220" y="221" width="60" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.2405073643" green="0.46573388580000002" blue="0.92696583269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="setProfileImageButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MLd-yd-KfY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="3NL-Jc-ZG1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="0iQ-c0-JuP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="i9L-oP-0Dy" secondAttribute="trailing" constant="40" id="7mW-A3-cjW"/>
+                            <constraint firstItem="5qO-GY-IqM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Ka6-5m-bD9"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="GaO-dW-UJl" secondAttribute="trailing" constant="40" id="NPo-zp-FTd"/>
+                            <constraint firstItem="5qO-GY-IqM" firstAttribute="top" secondItem="3NL-Jc-ZG1" secondAttribute="bottom" constant="8" id="V1s-Fg-DiK"/>
+                            <constraint firstItem="3NL-Jc-ZG1" firstAttribute="top" secondItem="GaO-dW-UJl" secondAttribute="bottom" constant="14" id="WqO-Fq-kEF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="i9L-oP-0Dy" secondAttribute="bottom" constant="29" id="ZEx-gC-uYf"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3NL-Jc-ZG1" secondAttribute="trailing" constant="40" id="ah7-D9-1wP"/>
+                            <constraint firstItem="i9L-oP-0Dy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="fN7-Ck-qMs"/>
+                            <constraint firstItem="GaO-dW-UJl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="41" id="kcW-xl-H0P"/>
+                            <constraint firstItem="GaO-dW-UJl" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="oV6-5I-pll"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5qO-GY-IqM" secondAttribute="trailing" constant="20" id="vbs-4H-OAO"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="5qO-GY-IqM" id="p8p-Dz-rhj"/>
+                        <outlet property="editingButton" destination="i9L-oP-0Dy" id="7Vg-5U-ZFW"/>
+                        <outlet property="nameLabel" destination="3NL-Jc-ZG1" id="H5x-xS-W8I"/>
+                        <outlet property="profileImage" destination="GaO-dW-UJl" id="HKU-yl-RFc"/>
+                        <outlet property="setProfileImageButton" destination="Fpb-RH-Ocw" id="RzD-Nu-s5G"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="126"/>
+            <point key="canvasLocation" x="138.75" y="125.70422535211267"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="placeholder-user" width="600" height="600"/>
+    </resources>
 </document>
