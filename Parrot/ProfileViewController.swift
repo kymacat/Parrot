@@ -24,9 +24,25 @@ class ProfileViewController: UIViewController {
     
     // MARK: - VC Lifecycle
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        //print(editingButton.frame)
+        // На этом этапе еще нет ни самой view, ни его аутлетов, поэтому приложение крашнется
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(editingButton.frame)
         
+        nameLabel.textColor = .black
+        descriptionLabel.textColor = .black
+        
+        //Блокировка портретного режима
+        if let delegate = UIApplication.shared.delegate as? AppDelegate {
+            delegate.orientationLock = .portrait
+        }
         
         // констрейнты для setProfileButton
         setProfileImageButton.translatesAutoresizingMaskIntoConstraints = false
@@ -37,6 +53,7 @@ class ProfileViewController: UIViewController {
             setProfileImageButton.widthAnchor.constraint(equalToConstant: profileImage.frame.width/3),
             setProfileImageButton.heightAnchor.constraint(equalToConstant: profileImage.frame.width/3)
         ])
+        
     
         // Размеры шрифтов для nameLabel, descriptionLabel и editingButton
         nameLabel.font = nameLabel.font.withSize(self.view.frame.width/14)
@@ -61,6 +78,10 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
+        print(editingButton.frame)
+        // Размеры отличаются, потому что view подстроился под экран, и соответственно все его элементы тоже
+    
         
         //Закругленные края
         setProfileImageButton.layer.cornerRadius = CGFloat(setProfileImageButton.frame.width/2)
@@ -95,7 +116,57 @@ class ProfileViewController: UIViewController {
     
     
     @IBAction func setProfileImageButtonAction(_ sender: Any) {
+        print("Выбери изображение для профиля")
+        selectionAlert()
+    }
+    
+    func selectionAlert() {
         
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Назад", style: .cancel, handler: nil)
+        
+        let libraryAction = UIAlertAction(title: "Выбрать из галереи", style: .default) { (action: UIAlertAction) in
+            imagePickerController.sourceType = .photoLibrary
+            self.present(imagePickerController, animated: true, completion: nil)
+        }
+        
+        
+        let makePhotoAction = UIAlertAction(title: "Сделать фото", style: .default) { (action: UIAlertAction) in
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                imagePickerController.sourceType = .camera
+                self.present(imagePickerController, animated: true, completion: nil)
+            } else {
+                print("Camera not available")
+            }
+        }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(libraryAction)
+        alert.addAction(makePhotoAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+}
+
+// MARK: - ImagePickerDelegate
+
+extension ProfileViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        
+        profileImage.image = image
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
     
 }
