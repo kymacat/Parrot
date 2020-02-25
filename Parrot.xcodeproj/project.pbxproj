@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF70528523FF2DD70095B5C3 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70528423FF2DD70095B5C3 /* CustomButton.swift */; };
 		CFF6806123F5D98200339A79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6806023F5D98200339A79 /* AppDelegate.swift */; };
-		CFF6806523F5D98200339A79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6806423F5D98200339A79 /* ViewController.swift */; };
+		CFF6806523F5D98200339A79 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6806423F5D98200339A79 /* ProfileViewController.swift */; };
 		CFF6806823F5D98200339A79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFF6806623F5D98200339A79 /* Main.storyboard */; };
 		CFF6806B23F5D98200339A79 /* Parrot.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFF6806923F5D98200339A79 /* Parrot.xcdatamodeld */; };
 		CFF6806D23F5D98300339A79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFF6806C23F5D98300339A79 /* Assets.xcassets */; };
@@ -27,9 +28,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CF70528423FF2DD70095B5C3 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		CFF6805D23F5D98200339A79 /* Parrot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parrot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFF6806023F5D98200339A79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CFF6806423F5D98200339A79 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		CFF6806423F5D98200339A79 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		CFF6806723F5D98200339A79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CFF6806A23F5D98200339A79 /* Parrot.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Parrot.xcdatamodel; sourceTree = "<group>"; };
 		CFF6806C23F5D98300339A79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,10 +82,11 @@
 			isa = PBXGroup;
 			children = (
 				CFF6806023F5D98200339A79 /* AppDelegate.swift */,
-				CFF6806423F5D98200339A79 /* ViewController.swift */,
+				CFF6806423F5D98200339A79 /* ProfileViewController.swift */,
 				CFF6806623F5D98200339A79 /* Main.storyboard */,
 				CFF6806C23F5D98300339A79 /* Assets.xcassets */,
 				CFF6806E23F5D98300339A79 /* LaunchScreen.storyboard */,
+				CF70528423FF2DD70095B5C3 /* CustomButton.swift */,
 				CFF6807123F5D98300339A79 /* Info.plist */,
 				CFF6806923F5D98200339A79 /* Parrot.xcdatamodeld */,
 			);
@@ -200,7 +203,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFF6806523F5D98200339A79 /* ViewController.swift in Sources */,
+				CF70528523FF2DD70095B5C3 /* CustomButton.swift in Sources */,
+				CFF6806523F5D98200339A79 /* ProfileViewController.swift in Sources */,
 				CFF6806123F5D98200339A79 /* AppDelegate.swift in Sources */,
 				CFF6806B23F5D98200339A79 /* Parrot.xcdatamodeld in Sources */,
 			);

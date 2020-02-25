@@ -12,6 +12,11 @@ import CoreData
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var orientationLock = UIInterfaceOrientationMask.all
+
+     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return self.orientationLock
+    }
 
     var window: UIWindow?
     
@@ -19,47 +24,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        #if SHOWLIFECYCLE
-        print("Application moved from <Not running> to <Inactive>")
-        print(#function + "\n")
-        #endif
-        
         return true
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        #if SHOWLIFECYCLE
-        print("Application moved from <Inactive> to <Active>")
-        print(#function + "\n")
-        #endif
+    
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
-        #if SHOWLIFECYCLE
-        print("Application will move from <Active> to <Inactive>")
-        print(#function + "\n")
-        #endif
+        
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        #if SHOWLIFECYCLE
-        print("Application moved from <Inactive> to <Background>")
-        print(#function + "\n")
-        #endif
+        
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-        #if SHOWLIFECYCLE
-        print("Application will move from <Background> to <Inactive>")
-        print(#function + "\n")
-        #endif
+        
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        #if SHOWLIFECYCLE
-        print("Application will move from <Suspended> to <Not running>")
-        print(#function + "\n")
-        #endif
+        
     }
     
     
