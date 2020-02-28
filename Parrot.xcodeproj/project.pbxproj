@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		CF70528523FF2DD70095B5C3 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70528423FF2DD70095B5C3 /* CustomButton.swift */; };
+		CF9EB68D240933A80081470E /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB68C240933A80081470E /* ConversationsListViewController.swift */; };
+		CF9EB68F24093C2D0081470E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB68E24093C2D0081470E /* Models.swift */; };
+		CF9EB69324093F430081470E /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB69124093F430081470E /* ConversationCell.swift */; };
+		CF9EB69424093F430081470E /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9EB69224093F430081470E /* ConversationCell.xib */; };
 		CFF6806123F5D98200339A79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6806023F5D98200339A79 /* AppDelegate.swift */; };
 		CFF6806523F5D98200339A79 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6806423F5D98200339A79 /* ProfileViewController.swift */; };
 		CFF6806823F5D98200339A79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFF6806623F5D98200339A79 /* Main.storyboard */; };
@@ -29,6 +33,10 @@
 
 /* Begin PBXFileReference section */
 		CF70528423FF2DD70095B5C3 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		CF9EB68C240933A80081470E /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
+		CF9EB68E24093C2D0081470E /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		CF9EB69124093F430081470E /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
+		CF9EB69224093F430081470E /* ConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
 		CFF6805D23F5D98200339A79 /* Parrot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parrot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFF6806023F5D98200339A79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFF6806423F5D98200339A79 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +68,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF9EB69024093F0C0081470E /* Conversations */ = {
+			isa = PBXGroup;
+			children = (
+				CF9EB68C240933A80081470E /* ConversationsListViewController.swift */,
+				CF9EB69124093F430081470E /* ConversationCell.swift */,
+				CF9EB69224093F430081470E /* ConversationCell.xib */,
+			);
+			path = Conversations;
+			sourceTree = "<group>";
+		};
 		CFF6805423F5D98200339A79 = {
 			isa = PBXGroup;
 			children = (
@@ -82,7 +100,9 @@
 			isa = PBXGroup;
 			children = (
 				CFF6806023F5D98200339A79 /* AppDelegate.swift */,
+				CF9EB69024093F0C0081470E /* Conversations */,
 				CFF6806423F5D98200339A79 /* ProfileViewController.swift */,
+				CF9EB68E24093C2D0081470E /* Models.swift */,
 				CFF6806623F5D98200339A79 /* Main.storyboard */,
 				CFF6806C23F5D98300339A79 /* Assets.xcassets */,
 				CFF6806E23F5D98300339A79 /* LaunchScreen.storyboard */,
@@ -183,6 +203,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF9EB69424093F430081470E /* ConversationCell.xib in Resources */,
 				CFF6807023F5D98300339A79 /* LaunchScreen.storyboard in Resources */,
 				CFF6806D23F5D98300339A79 /* Assets.xcassets in Resources */,
 				CFF6806823F5D98200339A79 /* Main.storyboard in Resources */,
@@ -204,9 +225,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF70528523FF2DD70095B5C3 /* CustomButton.swift in Sources */,
+				CF9EB68D240933A80081470E /* ConversationsListViewController.swift in Sources */,
 				CFF6806523F5D98200339A79 /* ProfileViewController.swift in Sources */,
+				CF9EB68F24093C2D0081470E /* Models.swift in Sources */,
 				CFF6806123F5D98200339A79 /* AppDelegate.swift in Sources */,
 				CFF6806B23F5D98200339A79 /* Parrot.xcdatamodeld in Sources */,
+				CF9EB69324093F430081470E /* ConversationCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
