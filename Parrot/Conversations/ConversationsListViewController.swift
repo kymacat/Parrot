@@ -11,7 +11,10 @@ import UIKit
 private let reuseIdentifier = String(describing: ConversationCell.self)
 
 class ConversationsListViewController: UITableViewController {
-
+    
+    
+    // MARK: - VC Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -59,22 +62,23 @@ class ConversationsListViewController: UITableViewController {
         
         if indexPath.section == 0 {
             cell.configure(with: onlineList[indexPath.row])
-            cell.backgroundColor = UIColor(red: 255/255, green: 230/255, blue: 160/255, alpha: 1)
+            let gradient = GradientView()
+            gradient.configure(startColor: .systemYellow, endColor: .white, startLocation: 0, endLocation: 1, startPoint: CGPoint(x: -0.5, y: 0), endPoint: CGPoint(x: 1, y: 0))
+            cell.backgroundView = gradient
         } else {
             cell.configure(with: offlineList[indexPath.row])
-            cell.backgroundColor = .white
+            cell.backgroundView = UIView()
         }
-        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 25))
-        view.backgroundColor = UIColor.red
+        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
         let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.width - 30, height: 25))
         label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.textColor = UIColor.black
+        label.textColor = UIColor.systemYellow
         if section == 0 {
             label.text = "Online"
         } else {
@@ -87,13 +91,13 @@ class ConversationsListViewController: UITableViewController {
     // MARK: - Navigation
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "toProfile", sender: nil)
+        performSegue(withIdentifier: "toConversation", sender: nil)
     }
     
     // MARK: - TestData
     
     let data = [
-        ConversationCellModel(name: "Юлия Абрамова", message: "Таким образом новая модель организационной деятельности способствует подготовки и реализации систем массового участия.", date: Date() - (60*60*24), isOnline: true, hasUnreadMessages: false),
+        ConversationCellModel(name: "Юлия Абрамова", message: "Сдам квартиру, отдам билеты на самолёт, посажу в такси до аэропорта, а сама домой", date: Date() - (60*60*24), isOnline: true, hasUnreadMessages: false),
         ConversationCellModel(name: "Карина Александровна", message: "Я конечно конфетки быстро уминаю, но сейчас не могу их быстро скушать, потому что я их не заслужила (а вообще их очень много)", date: Date() - (60*60*7), isOnline: true, hasUnreadMessages: false),
         ConversationCellModel(name: "Надя Байдак", message: "Идейные соображения высшего порядка, а также начало повседневной работы по формированию позиции позволяет оценить значение модели развития", date: Date() - (60*60*24), isOnline: false, hasUnreadMessages: false),
         ConversationCellModel(name: "Ксюша Бегич", message: "Повседневная практика показывает, что укрепление и развитие структуры обеспечивает широкому кругу (специалистов) участие в формировании дальнейших направлений развития", date: Date() - (60*16*6), isOnline: false, hasUnreadMessages: false),

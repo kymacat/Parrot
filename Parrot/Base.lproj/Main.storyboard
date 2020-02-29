@@ -85,7 +85,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="765" y="-189"/>
+            <point key="canvasLocation" x="-131" y="-921"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="wA4-bq-FTx">
+            <objects>
+                <viewController id="aW0-9o-L3j" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PC7-dx-rJa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="GB3-x2-fD4"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="6iS-yc-AzY"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7yN-UU-sCo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="686" y="-189"/>
         </scene>
         <!--Tinkoff Chat-->
         <scene sceneID="sOo-Jf-4vH">
@@ -100,9 +116,16 @@
                             <outlet property="delegate" destination="Z3g-pr-moR" id="nuv-TK-db3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Tinkoff Chat" id="z6k-qJ-o4X"/>
+                    <navigationItem key="navigationItem" title="Tinkoff Chat" id="z6k-qJ-o4X">
+                        <barButtonItem key="rightBarButtonItem" image="profile" id="8He-DQ-tcg">
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" id="ebe-uC-baT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="toProfile" id="oAx-4p-OOp"/>
+                        <segue destination="aW0-9o-L3j" kind="show" identifier="toConversation" id="ry1-6W-DbR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OLd-LG-geJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -117,6 +140,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Z3g-pr-moR" kind="relationship" relationship="rootViewController" id="N5n-3O-61d"/>
@@ -129,5 +155,6 @@
     </scenes>
     <resources>
         <image name="placeholder-user" width="600" height="600"/>
+        <image name="profile" width="32" height="32"/>
     </resources>
 </document>
