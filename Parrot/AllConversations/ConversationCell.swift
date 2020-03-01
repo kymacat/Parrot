@@ -15,6 +15,9 @@ class ConversationCell: UITableViewCell, ConfigurableView {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
+    
+    // MARK: - Configure
+    
     func configure(with model: ConversationCellModel) {
         nameLabel.text = model.name
         

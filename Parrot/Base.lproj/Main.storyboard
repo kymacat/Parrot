@@ -13,17 +13,17 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ProfileViewController" customModule="Parrot" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder-user" translatesAutoresizingMaskIntoConstraints="NO" id="GaO-dW-UJl">
-                                <rect key="frame" x="40" y="85" width="240" height="240"/>
+                                <rect key="frame" x="40" y="41" width="240" height="240"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="GaO-dW-UJl" secondAttribute="height" multiplier="1:1" id="Kt4-GL-5Qi"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Владислав Яндола" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NL-Jc-ZG1">
-                                <rect key="frame" x="40" y="339" width="240" height="31"/>
+                                <rect key="frame" x="40" y="295" width="240" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3NL-Jc-ZG1" secondAttribute="height" multiplier="240:31" id="VCr-xU-G22"/>
                                 </constraints>
@@ -32,13 +32,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Люблю программировать под iOS,                         изучать что-то новое и не стоять на месте" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5qO-GY-IqM">
-                                <rect key="frame" x="20" y="378" width="280" height="54"/>
+                                <rect key="frame" x="20" y="334" width="280" height="54"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9L-oP-0Dy">
-                                <rect key="frame" x="40" y="505" width="240" height="34"/>
+                                <rect key="frame" x="40" y="485" width="240" height="34"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="i9L-oP-0Dy" secondAttribute="height" multiplier="120:17" id="qAQ-bo-66j"/>
@@ -48,7 +48,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="center" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fpb-RH-Ocw" customClass="CustomButton" customModule="Parrot" customModuleProvider="target">
-                                <rect key="frame" x="220" y="265" width="60" height="60"/>
+                                <rect key="frame" x="220" y="221" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.2405073643" green="0.46573388580000002" blue="0.92696583269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -87,23 +87,7 @@
             </objects>
             <point key="canvasLocation" x="-131" y="-921"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="wA4-bq-FTx">
-            <objects>
-                <viewController id="aW0-9o-L3j" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="PC7-dx-rJa">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="GB3-x2-fD4"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="6iS-yc-AzY"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7yN-UU-sCo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="686" y="-189"/>
-        </scene>
-        <!--Tinkoff Chat-->
+        <!--Conversations List View Controller-->
         <scene sceneID="sOo-Jf-4vH">
             <objects>
                 <tableViewController id="Z3g-pr-moR" customClass="ConversationsListViewController" customModule="Parrot" customModuleProvider="target" sceneMemberID="viewController">
@@ -116,21 +100,40 @@
                             <outlet property="delegate" destination="Z3g-pr-moR" id="nuv-TK-db3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Tinkoff Chat" id="z6k-qJ-o4X">
+                    <navigationItem key="navigationItem" id="z6k-qJ-o4X">
                         <barButtonItem key="rightBarButtonItem" image="profile" id="8He-DQ-tcg">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="ebe-uC-baT"/>
+                                <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="automatic" id="ebe-uC-baT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="aW0-9o-L3j" kind="show" identifier="toConversation" id="ry1-6W-DbR"/>
+                        <segue destination="z5f-dv-0VB" kind="show" identifier="toConversation" id="kvd-Jl-7IE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OLd-LG-geJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-131" y="-189"/>
+        </scene>
+        <!--Conversation View Controller-->
+        <scene sceneID="QZR-cZ-1Jf">
+            <objects>
+                <tableViewController id="z5f-dv-0VB" customClass="ConversationViewController" customModule="Parrot" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="LRo-N0-J4U">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="z5f-dv-0VB" id="QsK-nr-NeP"/>
+                            <outlet property="delegate" destination="z5f-dv-0VB" id="1JV-6y-Bqn"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="c9O-gE-pm1"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nwh-Da-bvp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="686" y="-189"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rwV-5Y-sCI">

@@ -22,3 +22,8 @@ struct ConversationCellModel {
     let isOnline: Bool
     let hasUnreadMessages: Bool
 }
+
+struct MessageCellModel {
+    let text: String
+    let isIncoming: Bool
+}

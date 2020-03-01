@@ -8,10 +8,11 @@
 
 import UIKit
 
-private let reuseIdentifier = String(describing: ConversationCell.self)
+
 
 class ConversationsListViewController: UITableViewController {
     
+    fileprivate let reuseIdentifier = String(describing: ConversationCell.self)
     
     // MARK: - VC Lifecycle
     
@@ -22,6 +23,13 @@ class ConversationsListViewController: UITableViewController {
         if let delegate = UIApplication.shared.delegate as? AppDelegate {
             delegate.orientationLock = .portrait
         }
+        
+        navigationItem.title = "Tinkoff Chat"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.backgroundColor = .white
+        
+        navigationController?.navigationBar.largeTitleTextAttributes =
+            [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 25, weight: UIFont.Weight.heavy)]
         
         tableView.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellReuseIdentifier: reuseIdentifier)
         
@@ -94,16 +102,39 @@ class ConversationsListViewController: UITableViewController {
         performSegue(withIdentifier: "toConversation", sender: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "toConversation"{
+            
+            if let destinationViewController = segue.destination as? ConversationViewController {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    if let cell = tableView.cellForRow(at: indexPath) as? ConversationCell {
+                        
+                        destinationViewController.name = cell.nameLabel.text
+                        
+                        if cell.messageLabel.text == "No messages yet" {
+                            destinationViewController.messageFlag = false
+                        } else {
+                            destinationViewController.messageFlag = true
+                            destinationViewController.data.append(MessageCellModel(text: cell.messageLabel.text!, isIncoming: true))
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+    
     // MARK: - TestData
     
     let data = [
-        ConversationCellModel(name: "Юлия Абрамова", message: "Сдам квартиру, отдам билеты на самолёт, посажу в такси до аэропорта, а сама домой", date: Date() - (60*60*24), isOnline: true, hasUnreadMessages: false),
+        ConversationCellModel(name: "Юлия Абрамова", message: "Сдам квартиру, отдам билеты на самолёт, посажу в такси до аэропорта, а сама домой", date: Date() - (60*60*100), isOnline: true, hasUnreadMessages: false),
         ConversationCellModel(name: "Карина Александровна", message: "Я конечно конфетки быстро уминаю, но сейчас не могу их быстро скушать, потому что я их не заслужила (а вообще их очень много)", date: Date() - (60*60*7), isOnline: true, hasUnreadMessages: false),
-        ConversationCellModel(name: "Надя Байдак", message: "Идейные соображения высшего порядка, а также начало повседневной работы по формированию позиции позволяет оценить значение модели развития", date: Date() - (60*60*24), isOnline: false, hasUnreadMessages: false),
+        ConversationCellModel(name: "Надя Байдак", message: "Идейные соображения высшего порядка, а также начало повседневной работы по формированию позиции позволяет оценить значение модели развития", date: Date() - (60*60*48), isOnline: false, hasUnreadMessages: false),
         ConversationCellModel(name: "Ксюша Бегич", message: "Повседневная практика показывает, что укрепление и развитие структуры обеспечивает широкому кругу (специалистов) участие в формировании дальнейших направлений развития", date: Date() - (60*16*6), isOnline: false, hasUnreadMessages: false),
         ConversationCellModel(name: "Геннадий Букин", message: "Равным образом рамки и место обучения кадров влечет за собой процесс внедрения и модернизации системы обучения кадров, соответствует насущным потребностям.", date: Date() - (60*48*10), isOnline: true, hasUnreadMessages: false),
         ConversationCellModel(name: "Артем Вавилов", message: "Таким образом новая модель организационной деятельности способствует подготовки и реализации систем массового участия.", date: Date() - (60*60*24), isOnline: true, hasUnreadMessages: false),
-        ConversationCellModel(name: "Дима Волобоев", message: "Товарищи! постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет выполнять важные задания по разработке модели развития", date: Date() - (60*60*24), isOnline: false, hasUnreadMessages: false),
+        ConversationCellModel(name: "Дима Волобоев", message: "Товарищи! постоянное информационно-пропагандистское обеспечение нашей деятельности позволяет выполнять важные задания по разработке модели развития", date: Date() - (60*60*88), isOnline: false, hasUnreadMessages: false),
         ConversationCellModel(name: "Ксения Гержан", message: "С другой стороны укрепление и развитие структуры обеспечивает участие в формировании систем массового участия.", date: Date() - (60*16*5), isOnline: false, hasUnreadMessages: false),
         ConversationCellModel(name: "Екатерина Графова", message: "Привет", date: Date() - (60*29*6), isOnline: true, hasUnreadMessages: false),
         ConversationCellModel(name: "Анна Дзюба", message: "Как дела?", date: Date() - (60*60*24), isOnline: true, hasUnreadMessages: true),
