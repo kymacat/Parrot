@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF00B9A0240B173B00FDDE1F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00B99F240B173B00FDDE1F /* GradientView.swift */; };
+		CF017B48240BDCB40013D7FD /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF017B47240BDCB40013D7FD /* ConversationViewController.swift */; };
+		CF240180240BE61D0075BE25 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24017F240BE61D0075BE25 /* MessageCell.swift */; };
 		CF70528523FF2DD70095B5C3 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70528423FF2DD70095B5C3 /* CustomButton.swift */; };
+		CF9EB68D240933A80081470E /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB68C240933A80081470E /* ConversationsListViewController.swift */; };
+		CF9EB68F24093C2D0081470E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB68E24093C2D0081470E /* Models.swift */; };
+		CF9EB69324093F430081470E /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB69124093F430081470E /* ConversationCell.swift */; };
+		CF9EB69424093F430081470E /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9EB69224093F430081470E /* ConversationCell.xib */; };
 		CFF6806123F5D98200339A79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6806023F5D98200339A79 /* AppDelegate.swift */; };
 		CFF6806523F5D98200339A79 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6806423F5D98200339A79 /* ProfileViewController.swift */; };
 		CFF6806823F5D98200339A79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFF6806623F5D98200339A79 /* Main.storyboard */; };
@@ -28,7 +35,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CF00B99F240B173B00FDDE1F /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		CF017B47240BDCB40013D7FD /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		CF24017F240BE61D0075BE25 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		CF70528423FF2DD70095B5C3 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		CF9EB68C240933A80081470E /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
+		CF9EB68E24093C2D0081470E /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		CF9EB69124093F430081470E /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
+		CF9EB69224093F430081470E /* ConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
 		CFF6805D23F5D98200339A79 /* Parrot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parrot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFF6806023F5D98200339A79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFF6806423F5D98200339A79 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +74,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF017B49240BDCDE0013D7FD /* Conversation */ = {
+			isa = PBXGroup;
+			children = (
+				CF017B47240BDCB40013D7FD /* ConversationViewController.swift */,
+				CF24017F240BE61D0075BE25 /* MessageCell.swift */,
+			);
+			path = Conversation;
+			sourceTree = "<group>";
+		};
+		CF9EB69024093F0C0081470E /* AllConversations */ = {
+			isa = PBXGroup;
+			children = (
+				CF9EB68C240933A80081470E /* ConversationsListViewController.swift */,
+				CF9EB69124093F430081470E /* ConversationCell.swift */,
+				CF9EB69224093F430081470E /* ConversationCell.xib */,
+			);
+			path = AllConversations;
+			sourceTree = "<group>";
+		};
 		CFF6805423F5D98200339A79 = {
 			isa = PBXGroup;
 			children = (
@@ -82,11 +115,15 @@
 			isa = PBXGroup;
 			children = (
 				CFF6806023F5D98200339A79 /* AppDelegate.swift */,
+				CF9EB69024093F0C0081470E /* AllConversations */,
+				CF017B49240BDCDE0013D7FD /* Conversation */,
 				CFF6806423F5D98200339A79 /* ProfileViewController.swift */,
+				CF9EB68E24093C2D0081470E /* Models.swift */,
 				CFF6806623F5D98200339A79 /* Main.storyboard */,
 				CFF6806C23F5D98300339A79 /* Assets.xcassets */,
 				CFF6806E23F5D98300339A79 /* LaunchScreen.storyboard */,
 				CF70528423FF2DD70095B5C3 /* CustomButton.swift */,
+				CF00B99F240B173B00FDDE1F /* GradientView.swift */,
 				CFF6807123F5D98300339A79 /* Info.plist */,
 				CFF6806923F5D98200339A79 /* Parrot.xcdatamodeld */,
 			);
@@ -183,6 +220,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF9EB69424093F430081470E /* ConversationCell.xib in Resources */,
 				CFF6807023F5D98300339A79 /* LaunchScreen.storyboard in Resources */,
 				CFF6806D23F5D98300339A79 /* Assets.xcassets in Resources */,
 				CFF6806823F5D98200339A79 /* Main.storyboard in Resources */,
@@ -204,9 +242,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF70528523FF2DD70095B5C3 /* CustomButton.swift in Sources */,
+				CF240180240BE61D0075BE25 /* MessageCell.swift in Sources */,
+				CF9EB68D240933A80081470E /* ConversationsListViewController.swift in Sources */,
+				CF017B48240BDCB40013D7FD /* ConversationViewController.swift in Sources */,
 				CFF6806523F5D98200339A79 /* ProfileViewController.swift in Sources */,
+				CF9EB68F24093C2D0081470E /* Models.swift in Sources */,
 				CFF6806123F5D98200339A79 /* AppDelegate.swift in Sources */,
 				CFF6806B23F5D98200339A79 /* Parrot.xcdatamodeld in Sources */,
+				CF00B9A0240B173B00FDDE1F /* GradientView.swift in Sources */,
+				CF9EB69324093F430081470E /* ConversationCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

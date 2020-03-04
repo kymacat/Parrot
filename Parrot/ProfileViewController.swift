@@ -24,25 +24,13 @@ class ProfileViewController: UIViewController {
     
     // MARK: - VC Lifecycle
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        //print(editingButton.frame)
-        // На этом этапе еще нет ни самой view, ни его аутлетов, поэтому приложение крашнется
-        
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(editingButton.frame)
         
         nameLabel.textColor = .black
         descriptionLabel.textColor = .black
         
-        //Блокировка портретного режима
-        if let delegate = UIApplication.shared.delegate as? AppDelegate {
-            delegate.orientationLock = .portrait
-        }
         
         // констрейнты для setProfileButton
         setProfileImageButton.translatesAutoresizingMaskIntoConstraints = false
@@ -66,23 +54,9 @@ class ProfileViewController: UIViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        print(editingButton.frame)
-        // Размеры отличаются, потому что view подстроился под экран, и соответственно все его элементы тоже
     
-        
         //Закругленные края
         setProfileImageButton.layer.cornerRadius = CGFloat(setProfileImageButton.frame.width/2)
         profileImage.layer.cornerRadius = CGFloat(setProfileImageButton.frame.width/2)
@@ -95,21 +69,6 @@ class ProfileViewController: UIViewController {
         image.frame = imageFrame
         image.image = UIImage(named: "slr-camera-2-xxl")
         setProfileImageButton.addSubview(image)
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
     }
     
     // MARK: - Work with user
