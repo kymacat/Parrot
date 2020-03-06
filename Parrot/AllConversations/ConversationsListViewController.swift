@@ -110,12 +110,12 @@ class ConversationsListViewController: UITableViewController {
                 if let indexPath = tableView.indexPathForSelectedRow {
                     if let cell = tableView.cellForRow(at: indexPath) as? ConversationCell {
                         
-                        destinationViewController.name = cell.nameLabel.text
+                        destinationViewController.setName(name: cell.nameLabel.text)
                         
                         if cell.messageLabel.text == "No messages yet" {
-                            destinationViewController.messageFlag = false
+                            destinationViewController.setFlag(flag: false)
                         } else {
-                            destinationViewController.messageFlag = true
+                            destinationViewController.setFlag(flag: true)
                             destinationViewController.data.append(MessageCellModel(text: cell.messageLabel.text!, isIncoming: true))
                         }
                     }

@@ -12,8 +12,23 @@ class ConversationViewController: UITableViewController {
     
     fileprivate let reuseIdentifier = "MessageCell"
     
-    var name: String!
-    var messageFlag: Bool!
+    // MARK: - Private
+    
+    private var name: String!
+    private var messageFlag: Bool!
+    
+    func setName(name: String?) {
+        if let unrName = name {
+            self.name = unrName
+        } else {
+            self.name = ""
+        }
+    }
+    
+    func setFlag(flag: Bool) {
+        self.messageFlag = flag
+    }
+    
 
     // MARK: - VC Lifecycle
     

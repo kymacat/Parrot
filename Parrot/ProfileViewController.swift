@@ -42,6 +42,21 @@ class ProfileViewController: UIViewController {
             setProfileImageButton.heightAnchor.constraint(equalToConstant: profileImage.frame.width/3)
         ])
         
+        // Картинка для кнопки setProfileImageButton
+        let image = UIImageView()
+        image.image = UIImage(named: "slr-camera-2-xxl")
+        setProfileImageButton.addSubview(image)
+        
+        image.translatesAutoresizingMaskIntoConstraints = false
+        
+        // констрейнты для картинки в setProfileImageButton
+        NSLayoutConstraint.activate([
+            image.trailingAnchor.constraint(equalTo: setProfileImageButton.trailingAnchor, constant: -18),
+            image.bottomAnchor.constraint(equalTo: setProfileImageButton.bottomAnchor, constant: -18),
+            image.leadingAnchor.constraint(equalTo: setProfileImageButton.leadingAnchor, constant: 18),
+            image.topAnchor.constraint(equalTo: setProfileImageButton.topAnchor, constant: 18)
+        ])
+        
     
         // Размеры шрифтов для nameLabel, descriptionLabel и editingButton
         nameLabel.font = nameLabel.font.withSize(self.view.frame.width/14)
@@ -61,14 +76,6 @@ class ProfileViewController: UIViewController {
         setProfileImageButton.layer.cornerRadius = CGFloat(setProfileImageButton.frame.width/2)
         profileImage.layer.cornerRadius = CGFloat(setProfileImageButton.frame.width/2)
         
-        // Картинка для кнопки setProfileImageButton
-        let image = UIImageView()
-        let imageViewWidth = setProfileImageButton.frame.width
-        let imageViewHeigth = setProfileImageButton.frame.height
-        let imageFrame = CGRect(x: imageViewWidth/4, y: imageViewHeigth/4, width: imageViewWidth*2/4, height: imageViewHeigth*2/4)
-        image.frame = imageFrame
-        image.image = UIImage(named: "slr-camera-2-xxl")
-        setProfileImageButton.addSubview(image)
     }
     
     // MARK: - Work with user
