@@ -128,28 +128,28 @@ class Developer {
     }
     
     func sendMessageToDeveloper(to developer: String, with message: String) {
-        print("(\(name) просит менеджера найти \(developer) и передать ему сообщение)")
+        print("(" + name + " просит менеджера найти \(developer) и передать ему сообщение)")
         if let manager = productManager {
             manager.sendToDeveloper(recipient: self, to: developer, with: message)
         }
     }
     
     func sendMessageToManager(message: String) {
-        print("(\(name) передает менеджеру сообщение)")
+        print("(" + name + " передает менеджеру сообщение)")
         if let manager = productManager {
             manager.getMessage(from: name, with: message)
         }
     }
     
     func sendMessageToCEO(message: String) {
-        print("(\(name) просит менеджера передать СЕО сообщение)")
+        print("(" + name + " просит менеджера передать СЕО сообщение)")
         if let manager = productManager {
             manager.sendToCEO(recipient: name, with: message)
         }
     }
     
     func getMessage(from developer: String, with message: String) {
-        print("\(name) получил от \(developer) сообщение: \"\(message)\"")
+        print(name + " получил от " + developer + " сообщение: \"" + message + "\"")
     }
     
     deinit {
