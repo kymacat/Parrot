@@ -37,6 +37,26 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         fillView()
+        
+        let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        scrollView.addGestureRecognizer(hideKeyboardGesture)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -200,7 +220,7 @@ class ProfileViewController: UIViewController {
         textField.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
         
         nameTextField = textField
-        view.addSubview(nameTextField)
+        scrollView.addSubview(nameTextField)
         
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
         
@@ -223,7 +243,7 @@ class ProfileViewController: UIViewController {
         textView.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
         
         editingDescriptionTextView = textView
-        view.addSubview(editingDescriptionTextView)
+        scrollView.addSubview(editingDescriptionTextView)
         
         editingDescriptionTextView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -252,7 +272,7 @@ class ProfileViewController: UIViewController {
         
         
         GCDSaveButton = GCDButton
-        view.addSubview(GCDSaveButton)
+        scrollView.addSubview(GCDSaveButton)
         
         GCDSaveButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -282,7 +302,7 @@ class ProfileViewController: UIViewController {
         
         
         OperationSaveButton = OperationButton
-        view.addSubview(OperationSaveButton)
+        scrollView.addSubview(OperationSaveButton)
         
         OperationSaveButton.translatesAutoresizingMaskIntoConstraints = false
         
@@ -363,6 +383,8 @@ class ProfileViewController: UIViewController {
             OperationSaveButton.isHidden = true
             GCDSaveButton.isHidden = true
             
+            hideKeyboard()
+            
             
         }
         
@@ -378,7 +400,30 @@ class ProfileViewController: UIViewController {
             OperationSaveButton.isHidden = true
             GCDSaveButton.isHidden = true
             
+            hideKeyboard()
+            
         }
+    
+    // MARK: - Work with interface
+    
+    @objc func keyboardWasShown(notification: Notification) {
+        let info = notification.userInfo! as NSDictionary
+        let kbSize = (info.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size
+        let contentInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: kbSize.height, right: 0.0)
+        
+        scrollView.contentInset = contentInsets
+        scrollView.scrollIndicatorInsets = contentInsets
+
+    }
+    
+    @objc func keyboardWillBeHidden(notification: Notification) {
+        let contentInsets = UIEdgeInsets.zero
+        scrollView.contentInset = contentInsets
+    }
+    
+    @objc func hideKeyboard() {
+        scrollView.endEditing(true)
+    }
     
     
 }
