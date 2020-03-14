@@ -82,4 +82,9 @@ class CustomButton : UIButton {
             stopTimer()
         }
     }
+    
+    func changeBackroundColor(_ color: UIColor) {
+        self.color = color
+        setup()
+    }
 }
