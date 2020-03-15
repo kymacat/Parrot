@@ -62,6 +62,10 @@ class GCDDataManager {
                 DispatchQueue.main.async {
                     controller.profileImage.image = UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent("fileName.png").path)
                 }
+            } else {
+                DispatchQueue.main.async {
+                    controller.profileImage.image = UIImage(named: "placeholder-user")
+                }
             }
         }
     }
@@ -86,7 +90,7 @@ class GCDDataManager {
                         }
                     }
                 } catch {
-                    print("Ошибка чтения")
+                    
                 }
             }
         }
