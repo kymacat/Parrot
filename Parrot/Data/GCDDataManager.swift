@@ -6,7 +6,7 @@
 //  Copyright © 2020 Oleginc. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class GCDDataManager {
     
@@ -31,6 +31,36 @@ class GCDDataManager {
                         controller.showErrorAlert()
                         controller.activityIndicator.stopAnimating()
                     }
+                }
+            }
+        }
+    }
+    
+    static func saveImage(image: UIImage) {
+        let queue = DispatchQueue.global(qos: .utility)
+        
+        queue.async {
+            guard let data = image.jpegData(compressionQuality: 1) ?? image.pngData() else {
+                return
+            }
+            guard let directory = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) as NSURL else {
+                return
+            }
+            do {
+                try data.write(to: directory.appendingPathComponent("fileName.png")!)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    static func getSavedImage(controller: ProfileViewController) {
+        let queue = DispatchQueue.global(qos: .utility)
+        
+        queue.async {
+            if let dir = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
+                DispatchQueue.main.async {
+                    controller.profileImage.image = UIImage(contentsOfFile: URL(fileURLWithPath: dir.absoluteString).appendingPathComponent("fileName.png").path)
                 }
             }
         }

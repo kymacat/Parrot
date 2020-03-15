@@ -46,6 +46,8 @@ class ProfileViewController: UIViewController {
         GCDDataManager.readFromTheFile(self, name: nameFile)
         GCDDataManager.readFromTheFile(self, name: descriptionFile)
         
+        GCDDataManager.getSavedImage(controller: self)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -437,9 +439,59 @@ class ProfileViewController: UIViewController {
     // MARK: saveOperationButton
         
     @objc func saveOperationButton(sender: UIButton) {
+        if !activityIndicator.isAnimating {
+            
+            //Если данные не менялись, то ничего не сохраняю
+            if (nameLabel.text == nameTextField.text) && (descriptionTextView.text == editingDescriptionTextView.text) {
+                presentMode()
+                
+                hideKeyboard()
+                return
+            }
+            
+            let operationQueue: OperationQueue = OperationQueue()
+            
+            if nameLabel.text != nameTextField.text {
+                if let nameText = nameTextField.text {
+                    activityIndicator.startAnimating()
+                    let operation = WriteOperation(self, fileName: nameFile, data: nameText)
+                    operation.completionBlock = {
+                        DispatchQueue.main.async { [weak self] in
+                            if operation.isSuccessesed {
+                                self?.showSuccessesAlert()
+                                self?.activityIndicator.stopAnimating()
+                                self?.presentMode()
+                            } else {
+                                self?.showErrorAlert()
+                                self?.activityIndicator.stopAnimating()
+                            }
+                        }
+                    }
+                    operationQueue.addOperation(operation)
+                }
+            }
+            
+            if descriptionTextView.text != editingDescriptionTextView.text {
+                if let descrText = editingDescriptionTextView.text {
+                    activityIndicator.startAnimating()
+                    let operation = WriteOperation(self, fileName: descriptionFile, data: descrText)
+                    operation.completionBlock = {
+                        DispatchQueue.main.async { [weak self] in
+                            if operation.isSuccessesed {
+                                self?.showSuccessesAlert()
+                                self?.activityIndicator.stopAnimating()
+                                self?.presentMode()
+                            } else {
+                                self?.showErrorAlert()
+                                self?.activityIndicator.stopAnimating()
+                            }
+                        }
+                    }
+                    operationQueue.addOperation(operation)
+                }
+            }
         
-        presentMode()
-        
+        }
         hideKeyboard()
     }
     
@@ -486,7 +538,8 @@ class ProfileViewController: UIViewController {
     // MARK: - Backend
     
     
-    // MARK: - profile modes
+    
+    // MARK: profile modes
     
     func changeMode() {
         nameTextField.isHidden = !nameTextField.isHidden
@@ -511,8 +564,13 @@ class ProfileViewController: UIViewController {
             OperationSaveButton.isHidden = true
             GCDSaveButton.isHidden = true
             isPresentMode = true
+            
+            
             GCDDataManager.readFromTheFile(self, name: nameFile)
             GCDDataManager.readFromTheFile(self, name: descriptionFile)
+            
+            
+            
         }
     }
     
@@ -548,6 +606,8 @@ extension ProfileViewController : UIImagePickerControllerDelegate, UINavigationC
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         
         profileImage.image = image
+        
+        GCDDataManager.saveImage(image: image)
         
         picker.dismiss(animated: true, completion: nil)
     }
