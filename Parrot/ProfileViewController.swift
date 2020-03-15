@@ -30,6 +30,8 @@ class ProfileViewController: UIViewController {
     weak var GCDSaveButton: CustomButton!
     weak var OperationSaveButton: CustomButton!
     
+    weak var activityIndicator: UIActivityIndicatorView!
+    
     
     // MARK: - VC Lifecycle
     
@@ -40,6 +42,10 @@ class ProfileViewController: UIViewController {
         
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         scrollView.addGestureRecognizer(hideKeyboardGesture)
+        
+        GCDDataManager.readFromTheFile(self, name: nameFile)
+        GCDDataManager.readFromTheFile(self, name: descriptionFile)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,6 +78,7 @@ class ProfileViewController: UIViewController {
     
     private func fillView() {
         
+        
         // MARK: Scroll View
         
         let scroll = UIScrollView()
@@ -103,9 +110,9 @@ class ProfileViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             profileImage.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 40),
-            profileImage.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 41),
+            profileImage.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 40),
            profileImage.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -40),
-           profileImage.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.8),
+           profileImage.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.78),
            profileImage.heightAnchor.constraint(equalTo: profileImage.widthAnchor)
         ])
         
@@ -182,7 +189,7 @@ class ProfileViewController: UIViewController {
             descriptionTextView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 20),
             descriptionTextView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
             descriptionTextView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
-            descriptionTextView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.35)
+            descriptionTextView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.3)
         ])
         
         
@@ -198,14 +205,21 @@ class ProfileViewController: UIViewController {
 
         editingButton = eButton
         scrollView.addSubview(editingButton)
-
+        
+        
+        var constant: CGFloat = 5
+        
+        //constant для экрана, большего чем у iPhone 8
+        if view.frame.height > 736 {
+            constant *= 12
+        }
         editingButton.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             editingButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 40),
             editingButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -40),
             editingButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -29),
-            editingButton.topAnchor.constraint(equalTo: descriptionTextView.bottomAnchor, constant: 8),
+            editingButton.topAnchor.constraint(equalTo: descriptionTextView.bottomAnchor, constant: constant),
             editingButton.widthAnchor.constraint(equalTo: editingButton.heightAnchor, multiplier: 120/17)
         ])
         
@@ -234,7 +248,7 @@ class ProfileViewController: UIViewController {
         nameTextField.isHidden = true
         
         
-        // MARK: descriptionTextView
+        // MARK: editDescriptionTextView
         let textView = UITextView()
         textView.textAlignment = .center
         textView.font = descriptionTextView.font
@@ -315,14 +329,36 @@ class ProfileViewController: UIViewController {
         
         OperationSaveButton.isHidden = true
         
+        // MARK: IndicatorView
         
+        let indicator = UIActivityIndicatorView()
+        indicator.hidesWhenStopped = true
+        indicator.color = .black
+        indicator.style = .whiteLarge
         
+        activityIndicator = indicator
+        scrollView.addSubview(activityIndicator)
+        
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            activityIndicator.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -20),
+            activityIndicator.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20)
+        ])
         
     }
     
-    // MARK: - Work with user
+    
+    // MARK: - Frontend
+    
+    // MARK: Вспомогательные поля
+    var isPresentMode = true
+    var isAlerted = false
+    let nameFile = "Name.txt"
+    let descriptionFile = "Description.txt"
     
     
+    // MARK: setProfileImage
     @objc func setProfileImageButtonAction(sender: UIButton) {
         selectionAlert()
     }
@@ -357,55 +393,130 @@ class ProfileViewController: UIViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    // MARK: editProfileButton
+    
     @objc func editProfileButton(sender: UIButton) {
-            nameTextField.isHidden = !nameTextField.isHidden
-            editingDescriptionTextView.isHidden = !editingDescriptionTextView.isHidden
-            nameLabel.isHidden = !nameLabel.isHidden
-            descriptionTextView.isHidden = !descriptionTextView.isHidden
-
-            descriptionTextView.text = editingDescriptionTextView.text
-
-            editingButton.isHidden = true
-            GCDSaveButton.isHidden = false
-            OperationSaveButton.isHidden = false
+        nameTextField.text = nameLabel.text
+        editingDescriptionTextView.text = descriptionTextView.text
+        
+        editingMode()
+    }
+    
+    // MARK: saveGCDButton
+        
+    @objc func saveGCDButton(sender: UIButton) {
+        if !activityIndicator.isAnimating {
+        
+            //Если данные не менялись, то ничего не сохраняю
+            if (nameLabel.text == nameTextField.text) && (descriptionTextView.text == editingDescriptionTextView.text) {
+                presentMode()
+                
+                hideKeyboard()
+                return
+            }
             
+            if nameLabel.text != nameTextField.text {
+                if let nameText = nameTextField.text {
+                    activityIndicator.startAnimating()
+                    GCDDataManager.writeToFile(self, name: nameFile, data: nameText)
+                }
+            }
+            
+            if descriptionTextView.text != editingDescriptionTextView.text {
+                if let descrText = editingDescriptionTextView.text {
+                    activityIndicator.startAnimating()
+                    GCDDataManager.writeToFile(self, name: descriptionFile, data: descrText)
+                }
+            }
+        }
+            
+        hideKeyboard()
+            
+    }
+    
+    // MARK: saveOperationButton
+        
+    @objc func saveOperationButton(sender: UIButton) {
+        
+        presentMode()
+        
+        hideKeyboard()
+    }
+    
+    // MARK: Alerts
+    
+    @objc func showSuccessesAlert() {
+        if !isAlerted {
+            isAlerted = true
+            let alert = UIAlertController(title: "Уведомление", message: "Изменения сохранены", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .cancel, handler: { [weak self] action in
+                self?.isAlerted = false
+            })
+            alert.addAction(action)
+            present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    @objc func showErrorAlert() {
+        if !isAlerted {
+            isAlerted = true
+            let alert = UIAlertController(title: "Ошибка", message: "Что-то пошло не так и данные не сохранились", preferredStyle: .alert)
+
+            alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: { [weak self] action in
+                self?.presentMode()
+            }))
+            
+            alert.addAction(UIAlertAction(title: "Повторить", style: .default, handler: { [weak self] action in
+                
+                if let nameText = self?.nameTextField.text, let VC = self {
+                    GCDDataManager.writeToFile(VC, name: VC.nameFile, data: nameText)
+                }
+                
+                if let descrText = self?.editingDescriptionTextView.text, let VC = self {
+                    GCDDataManager.writeToFile(VC, name: VC.descriptionFile, data: descrText)
+                }
+                self?.isAlerted = false
+            }))
+
+            self.present(alert, animated: true)
         }
         
-        @objc func saveGCDButton(sender: UIButton) {
-            nameTextField.isHidden = !nameTextField.isHidden
-            editingDescriptionTextView.isHidden = !editingDescriptionTextView.isHidden
-            nameLabel.isHidden = !nameLabel.isHidden
-            descriptionTextView.isHidden = !descriptionTextView.isHidden
-            
-            descriptionTextView.text = editingDescriptionTextView.text
-            
+    }
+    
+    // MARK: - Backend
+    
+    
+    // MARK: - profile modes
+    
+    func changeMode() {
+        nameTextField.isHidden = !nameTextField.isHidden
+        editingDescriptionTextView.isHidden = !editingDescriptionTextView.isHidden
+        nameLabel.isHidden = !nameLabel.isHidden
+        descriptionTextView.isHidden = !descriptionTextView.isHidden
+        isPresentMode = false
+    }
+    
+    func editingMode() {
+
+        changeMode()
+        editingButton.isHidden = true
+        GCDSaveButton.isHidden = false
+        OperationSaveButton.isHidden = false
+    }
+    
+    func presentMode() {
+        if !isPresentMode {
+            changeMode()
             editingButton.isHidden = false
             OperationSaveButton.isHidden = true
             GCDSaveButton.isHidden = true
-            
-            hideKeyboard()
-            
-            
+            isPresentMode = true
+            GCDDataManager.readFromTheFile(self, name: nameFile)
+            GCDDataManager.readFromTheFile(self, name: descriptionFile)
         }
-        
-        @objc func saveOperationButton(sender: UIButton) {
-            nameTextField.isHidden = !nameTextField.isHidden
-            editingDescriptionTextView.isHidden = !editingDescriptionTextView.isHidden
-            nameLabel.isHidden = !nameLabel.isHidden
-            descriptionTextView.isHidden = !descriptionTextView.isHidden
-            
-            descriptionTextView.text = editingDescriptionTextView.text
-            
-            editingButton.isHidden = false
-            OperationSaveButton.isHidden = true
-            GCDSaveButton.isHidden = true
-            
-            hideKeyboard()
-            
-        }
+    }
     
-    // MARK: - Work with interface
-    
+    // MARK: keyboard notification
     @objc func keyboardWasShown(notification: Notification) {
         let info = notification.userInfo! as NSDictionary
         let kbSize = (info.value(forKey: UIResponder.keyboardFrameEndUserInfoKey) as! NSValue).cgRectValue.size

@@ -15,6 +15,8 @@
 		CF9EB68F24093C2D0081470E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB68E24093C2D0081470E /* Models.swift */; };
 		CF9EB69324093F430081470E /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB69124093F430081470E /* ConversationCell.swift */; };
 		CF9EB69424093F430081470E /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9EB69224093F430081470E /* ConversationCell.xib */; };
+		CFADB9FE241E3B86003CA0D6 /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADB9FD241E3B86003CA0D6 /* GCDDataManager.swift */; };
+		CFADBA00241E3BA6003CA0D6 /* OperationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADB9FF241E3BA6003CA0D6 /* OperationDataManager.swift */; };
 		CFF6806123F5D98200339A79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6806023F5D98200339A79 /* AppDelegate.swift */; };
 		CFF6806523F5D98200339A79 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6806423F5D98200339A79 /* ProfileViewController.swift */; };
 		CFF6806823F5D98200339A79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFF6806623F5D98200339A79 /* Main.storyboard */; };
@@ -43,6 +45,8 @@
 		CF9EB68E24093C2D0081470E /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		CF9EB69124093F430081470E /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
 		CF9EB69224093F430081470E /* ConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
+		CFADB9FD241E3B86003CA0D6 /* GCDDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDDataManager.swift; sourceTree = "<group>"; };
+		CFADB9FF241E3BA6003CA0D6 /* OperationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDataManager.swift; sourceTree = "<group>"; };
 		CFF6805D23F5D98200339A79 /* Parrot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parrot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFF6806023F5D98200339A79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFF6806423F5D98200339A79 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +87,15 @@
 			path = Conversation;
 			sourceTree = "<group>";
 		};
+		CF8C98B6241D979D00CF83A5 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				CFADB9FD241E3B86003CA0D6 /* GCDDataManager.swift */,
+				CFADB9FF241E3BA6003CA0D6 /* OperationDataManager.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		CF9EB69024093F0C0081470E /* AllConversations */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,11 +132,12 @@
 				CF017B49240BDCDE0013D7FD /* Conversation */,
 				CFF6806423F5D98200339A79 /* ProfileViewController.swift */,
 				CF9EB68E24093C2D0081470E /* Models.swift */,
-				CFF6806623F5D98200339A79 /* Main.storyboard */,
-				CFF6806C23F5D98300339A79 /* Assets.xcassets */,
-				CFF6806E23F5D98300339A79 /* LaunchScreen.storyboard */,
 				CF70528423FF2DD70095B5C3 /* CustomButton.swift */,
 				CF00B99F240B173B00FDDE1F /* GradientView.swift */,
+				CF8C98B6241D979D00CF83A5 /* Data */,
+				CFF6806623F5D98200339A79 /* Main.storyboard */,
+				CFF6806E23F5D98300339A79 /* LaunchScreen.storyboard */,
+				CFF6806C23F5D98300339A79 /* Assets.xcassets */,
 				CFF6807123F5D98300339A79 /* Info.plist */,
 				CFF6806923F5D98200339A79 /* Parrot.xcdatamodeld */,
 			);
@@ -249,8 +263,10 @@
 				CF9EB68F24093C2D0081470E /* Models.swift in Sources */,
 				CFF6806123F5D98200339A79 /* AppDelegate.swift in Sources */,
 				CFF6806B23F5D98200339A79 /* Parrot.xcdatamodeld in Sources */,
+				CFADB9FE241E3B86003CA0D6 /* GCDDataManager.swift in Sources */,
 				CF00B9A0240B173B00FDDE1F /* GradientView.swift in Sources */,
 				CF9EB69324093F430081470E /* ConversationCell.swift in Sources */,
+				CFADBA00241E3BA6003CA0D6 /* OperationDataManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
