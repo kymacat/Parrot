@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36C16A7B4D7A02B3273325DF /* Pods_Parrot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E2DCBEB81111536476FDAE2 /* Pods_Parrot.framework */; };
 		CF00B9A0240B173B00FDDE1F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00B99F240B173B00FDDE1F /* GradientView.swift */; };
 		CF017B48240BDCB40013D7FD /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF017B47240BDCB40013D7FD /* ConversationViewController.swift */; };
 		CF240180240BE61D0075BE25 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24017F240BE61D0075BE25 /* MessageCell.swift */; };
@@ -17,6 +18,7 @@
 		CF9EB69424093F430081470E /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9EB69224093F430081470E /* ConversationCell.xib */; };
 		CFADB9FE241E3B86003CA0D6 /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADB9FD241E3B86003CA0D6 /* GCDDataManager.swift */; };
 		CFADBA00241E3BA6003CA0D6 /* OperationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADB9FF241E3BA6003CA0D6 /* OperationDataManager.swift */; };
+		CFDEAFC424240212008E467A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CFDEAFC324240212008E467A /* GoogleService-Info.plist */; };
 		CFF6806123F5D98200339A79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6806023F5D98200339A79 /* AppDelegate.swift */; };
 		CFF6806523F5D98200339A79 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6806423F5D98200339A79 /* ProfileViewController.swift */; };
 		CFF6806823F5D98200339A79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFF6806623F5D98200339A79 /* Main.storyboard */; };
@@ -37,6 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2E2DCBEB81111536476FDAE2 /* Pods_Parrot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Parrot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8067997FB6B4212DFB0E0D56 /* Pods-Parrot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parrot.release.xcconfig"; path = "Target Support Files/Pods-Parrot/Pods-Parrot.release.xcconfig"; sourceTree = "<group>"; };
+		841E8B7C81D12A57EC1C320C /* Pods-Parrot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parrot.debug.xcconfig"; path = "Target Support Files/Pods-Parrot/Pods-Parrot.debug.xcconfig"; sourceTree = "<group>"; };
 		CF00B99F240B173B00FDDE1F /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		CF017B47240BDCB40013D7FD /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
 		CF24017F240BE61D0075BE25 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
@@ -47,6 +52,7 @@
 		CF9EB69224093F430081470E /* ConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
 		CFADB9FD241E3B86003CA0D6 /* GCDDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDDataManager.swift; sourceTree = "<group>"; };
 		CFADB9FF241E3BA6003CA0D6 /* OperationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDataManager.swift; sourceTree = "<group>"; };
+		CFDEAFC324240212008E467A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CFF6805D23F5D98200339A79 /* Parrot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parrot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFF6806023F5D98200339A79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFF6806423F5D98200339A79 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36C16A7B4D7A02B3273325DF /* Pods_Parrot.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +85,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7413DDE600C4260F7B7B4B0E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				841E8B7C81D12A57EC1C320C /* Pods-Parrot.debug.xcconfig */,
+				8067997FB6B4212DFB0E0D56 /* Pods-Parrot.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		CF017B49240BDCDE0013D7FD /* Conversation */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +128,8 @@
 				CFF6805F23F5D98200339A79 /* Parrot */,
 				CFF6807923F5D98300339A79 /* ParrotTests */,
 				CFF6805E23F5D98200339A79 /* Products */,
+				7413DDE600C4260F7B7B4B0E /* Pods */,
+				FEACBBAD4CC3FFB44846A404 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -138,6 +156,7 @@
 				CFF6806623F5D98200339A79 /* Main.storyboard */,
 				CFF6806E23F5D98300339A79 /* LaunchScreen.storyboard */,
 				CFF6806C23F5D98300339A79 /* Assets.xcassets */,
+				CFDEAFC324240212008E467A /* GoogleService-Info.plist */,
 				CFF6807123F5D98300339A79 /* Info.plist */,
 				CFF6806923F5D98200339A79 /* Parrot.xcdatamodeld */,
 			);
@@ -153,6 +172,14 @@
 			path = ParrotTests;
 			sourceTree = "<group>";
 		};
+		FEACBBAD4CC3FFB44846A404 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2E2DCBEB81111536476FDAE2 /* Pods_Parrot.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -160,9 +187,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CFF6807F23F5D98300339A79 /* Build configuration list for PBXNativeTarget "Parrot" */;
 			buildPhases = (
+				020483BCD4A9BD2C6881AFC0 /* [CP] Check Pods Manifest.lock */,
 				CFF6805923F5D98200339A79 /* Sources */,
 				CFF6805A23F5D98200339A79 /* Frameworks */,
 				CFF6805B23F5D98200339A79 /* Resources */,
+				E7B900871A16BA32092F7D3D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -236,6 +265,7 @@
 			files = (
 				CF9EB69424093F430081470E /* ConversationCell.xib in Resources */,
 				CFF6807023F5D98300339A79 /* LaunchScreen.storyboard in Resources */,
+				CFDEAFC424240212008E467A /* GoogleService-Info.plist in Resources */,
 				CFF6806D23F5D98300339A79 /* Assets.xcassets in Resources */,
 				CFF6806823F5D98200339A79 /* Main.storyboard in Resources */,
 			);
@@ -249,6 +279,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		020483BCD4A9BD2C6881AFC0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Parrot-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E7B900871A16BA32092F7D3D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Parrot/Pods-Parrot-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Parrot/Pods-Parrot-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Parrot/Pods-Parrot-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CFF6805923F5D98200339A79 /* Sources */ = {
@@ -425,6 +497,7 @@
 		};
 		CFF6808023F5D98300339A79 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 841E8B7C81D12A57EC1C320C /* Pods-Parrot.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -436,7 +509,7 @@
 					"@executable_path/Frameworks",
 				);
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-D SHOWLIFECYCLE";
-				PRODUCT_BUNDLE_IDENTIFIER = OGI.Parrot;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tcsbank.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -445,6 +518,7 @@
 		};
 		CFF6808123F5D98300339A79 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8067997FB6B4212DFB0E0D56 /* Pods-Parrot.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -455,7 +529,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = OGI.Parrot;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tcsbank.TinkoffChat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

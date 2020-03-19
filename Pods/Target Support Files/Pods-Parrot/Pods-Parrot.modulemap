@@ -1,0 +1,6 @@
+framework module Pods_Parrot {
+  umbrella header "Pods-Parrot-umbrella.h"
+
+  export *
+  module * { export * }
+}
