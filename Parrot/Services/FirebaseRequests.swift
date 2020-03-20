@@ -17,19 +17,16 @@ class FirebaseRequests {
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                
-                controller.updatedChannels.removeAll()
-                
+                var newChannels: [Channel] = []
                 for document in querySnapshot!.documents {
                     let chanel = Channel(identifier: document.documentID, with: document.data())
-                    controller.updatedChannels.append(chanel)
+                    newChannels.append(chanel)
                     print("\(document.documentID) => \(document.data())")
-                    DispatchQueue.main.async {
-                        controller.channels = controller.updatedChannels
-                        controller.tableView.reloadData()
-                    }
+                    
                 }
-                
+                DispatchQueue.main.async {
+                    controller.updateChannels(with: newChannels)
+                }
                 
             }
         }

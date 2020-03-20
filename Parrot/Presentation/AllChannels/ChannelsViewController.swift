@@ -17,15 +17,17 @@ class ChannelsViewController: UITableViewController {
     private lazy var db = Firestore.firestore()
     private lazy var reference = db.collection("channels")
     
-    var channels: [Channel] = []
-    var updatedChannels: [Channel] = []
+    private var channels: [Channel] = []
+    
+    private var activeChannels: [Channel] = []
+    private var inactiveChannels: [Channel] = []
     
     // MARK: - VC Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //reference.document("1ecgy8fmLfHWNJxntSQm").delete()
+        //reference.document("uxHj7nQijmI5HXDVsuoj").delete()
         FirebaseRequests.getChannels(reference: reference, for: self)
         
         //Блокировка портретного режима
@@ -48,21 +50,36 @@ class ChannelsViewController: UITableViewController {
         tableView.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellReuseIdentifier: reuseIdentifier)
         
         
-        /*
-        //Разделение данных на доступных к переписке в данный момент, и на недоступных
-        onlineList = data.filter{$0.isOnline}
-        offlineList = data.filter{!$0.isOnline}
+        
+    }
+    
+    // MARK: - Update channels
+    
+    func updateChannels(with newChannels: [Channel]) {
+        channels = newChannels
+        var newActiveChannels: [Channel] = []
+        var newInactiveChannels: [Channel] = []
+        newActiveChannels = channels.filter { (channel) -> Bool in
+            if let date = channel.activeDate {
+                if date > Date() - (60*10) {
+                    return true
+                }
+            }
+            newInactiveChannels.append(channel)
+            return false
+        }
         
         //Сортировка диалогов по времени
-        let sortClosure: (ConversationCellModel, ConversationCellModel) -> Bool = {
-            guard let date1 = $0.date else { return false }
-            guard let date2 = $1.date else { return true }
+        let sortClosure: (Channel, Channel) -> Bool = {
+            guard let date1 = $0.activeDate else { return false }
+            guard let date2 = $1.activeDate else { return true }
             return date1 > date2
         }
-        onlineList.sort(by: sortClosure)
-        offlineList.sort(by: sortClosure)
-        */
-        
+        newActiveChannels.sort(by: sortClosure)
+        newInactiveChannels.sort(by: sortClosure)
+        activeChannels = newActiveChannels
+        inactiveChannels = newInactiveChannels
+        tableView.reloadData()
     }
     
     // MARK: - Add channel
@@ -133,9 +150,9 @@ extension ChannelsViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return channels.count
+            return activeChannels.count
         } else {
-            return channels.count
+            return inactiveChannels.count
         }
     }
 
@@ -145,12 +162,12 @@ extension ChannelsViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? ChannelCell else { return UITableViewCell() }
         
         if indexPath.section == 0 {
-            cell.configure(with: channels[indexPath.row])
+            cell.configure(with: activeChannels[indexPath.row])
             let gradient = GradientView()
             gradient.configure(startColor: .systemYellow, endColor: .white, startLocation: 0, endLocation: 1, startPoint: CGPoint(x: -0.5, y: 0), endPoint: CGPoint(x: 1, y: 0))
             cell.backgroundView = gradient
         } else {
-            cell.configure(with: channels[indexPath.row])
+            cell.configure(with: inactiveChannels[indexPath.row])
             cell.backgroundView = UIView()
         }
         return cell
@@ -164,8 +181,14 @@ extension ChannelsViewController {
         label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textColor = UIColor.systemYellow
         if section == 0 {
+            if activeChannels.count == 0 {
+                return UIView()
+            }
             label.text = "Active"
         } else {
+            if inactiveChannels.count == 0 {
+                return UIView()
+            }
             label.text = "Inactive"
         }
         view.addSubview(label)

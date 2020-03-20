@@ -27,19 +27,9 @@ class ChannelCell: UITableViewCell, ConfigurableView {
             messageLabel.font = UIFont.systemFont(ofSize: fontSize, weight: UIFont.Weight.thin)
             messageLabel.text = message
             
-            let dateFormatter = DateFormatter()
-            dateFormatter.locale = Locale.init(identifier: "ru_RU")
-            dateFormatter.dateFormat = "HH:mm"
-            
-            timeLabel.text = dateFormatter.string(from: Date())
-            
-            /*
-            if model.hasUnreadMessages {
-                messageLabel.font = UIFont.systemFont(ofSize: fontSize, weight: UIFont.Weight.heavy)
-            }
             
             
-            if let time = model.date {
+            if let time = model.activeDate {
                 let dateFormatter = DateFormatter()
                 dateFormatter.locale = Locale.init(identifier: "ru_RU")
                 
@@ -52,8 +42,10 @@ class ChannelCell: UITableViewCell, ConfigurableView {
                 
                 timeLabel.text = dateFormatter.string(from: time)
                 
+            } else {
+                timeLabel.text = ""
             }
-            */
+
         } else {
             messageLabel.text = "No messages yet"
             let fontSize = messageLabel.font.pointSize;
