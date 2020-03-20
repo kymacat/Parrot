@@ -33,7 +33,9 @@ class FirebaseRequests {
         
     }
     
-    static func addChannel(reference: CollectionReference, name: String) {
-        reference.addDocument(data: ["name": name, "lastMessage": ""])
+    static func addChannel(reference: CollectionReference, name: String, senderName: String) {
+        let document = reference.addDocument(data: ["name": name, "lastMessage": ""])
+        let message = Message(content: "\(senderName) создал канал", created: Date(), senderID: "2", senderName: senderName)
+        document.collection("messages").addDocument(data: message.toDict)
     }
 }

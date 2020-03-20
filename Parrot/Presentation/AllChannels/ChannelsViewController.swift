@@ -30,6 +30,7 @@ class ChannelsViewController: UITableViewController {
         //reference.document("uxHj7nQijmI5HXDVsuoj").delete()
         FirebaseRequests.getChannels(reference: reference, for: self)
         
+        
         //Блокировка портретного режима
         if let delegate = UIApplication.shared.delegate as? AppDelegate {
             delegate.orientationLock = .portrait
@@ -92,7 +93,7 @@ class ChannelsViewController: UITableViewController {
                     let trueName = text.trimmingCharacters(in: .whitespaces)
                     
                     if let ref = self?.reference {
-                        FirebaseRequests.addChannel(reference: ref, name: trueName)
+                        FirebaseRequests.addChannel(reference: ref, name: trueName, senderName: "Vlad Yandola")
                     }
                     
                 }

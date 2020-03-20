@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 struct Message {
     let content: String
@@ -14,3 +15,15 @@ struct Message {
     let senderID: String
     let senderName: String
 }
+
+extension Message {
+    var toDict:[String: Any] {
+        return [
+            "content": content,
+            "created": Timestamp(date: created),
+            "senderID": senderID,
+            "senderName": senderName
+         ]
+    }
+}
+  
