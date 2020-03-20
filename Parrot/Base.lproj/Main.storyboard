@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="-131" y="-921"/>
         </scene>
-        <!--Conversations List View Controller-->
+        <!--Channels View Controller-->
         <scene sceneID="sOo-Jf-4vH">
             <objects>
-                <tableViewController id="Z3g-pr-moR" customClass="ConversationsListViewController" customModule="Parrot" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Z3g-pr-moR" customClass="ChannelsViewController" customModule="Parrot" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="tYR-Fq-dUZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -38,12 +38,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="z6k-qJ-o4X">
-                        <barButtonItem key="rightBarButtonItem" image="profile" id="8He-DQ-tcg">
+                        <barButtonItem key="leftBarButtonItem" image="profile" id="8He-DQ-tcg">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="automatic" id="ebe-uC-baT"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="qu9-1g-slk"/>
                     </navigationItem>
                     <connections>
                         <segue destination="z5f-dv-0VB" kind="show" identifier="toConversation" id="kvd-Jl-7IE"/>
@@ -53,10 +54,10 @@
             </objects>
             <point key="canvasLocation" x="-131" y="-189"/>
         </scene>
-        <!--Conversation View Controller-->
+        <!--Channel View Controller-->
         <scene sceneID="QZR-cZ-1Jf">
             <objects>
-                <tableViewController id="z5f-dv-0VB" customClass="ConversationViewController" customModule="Parrot" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="z5f-dv-0VB" customClass="ChannelViewController" customModule="Parrot" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="LRo-N0-J4U">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

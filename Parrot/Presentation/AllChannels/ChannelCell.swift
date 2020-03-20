@@ -1,5 +1,5 @@
 //
-//  ConversationCell.swift
+//  ChannelCell.swift
 //  Parrot
 //
 //  Created by Const. on 28.02.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationCell: UITableViewCell, ConfigurableView {
+class ChannelCell: UITableViewCell, ConfigurableView {
     
 
     @IBOutlet weak var nameLabel: UILabel!
@@ -18,18 +18,26 @@ class ConversationCell: UITableViewCell, ConfigurableView {
     
     // MARK: - Configure
     
-    func configure(with model: ConversationCellModel) {
+    func configure(with model: Channel) {
         nameLabel.text = model.name
         
         //Проверка на наличие сообщений
-        if let message = model.message {
+        if let message = model.lastMessage {
             let fontSize = messageLabel.font.pointSize;
             messageLabel.font = UIFont.systemFont(ofSize: fontSize, weight: UIFont.Weight.thin)
             messageLabel.text = message
             
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale.init(identifier: "ru_RU")
+            dateFormatter.dateFormat = "HH:mm"
+            
+            timeLabel.text = dateFormatter.string(from: Date())
+            
+            /*
             if model.hasUnreadMessages {
                 messageLabel.font = UIFont.systemFont(ofSize: fontSize, weight: UIFont.Weight.heavy)
             }
+            
             
             if let time = model.date {
                 let dateFormatter = DateFormatter()
@@ -45,6 +53,7 @@ class ConversationCell: UITableViewCell, ConfigurableView {
                 timeLabel.text = dateFormatter.string(from: time)
                 
             }
+            */
         } else {
             messageLabel.text = "No messages yet"
             let fontSize = messageLabel.font.pointSize;

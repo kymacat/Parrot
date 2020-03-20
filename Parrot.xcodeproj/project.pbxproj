@@ -9,13 +9,17 @@
 /* Begin PBXBuildFile section */
 		36C16A7B4D7A02B3273325DF /* Pods_Parrot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E2DCBEB81111536476FDAE2 /* Pods_Parrot.framework */; };
 		CF00B9A0240B173B00FDDE1F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF00B99F240B173B00FDDE1F /* GradientView.swift */; };
-		CF017B48240BDCB40013D7FD /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF017B47240BDCB40013D7FD /* ConversationViewController.swift */; };
+		CF017B48240BDCB40013D7FD /* ChannelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF017B47240BDCB40013D7FD /* ChannelViewController.swift */; };
+		CF1561A7242468A9008D531C /* FirebaseRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF1561A6242468A9008D531C /* FirebaseRequests.swift */; };
 		CF240180240BE61D0075BE25 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24017F240BE61D0075BE25 /* MessageCell.swift */; };
 		CF70528523FF2DD70095B5C3 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70528423FF2DD70095B5C3 /* CustomButton.swift */; };
-		CF9EB68D240933A80081470E /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB68C240933A80081470E /* ConversationsListViewController.swift */; };
-		CF9EB68F24093C2D0081470E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB68E24093C2D0081470E /* Models.swift */; };
-		CF9EB69324093F430081470E /* ConversationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB69124093F430081470E /* ConversationCell.swift */; };
-		CF9EB69424093F430081470E /* ConversationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9EB69224093F430081470E /* ConversationCell.xib */; };
+		CF751EC72424402800B4239A /* MessageCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF751EC62424402800B4239A /* MessageCellModel.swift */; };
+		CF9EB68D240933A80081470E /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB68C240933A80081470E /* ChannelsViewController.swift */; };
+		CF9EB68F24093C2D0081470E /* ConfigurableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB68E24093C2D0081470E /* ConfigurableView.swift */; };
+		CF9EB69324093F430081470E /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB69124093F430081470E /* ChannelCell.swift */; };
+		CF9EB69424093F430081470E /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9EB69224093F430081470E /* ChannelCell.xib */; };
+		CFAD05A2242446F200E471FF /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD05A1242446F200E471FF /* Channel.swift */; };
+		CFAD05A42424524700E471FF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD05A32424524700E471FF /* Message.swift */; };
 		CFADB9FE241E3B86003CA0D6 /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADB9FD241E3B86003CA0D6 /* GCDDataManager.swift */; };
 		CFADBA00241E3BA6003CA0D6 /* OperationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADB9FF241E3BA6003CA0D6 /* OperationDataManager.swift */; };
 		CFDEAFC424240212008E467A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CFDEAFC324240212008E467A /* GoogleService-Info.plist */; };
@@ -43,13 +47,17 @@
 		8067997FB6B4212DFB0E0D56 /* Pods-Parrot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parrot.release.xcconfig"; path = "Target Support Files/Pods-Parrot/Pods-Parrot.release.xcconfig"; sourceTree = "<group>"; };
 		841E8B7C81D12A57EC1C320C /* Pods-Parrot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parrot.debug.xcconfig"; path = "Target Support Files/Pods-Parrot/Pods-Parrot.debug.xcconfig"; sourceTree = "<group>"; };
 		CF00B99F240B173B00FDDE1F /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
-		CF017B47240BDCB40013D7FD /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
+		CF017B47240BDCB40013D7FD /* ChannelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelViewController.swift; sourceTree = "<group>"; };
+		CF1561A6242468A9008D531C /* FirebaseRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRequests.swift; sourceTree = "<group>"; };
 		CF24017F240BE61D0075BE25 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		CF70528423FF2DD70095B5C3 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		CF9EB68C240933A80081470E /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
-		CF9EB68E24093C2D0081470E /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		CF9EB69124093F430081470E /* ConversationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationCell.swift; sourceTree = "<group>"; };
-		CF9EB69224093F430081470E /* ConversationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConversationCell.xib; sourceTree = "<group>"; };
+		CF751EC62424402800B4239A /* MessageCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellModel.swift; sourceTree = "<group>"; };
+		CF9EB68C240933A80081470E /* ChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
+		CF9EB68E24093C2D0081470E /* ConfigurableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableView.swift; sourceTree = "<group>"; };
+		CF9EB69124093F430081470E /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
+		CF9EB69224093F430081470E /* ChannelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
+		CFAD05A1242446F200E471FF /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		CFAD05A32424524700E471FF /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		CFADB9FD241E3B86003CA0D6 /* GCDDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDDataManager.swift; sourceTree = "<group>"; };
 		CFADB9FF241E3BA6003CA0D6 /* OperationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDataManager.swift; sourceTree = "<group>"; };
 		CFDEAFC324240212008E467A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -94,32 +102,73 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		CF017B49240BDCDE0013D7FD /* Conversation */ = {
+		CF017B49240BDCDE0013D7FD /* Channel */ = {
 			isa = PBXGroup;
 			children = (
-				CF017B47240BDCB40013D7FD /* ConversationViewController.swift */,
+				CF017B47240BDCB40013D7FD /* ChannelViewController.swift */,
 				CF24017F240BE61D0075BE25 /* MessageCell.swift */,
 			);
-			path = Conversation;
+			path = Channel;
 			sourceTree = "<group>";
 		};
-		CF8C98B6241D979D00CF83A5 /* Data */ = {
+		CF751EC124243EE900B4239A /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				CF9EB69024093F0C0081470E /* AllChannels */,
+				CF017B49240BDCDE0013D7FD /* Channel */,
+				CFF6806423F5D98200339A79 /* ProfileViewController.swift */,
+				CF751EC82424412400B4239A /* CustomUI */,
+				CF9EB68E24093C2D0081470E /* ConfigurableView.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		CF751EC224243F6600B4239A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CF751EC324243FA100B4239A /* Models */,
+				CF8C98B6241D979D00CF83A5 /* DataManagers */,
+				CF1561A6242468A9008D531C /* FirebaseRequests.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		CF751EC324243FA100B4239A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CF751EC62424402800B4239A /* MessageCellModel.swift */,
+				CFAD05A1242446F200E471FF /* Channel.swift */,
+				CFAD05A32424524700E471FF /* Message.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CF751EC82424412400B4239A /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+				CF70528423FF2DD70095B5C3 /* CustomButton.swift */,
+				CF00B99F240B173B00FDDE1F /* GradientView.swift */,
+			);
+			path = CustomUI;
+			sourceTree = "<group>";
+		};
+		CF8C98B6241D979D00CF83A5 /* DataManagers */ = {
 			isa = PBXGroup;
 			children = (
 				CFADB9FD241E3B86003CA0D6 /* GCDDataManager.swift */,
 				CFADB9FF241E3BA6003CA0D6 /* OperationDataManager.swift */,
 			);
-			path = Data;
+			path = DataManagers;
 			sourceTree = "<group>";
 		};
-		CF9EB69024093F0C0081470E /* AllConversations */ = {
+		CF9EB69024093F0C0081470E /* AllChannels */ = {
 			isa = PBXGroup;
 			children = (
-				CF9EB68C240933A80081470E /* ConversationsListViewController.swift */,
-				CF9EB69124093F430081470E /* ConversationCell.swift */,
-				CF9EB69224093F430081470E /* ConversationCell.xib */,
+				CF9EB68C240933A80081470E /* ChannelsViewController.swift */,
+				CF9EB69124093F430081470E /* ChannelCell.swift */,
+				CF9EB69224093F430081470E /* ChannelCell.xib */,
 			);
-			path = AllConversations;
+			path = AllChannels;
 			sourceTree = "<group>";
 		};
 		CFF6805423F5D98200339A79 = {
@@ -146,13 +195,8 @@
 			isa = PBXGroup;
 			children = (
 				CFF6806023F5D98200339A79 /* AppDelegate.swift */,
-				CF9EB69024093F0C0081470E /* AllConversations */,
-				CF017B49240BDCDE0013D7FD /* Conversation */,
-				CFF6806423F5D98200339A79 /* ProfileViewController.swift */,
-				CF9EB68E24093C2D0081470E /* Models.swift */,
-				CF70528423FF2DD70095B5C3 /* CustomButton.swift */,
-				CF00B99F240B173B00FDDE1F /* GradientView.swift */,
-				CF8C98B6241D979D00CF83A5 /* Data */,
+				CF751EC124243EE900B4239A /* Presentation */,
+				CF751EC224243F6600B4239A /* Services */,
 				CFF6806623F5D98200339A79 /* Main.storyboard */,
 				CFF6806E23F5D98300339A79 /* LaunchScreen.storyboard */,
 				CFF6806C23F5D98300339A79 /* Assets.xcassets */,
@@ -263,7 +307,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF9EB69424093F430081470E /* ConversationCell.xib in Resources */,
+				CF9EB69424093F430081470E /* ChannelCell.xib in Resources */,
 				CFF6807023F5D98300339A79 /* LaunchScreen.storyboard in Resources */,
 				CFDEAFC424240212008E467A /* GoogleService-Info.plist in Resources */,
 				CFF6806D23F5D98300339A79 /* Assets.xcassets in Resources */,
@@ -328,17 +372,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF70528523FF2DD70095B5C3 /* CustomButton.swift in Sources */,
+				CFAD05A2242446F200E471FF /* Channel.swift in Sources */,
 				CF240180240BE61D0075BE25 /* MessageCell.swift in Sources */,
-				CF9EB68D240933A80081470E /* ConversationsListViewController.swift in Sources */,
-				CF017B48240BDCB40013D7FD /* ConversationViewController.swift in Sources */,
+				CF9EB68D240933A80081470E /* ChannelsViewController.swift in Sources */,
+				CF017B48240BDCB40013D7FD /* ChannelViewController.swift in Sources */,
 				CFF6806523F5D98200339A79 /* ProfileViewController.swift in Sources */,
-				CF9EB68F24093C2D0081470E /* Models.swift in Sources */,
+				CF9EB68F24093C2D0081470E /* ConfigurableView.swift in Sources */,
 				CFF6806123F5D98200339A79 /* AppDelegate.swift in Sources */,
 				CFF6806B23F5D98200339A79 /* Parrot.xcdatamodeld in Sources */,
 				CFADB9FE241E3B86003CA0D6 /* GCDDataManager.swift in Sources */,
+				CF1561A7242468A9008D531C /* FirebaseRequests.swift in Sources */,
 				CF00B9A0240B173B00FDDE1F /* GradientView.swift in Sources */,
-				CF9EB69324093F430081470E /* ConversationCell.swift in Sources */,
+				CF9EB69324093F430081470E /* ChannelCell.swift in Sources */,
+				CFAD05A42424524700E471FF /* Message.swift in Sources */,
 				CFADBA00241E3BA6003CA0D6 /* OperationDataManager.swift in Sources */,
+				CF751EC72424402800B4239A /* MessageCellModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

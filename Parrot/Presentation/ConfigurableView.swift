@@ -14,16 +14,3 @@ protocol ConfigurableView {
     
     func configure(with model: ConfigurationModel)
 }
-
-struct ConversationCellModel {
-    let name: String
-    let message: String?
-    let date: Date?
-    let isOnline: Bool
-    let hasUnreadMessages: Bool
-}
-
-struct MessageCellModel {
-    let text: String
-    let isIncoming: Bool
-}

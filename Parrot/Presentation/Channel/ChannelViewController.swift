@@ -1,5 +1,5 @@
 //
-//  ConversationViewController.swift
+//  ChannelViewController.swift
 //  Parrot
 //
 //  Created by Const. on 01.03.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConversationViewController: UITableViewController {
+class ChannelViewController: UITableViewController {
     
     fileprivate let reuseIdentifier = "MessageCell"
     
