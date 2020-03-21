@@ -12,6 +12,7 @@ import Firebase
 
 class ChannelsViewController: UITableViewController {
     
+    fileprivate let senderName = "Vlad Yandola"
     fileprivate let reuseIdentifier = String(describing: ChannelCell.self)
     
     private lazy var db = Firestore.firestore()
@@ -27,7 +28,7 @@ class ChannelsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //reference.document("uxHj7nQijmI5HXDVsuoj").delete()
+        //reference.document("IhQ802dVqmplzw9l5BEV").delete()
         FirebaseRequests.getChannels(reference: reference, for: self)
         
         
@@ -92,8 +93,8 @@ class ChannelsViewController: UITableViewController {
                 if text.replacingOccurrences(of: " ", with: "") != "" {
                     let trueName = text.trimmingCharacters(in: .whitespaces)
                     
-                    if let ref = self?.reference {
-                        FirebaseRequests.addChannel(reference: ref, name: trueName, senderName: "Vlad Yandola")
+                    if let ref = self?.reference, let name = self?.senderName {
+                        FirebaseRequests.addChannel(reference: ref, name: trueName, senderName: name)
                     }
                     
                 }
@@ -125,12 +126,12 @@ class ChannelsViewController: UITableViewController {
                         
                         destinationViewController.setName(name: cell.nameLabel.text)
                         
-                        if cell.messageLabel.text == "No messages yet" {
-                            destinationViewController.setFlag(flag: false)
+                        if indexPath.section == 0 {
+                            destinationViewController.channel = activeChannels[indexPath.row]
                         } else {
-                            destinationViewController.setFlag(flag: true)
-                            destinationViewController.data.append(MessageCellModel(text: cell.messageLabel.text!, isIncoming: true))
+                            destinationViewController.channel = inactiveChannels[indexPath.row]
                         }
+                        
                     }
                 }
                 
@@ -163,12 +164,16 @@ extension ChannelsViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? ChannelCell else { return UITableViewCell() }
         
         if indexPath.section == 0 {
-            cell.configure(with: activeChannels[indexPath.row])
+            let currChannel = activeChannels[indexPath.row]
+            let cellModel = ChannelCellModel(name: currChannel.name, lastMessage: currChannel.lastMessage, activeDate: currChannel.activeDate)
+            cell.configure(with: cellModel)
             let gradient = GradientView()
             gradient.configure(startColor: .systemYellow, endColor: .white, startLocation: 0, endLocation: 1, startPoint: CGPoint(x: -0.5, y: 0), endPoint: CGPoint(x: 1, y: 0))
             cell.backgroundView = gradient
         } else {
-            cell.configure(with: inactiveChannels[indexPath.row])
+            let currChannel = inactiveChannels[indexPath.row]
+            let cellModel = ChannelCellModel(name: currChannel.name, lastMessage: currChannel.lastMessage, activeDate: currChannel.activeDate)
+            cell.configure(with: cellModel)
             cell.backgroundView = UIView()
         }
         return cell

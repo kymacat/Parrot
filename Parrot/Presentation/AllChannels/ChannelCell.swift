@@ -18,7 +18,7 @@ class ChannelCell: UITableViewCell, ConfigurableView {
     
     // MARK: - Configure
     
-    func configure(with model: Channel) {
+    func configure(with model: ChannelCellModel) {
         nameLabel.text = model.name
         
         //Проверка на наличие сообщений

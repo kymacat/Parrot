@@ -11,15 +11,16 @@ import Firebase
 
 struct Channel {
     
-    init(identifier: String, with data: [String: Any]) {
+    let identifier: String
+    let name: String
+    let lastMessage: String?
+    let activeDate: Date?
+    
+    init?(identifier: String, with data: [String: Any]) {
         guard
             let name = data["name"] as? String
             else {
-                self.identifier = identifier
-                self.lastMessage = nil
-                self.name = ""
-                self.activeDate = nil
-                return
+                return nil
         }
         
         self.identifier = identifier
@@ -37,11 +38,6 @@ struct Channel {
             self.activeDate = nil
         }
     }
-    
-    let identifier: String
-    let name: String
-    let lastMessage: String?
-    let activeDate: Date?
     
     var toDict: [String: Any] {
         if let message = lastMessage {

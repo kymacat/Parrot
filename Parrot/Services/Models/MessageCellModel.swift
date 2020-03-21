@@ -11,5 +11,7 @@ import Foundation
 
 struct MessageCellModel {
     let text: String
+    let date: Date
+    let senderName: String
     let isIncoming: Bool
 }

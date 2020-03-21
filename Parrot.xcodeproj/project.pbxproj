@@ -23,6 +23,7 @@
 		CFADB9FE241E3B86003CA0D6 /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADB9FD241E3B86003CA0D6 /* GCDDataManager.swift */; };
 		CFADBA00241E3BA6003CA0D6 /* OperationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADB9FF241E3BA6003CA0D6 /* OperationDataManager.swift */; };
 		CFDEAFC424240212008E467A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CFDEAFC324240212008E467A /* GoogleService-Info.plist */; };
+		CFE2AED82426634800815E30 /* ChannelCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE2AED72426634800815E30 /* ChannelCellModel.swift */; };
 		CFF6806123F5D98200339A79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6806023F5D98200339A79 /* AppDelegate.swift */; };
 		CFF6806523F5D98200339A79 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6806423F5D98200339A79 /* ProfileViewController.swift */; };
 		CFF6806823F5D98200339A79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFF6806623F5D98200339A79 /* Main.storyboard */; };
@@ -61,6 +62,7 @@
 		CFADB9FD241E3B86003CA0D6 /* GCDDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDDataManager.swift; sourceTree = "<group>"; };
 		CFADB9FF241E3BA6003CA0D6 /* OperationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDataManager.swift; sourceTree = "<group>"; };
 		CFDEAFC324240212008E467A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CFE2AED72426634800815E30 /* ChannelCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCellModel.swift; sourceTree = "<group>"; };
 		CFF6805D23F5D98200339A79 /* Parrot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parrot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFF6806023F5D98200339A79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFF6806423F5D98200339A79 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				CF751EC62424402800B4239A /* MessageCellModel.swift */,
+				CFE2AED72426634800815E30 /* ChannelCellModel.swift */,
 				CFAD05A1242446F200E471FF /* Channel.swift */,
 				CFAD05A32424524700E471FF /* Message.swift */,
 			);
@@ -378,6 +381,7 @@
 				CF017B48240BDCB40013D7FD /* ChannelViewController.swift in Sources */,
 				CFF6806523F5D98200339A79 /* ProfileViewController.swift in Sources */,
 				CF9EB68F24093C2D0081470E /* ConfigurableView.swift in Sources */,
+				CFE2AED82426634800815E30 /* ChannelCellModel.swift in Sources */,
 				CFF6806123F5D98200339A79 /* AppDelegate.swift in Sources */,
 				CFF6806B23F5D98200339A79 /* Parrot.xcdatamodeld in Sources */,
 				CFADB9FE241E3B86003CA0D6 /* GCDDataManager.swift in Sources */,
