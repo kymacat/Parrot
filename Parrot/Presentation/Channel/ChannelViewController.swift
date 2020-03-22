@@ -15,6 +15,8 @@ class ChannelViewController: UIViewController {
     fileprivate let senderName = "Vlad Yandola"
     fileprivate let reuseIdentifier = "MessageCell"
     
+    private let firebase: FirebaseRequests = Requests()
+    
     // MARK: - Private
     
     private var name: String!
@@ -95,7 +97,7 @@ class ChannelViewController: UIViewController {
         
         navigationItem.title = name
         
-        FirebaseRequests.getMessages(reference: reference, for: self)
+        firebase.getMessages(reference: reference, for: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -191,7 +193,7 @@ class ChannelViewController: UIViewController {
                 let trueText = text.trimmingCharacters(in: .whitespaces)
                 
                 let message = Message(content: trueText, created: Date(), senderID: senderID, senderName: senderName)
-                FirebaseRequests.sendMessage(reference: reference, message: message)
+                firebase.sendMessage(reference: reference, message: message)
             }
         }
         

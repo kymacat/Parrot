@@ -9,9 +9,22 @@
 import Foundation
 import Firebase
 
-class FirebaseRequests {
+protocol FirebaseRequests {
     
-    static func getChannels(reference: CollectionReference, for controller: ChannelsViewController) {
+    func getChannels(reference: CollectionReference, for controller: ChannelsViewController)
+    
+    func addChannel(reference: CollectionReference, name: String, senderName: String)
+    
+    func getMessages(reference: CollectionReference, for controller: ChannelViewController)
+    
+    func sendMessage(reference: CollectionReference, message: Message)
+    
+}
+
+class Requests: FirebaseRequests {
+    
+    
+    func getChannels(reference: CollectionReference, for controller: ChannelsViewController) {
         
         reference.addSnapshotListener { (querySnapshot, err) in
             if let err = err {
@@ -33,7 +46,7 @@ class FirebaseRequests {
         
     }
     
-    static func addChannel(reference: CollectionReference, name: String, senderName: String) {
+    func addChannel(reference: CollectionReference, name: String, senderName: String) {
         let document = reference.addDocument(data: ["name": name, "lastMessage": ""])
         let message = Message(content: "\(senderName) создал новый канал", created: Date(), senderID: "123654", senderName: senderName)
         
@@ -41,7 +54,7 @@ class FirebaseRequests {
         
     }
     
-    static func getMessages(reference: CollectionReference, for controller: ChannelViewController) {
+    func getMessages(reference: CollectionReference, for controller: ChannelViewController) {
         reference.addSnapshotListener { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -61,7 +74,7 @@ class FirebaseRequests {
         }
     }
     
-    static func sendMessage(reference: CollectionReference, message: Message) {
+    func sendMessage(reference: CollectionReference, message: Message) {
         reference.addDocument(data: message.toDict)
     }
 }

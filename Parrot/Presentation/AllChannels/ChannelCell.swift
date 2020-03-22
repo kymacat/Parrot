@@ -20,6 +20,9 @@ class ChannelCell: UITableViewCell, ConfigurableView {
     
     func configure(with model: ChannelCellModel) {
         nameLabel.text = model.name
+        if model.name == "" {
+            nameLabel.text = " "
+        }
         
         //Проверка на наличие сообщений
         if let message = model.lastMessage {

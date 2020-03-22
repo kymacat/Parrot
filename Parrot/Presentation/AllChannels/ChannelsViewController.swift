@@ -23,13 +23,14 @@ class ChannelsViewController: UITableViewController {
     private var activeChannels: [Channel] = []
     private var inactiveChannels: [Channel] = []
     
+    private let firebase: FirebaseRequests = Requests()
+    
     // MARK: - VC Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //reference.document("IhQ802dVqmplzw9l5BEV").delete()
-        FirebaseRequests.getChannels(reference: reference, for: self)
+        firebase.getChannels(reference: reference, for: self)
         
         
         //Блокировка портретного режима
@@ -94,7 +95,7 @@ class ChannelsViewController: UITableViewController {
                     let trueName = text.trimmingCharacters(in: .whitespaces)
                     
                     if let ref = self?.reference, let name = self?.senderName {
-                        FirebaseRequests.addChannel(reference: ref, name: trueName, senderName: name)
+                        self?.firebase.addChannel(reference: ref, name: trueName, senderName: name)
                     }
                     
                 }
