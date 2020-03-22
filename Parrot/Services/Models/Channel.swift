@@ -29,7 +29,7 @@ struct Channel {
         if let lastMessage = data["lastMessage"] as? String {
             self.lastMessage = lastMessage
         } else {
-            self.lastMessage = ""
+            self.lastMessage = nil
         }
         
         if let date = data["lastActivity"] as? Timestamp {

@@ -47,7 +47,7 @@
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="qu9-1g-slk"/>
                     </navigationItem>
                     <connections>
-                        <segue destination="z5f-dv-0VB" kind="show" identifier="toConversation" id="kvd-Jl-7IE"/>
+                        <segue destination="fpe-Lr-bKp" kind="show" identifier="toConversation" id="dqT-Ik-VPA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OLd-LG-geJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -55,23 +55,20 @@
             <point key="canvasLocation" x="-131" y="-189"/>
         </scene>
         <!--Channel View Controller-->
-        <scene sceneID="QZR-cZ-1Jf">
+        <scene sceneID="MJ1-vU-gaJ">
             <objects>
-                <tableViewController id="z5f-dv-0VB" customClass="ChannelViewController" customModule="Parrot" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="LRo-N0-J4U">
+                <viewController id="fpe-Lr-bKp" customClass="ChannelViewController" customModule="Parrot" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Aep-gD-sFa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <connections>
-                            <outlet property="dataSource" destination="z5f-dv-0VB" id="QsK-nr-NeP"/>
-                            <outlet property="delegate" destination="z5f-dv-0VB" id="1JV-6y-Bqn"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="c9O-gE-pm1"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nwh-Da-bvp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <viewLayoutGuide key="safeArea" id="1cu-Wy-v6e"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="GOX-Ie-XP2"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iVf-VX-8a7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="686" y="-189"/>
+            <point key="canvasLocation" x="705" y="-189"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rwV-5Y-sCI">

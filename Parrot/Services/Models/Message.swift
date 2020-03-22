@@ -15,6 +15,13 @@ struct Message {
     let senderID: String
     let senderName: String
     
+    init(content: String, created: Date, senderID: String, senderName: String) {
+        self.content = content
+        self.created = created
+        self.senderID = senderID
+        self.senderName = senderName
+    }
+    
     init?(with data: [String: Any]) {
         guard
             let content = data["content"] as? String,

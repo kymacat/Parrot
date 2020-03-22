@@ -35,14 +35,10 @@ class FirebaseRequests {
     
     static func addChannel(reference: CollectionReference, name: String, senderName: String) {
         let document = reference.addDocument(data: ["name": name, "lastMessage": ""])
-        if let message = Message(with: [
-            "content": "\(senderName) создал канал",
-            "created": Timestamp(date: Date()),
-            "senderID": "123654",
-            "senderName": senderName
-        ]) {
-            document.collection("messages").addDocument(data: message.toDict)
-        }
+        let message = Message(content: "\(senderName) создал новый канал", created: Date(), senderID: "123654", senderName: senderName)
+        
+        document.collection("messages").addDocument(data: message.toDict)
+        
     }
     
     static func getMessages(reference: CollectionReference, for controller: ChannelViewController) {
@@ -58,9 +54,14 @@ class FirebaseRequests {
                 }
                 DispatchQueue.main.async {
                     controller.updateMessages(with: newMessages)
+                    
                 }
                 
             }
         }
+    }
+    
+    static func sendMessage(reference: CollectionReference, message: Message) {
+        reference.addDocument(data: message.toDict)
     }
 }
