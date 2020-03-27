@@ -24,35 +24,31 @@ class ChannelCell: UITableViewCell, ConfigurableView {
             nameLabel.text = " "
         }
         
-        //Проверка на наличие сообщений
         if let message = model.lastMessage {
             let fontSize = messageLabel.font.pointSize;
             messageLabel.font = UIFont.systemFont(ofSize: fontSize, weight: UIFont.Weight.thin)
             messageLabel.text = message
-            
-            
-            
-            if let time = model.activeDate {
-                let dateFormatter = DateFormatter()
-                dateFormatter.locale = Locale.init(identifier: "ru_RU")
-                
-                //Если последнее сообщение было отправлено сегодня, то вывожу время, в ином случае вывожу дату
-                if Calendar.current.isDateInToday(time) {
-                    dateFormatter.dateFormat = "HH:mm"
-                } else {
-                    dateFormatter.dateFormat = "dd MMM"
-                }
-                
-                timeLabel.text = dateFormatter.string(from: time)
-                
-            } else {
-                timeLabel.text = ""
-            }
 
         } else {
             messageLabel.text = "No messages yet"
             let fontSize = messageLabel.font.pointSize;
             messageLabel.font = UIFont(name: "AppleSDGothicNeo-UltraLight", size: fontSize)
+        }
+        
+        if let time = model.activeDate {
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale.init(identifier: "ru_RU")
+            
+            //Если последнее сообщение было отправлено сегодня, то вывожу время, в ином случае вывожу дату
+            if Calendar.current.isDateInToday(time) {
+                dateFormatter.dateFormat = "HH:mm"
+            } else {
+                dateFormatter.dateFormat = "dd MMM"
+            }
+            
+            timeLabel.text = dateFormatter.string(from: time)
+            
+        } else {
             timeLabel.text = ""
         }
     }
