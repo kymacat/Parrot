@@ -25,6 +25,7 @@
 		CFADBA00241E3BA6003CA0D6 /* OperationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFADB9FF241E3BA6003CA0D6 /* OperationDataManager.swift */; };
 		CFDEAFC424240212008E467A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CFDEAFC324240212008E467A /* GoogleService-Info.plist */; };
 		CFE2AED82426634800815E30 /* ChannelCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE2AED72426634800815E30 /* ChannelCellModel.swift */; };
+		CFEBAC8F242FAF9C0099D2CE /* CoreDataFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEBAC8E242FAF9C0099D2CE /* CoreDataFileManager.swift */; };
 		CFF6806123F5D98200339A79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6806023F5D98200339A79 /* AppDelegate.swift */; };
 		CFF6806523F5D98200339A79 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6806423F5D98200339A79 /* ProfileViewController.swift */; };
 		CFF6806823F5D98200339A79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFF6806623F5D98200339A79 /* Main.storyboard */; };
@@ -65,6 +66,7 @@
 		CFADB9FF241E3BA6003CA0D6 /* OperationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDataManager.swift; sourceTree = "<group>"; };
 		CFDEAFC324240212008E467A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CFE2AED72426634800815E30 /* ChannelCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCellModel.swift; sourceTree = "<group>"; };
+		CFEBAC8E242FAF9C0099D2CE /* CoreDataFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFileManager.swift; sourceTree = "<group>"; };
 		CFF6805D23F5D98200339A79 /* Parrot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parrot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFF6806023F5D98200339A79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFF6806423F5D98200339A79 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			children = (
 				CFADB9FD241E3B86003CA0D6 /* GCDDataManager.swift */,
 				CFADB9FF241E3BA6003CA0D6 /* OperationDataManager.swift */,
+				CFEBAC8E242FAF9C0099D2CE /* CoreDataFileManager.swift */,
 			);
 			path = DataManagers;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				CF9EB68D240933A80081470E /* ChannelsViewController.swift in Sources */,
 				CF017B48240BDCB40013D7FD /* ChannelViewController.swift in Sources */,
 				CFF6806523F5D98200339A79 /* ProfileViewController.swift in Sources */,
+				CFEBAC8F242FAF9C0099D2CE /* CoreDataFileManager.swift in Sources */,
 				CF9EB68F24093C2D0081470E /* ConfigurableView.swift in Sources */,
 				CF1C22AD242776CA0004C82D /* HeaderLabel.swift in Sources */,
 				CFE2AED82426634800815E30 /* ChannelCellModel.swift in Sources */,
