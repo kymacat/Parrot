@@ -41,7 +41,7 @@
                         <barButtonItem key="leftBarButtonItem" image="profile" id="8He-DQ-tcg">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="automatic" id="ebe-uC-baT"/>
+                                <segue destination="BYZ-38-t0r" kind="presentation" identifier="toProfile" modalPresentationStyle="automatic" id="ebe-uC-baT"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="qu9-1g-slk"/>

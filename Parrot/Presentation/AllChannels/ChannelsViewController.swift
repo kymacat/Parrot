@@ -138,6 +138,14 @@ class ChannelsViewController: UITableViewController {
                 
             }
         }
+        
+        if segue.identifier == "toProfile" {
+            if let destinationViewController = segue.destination as? ProfileViewController {
+                
+                destinationViewController.fileManager = CoreDataFileManager()
+                
+            }
+        }
 
     }
 }

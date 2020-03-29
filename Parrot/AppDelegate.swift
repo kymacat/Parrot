@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreData
 import Firebase
 
 @UIApplicationMain
@@ -32,41 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationBarAppearace.tintColor = UIColor.black
             
         FirebaseApp.configure()
-        
-        
-        let manager = CoreDataFileManager()
-        
-        
-        // Извление записей
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ProfileInformation")
-        do {
-            let results = try manager.managedObjectContext.fetch(fetchRequest)
-            if results.count == 0 {
-                if let entityDescription = NSEntityDescription.entity(forEntityName: "ProfileInformation", in: manager.managedObjectContext) {
-                    
-                    let managedObject = NSManagedObject(entity: entityDescription, insertInto: manager.managedObjectContext)
-                    managedObject.setValue("Влад", forKey: "name")
-                    managedObject.setValue("Люблю программировать под iOS, изучать что-то новое и не стоять на месте", forKey: "userDescription")
-                    if let imageData = UIImage(named: "placeholder-user")?.pngData() {
-                        managedObject.setValue(imageData, forKey: "imageData")
-                    }
-                    manager.saveContext()
-                    
-                    
-                    
-                }
-                
-            } else {
-                for result in results as! [NSManagedObject] {
-                    print("name - \(result.value(forKey: "name")!)")
-                    print("userDescription - \(result.value(forKey: "userDescription")!)")
-                    print("imageData - \(result.value(forKey: "imageData")!)")
-                }
-            }
-        } catch {
-            print(error)
-        }
-        
         return true
     }
 

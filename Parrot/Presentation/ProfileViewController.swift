@@ -27,14 +27,15 @@ class ProfileViewController: UIViewController {
     
     weak var editingButton: UIButton!
     
-    weak var GCDSaveButton: CustomButton!
-    weak var OperationSaveButton: CustomButton!
+    weak var saveButton: CustomButton!
+    weak var cancelButton: CustomButton!
     
     weak var activityIndicator: UIActivityIndicatorView!
     
     
     // MARK: - VC Lifecycle
     
+    var fileManager: ProfileFileManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,10 +44,14 @@ class ProfileViewController: UIViewController {
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         scrollView.addGestureRecognizer(hideKeyboardGesture)
         
-        GCDDataManager.readFromTheFile(self, name: nameFile)
-        GCDDataManager.readFromTheFile(self, name: descriptionFile)
-        
-        GCDDataManager.getSavedImage(controller: self)
+        fileManager = CoreDataFileManager()
+        if let data = fileManager?.getData() {
+            profileImage.image = UIImage(data: data.image)
+            nameLabel.text = data.name
+            descriptionTextView.text = data.description
+               
+        }
+    
         
     }
     
@@ -56,6 +61,8 @@ class ProfileViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWasShown(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(successfulSave), name: NSNotification.Name.NSManagedObjectContextDidSave, object: (fileManager as? CoreDataFileManager)?.managedObjectContext)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -64,6 +71,8 @@ class ProfileViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSManagedObjectContextDidSave, object: (fileManager as? CoreDataFileManager)?.managedObjectContext)
         
     }
     
@@ -137,6 +146,7 @@ class ProfileViewController: UIViewController {
             setProfileImageButton.heightAnchor.constraint(equalTo: profileImage.heightAnchor, multiplier: 1/4)
         ])
             
+        setImageButton.isHidden = true
         // MARK: Картинка для imButton
         let image = UIImageView()
         image.image = UIImage(named: "slr-camera-2-xxl")
@@ -273,63 +283,63 @@ class ProfileViewController: UIViewController {
         editingDescriptionTextView.isHidden = true
         
         
-        // MARK: GCDSaveButton
-        let GCDButton = CustomButton()
-        GCDButton.changeBackroundColor(UIColor(red: 61/255, green: 119/255, blue: 236/255, alpha: 1))
-        GCDButton.layer.cornerRadius = editingButton.layer.cornerRadius
-        GCDButton.titleLabel?.font = editingButton.titleLabel?.font
-        GCDButton.setTitle("GCD", for: .normal)
-        GCDButton.setTitleColor(.white, for: .normal)
+        // MARK: SaveButton
+        let button = CustomButton()
+        button.changeBackroundColor(UIColor(red: 61/255, green: 119/255, blue: 236/255, alpha: 1))
+        button.layer.cornerRadius = editingButton.layer.cornerRadius
+        button.titleLabel?.font = editingButton.titleLabel?.font
+        button.setTitle("Сохранить", for: .normal)
+        button.setTitleColor(.white, for: .normal)
         
-        GCDButton.addTarget(self, action: #selector(saveGCDButton(sender:)), for: .touchUpInside)
+        button.addTarget(self, action: #selector(saveButton(sender:)), for: .touchUpInside)
         
-        GCDButton.layer.cornerRadius = 10
-        
-        
-        
-        GCDSaveButton = GCDButton
-        scrollView.addSubview(GCDSaveButton)
-        
-        GCDSaveButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            GCDSaveButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -10),
-            GCDSaveButton.bottomAnchor.constraint(equalTo: editingButton.bottomAnchor),
-            GCDSaveButton.leadingAnchor.constraint(equalTo: editingButton.leadingAnchor),
-            GCDSaveButton.topAnchor.constraint(equalTo: editingButton.topAnchor)
-        ])
-        
-        GCDSaveButton.isHidden = true
-        
-        
-        // MARK: OperationSaveButton
-        
-        let OperationButton = CustomButton()
-        OperationButton.changeBackroundColor(UIColor(red: 61/255, green: 119/255, blue: 236/255, alpha: 1))
-        OperationButton.layer.cornerRadius = editingButton.layer.cornerRadius
-        OperationButton.titleLabel?.font = editingButton.titleLabel?.font
-        OperationButton.setTitle("Operation", for: .normal)
-        OperationButton.setTitleColor(.white, for: .normal)
-        
-        OperationButton.addTarget(self, action: #selector(saveOperationButton(sender:)), for: .touchUpInside)
-        
-        OperationButton.layer.cornerRadius = 10
+        button.layer.cornerRadius = 10
         
         
         
-        OperationSaveButton = OperationButton
-        scrollView.addSubview(OperationSaveButton)
+        saveButton = button
+        scrollView.addSubview(saveButton)
         
-        OperationSaveButton.translatesAutoresizingMaskIntoConstraints = false
+        saveButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            OperationSaveButton.trailingAnchor.constraint(equalTo: editingButton.trailingAnchor),
-            OperationSaveButton.bottomAnchor.constraint(equalTo: editingButton.bottomAnchor),
-            OperationSaveButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 10),
-            OperationSaveButton.topAnchor.constraint(equalTo: editingButton.topAnchor)
+            saveButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: 20),
+            saveButton.bottomAnchor.constraint(equalTo: editingButton.bottomAnchor),
+            saveButton.leadingAnchor.constraint(equalTo: editingButton.leadingAnchor),
+            saveButton.topAnchor.constraint(equalTo: editingButton.topAnchor)
         ])
         
-        OperationSaveButton.isHidden = true
+        saveButton.isHidden = true
+        
+        
+        // MARK: CancelButton
+        
+        let cancel = CustomButton()
+        cancel.changeBackroundColor(UIColor(red: 61/255, green: 119/255, blue: 236/255, alpha: 1))
+        cancel.layer.cornerRadius = editingButton.layer.cornerRadius
+        cancel.titleLabel?.font = editingButton.titleLabel?.font
+        cancel.setTitle("Отмена", for: .normal)
+        cancel.setTitleColor(.white, for: .normal)
+        
+        cancel.addTarget(self, action: #selector(cancelButton(sender:)), for: .touchUpInside)
+        
+        cancel.layer.cornerRadius = 10
+        
+        
+        
+        cancelButton = cancel
+        scrollView.addSubview(cancelButton)
+        
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            cancelButton.trailingAnchor.constraint(equalTo: editingButton.trailingAnchor),
+            cancelButton.bottomAnchor.constraint(equalTo: editingButton.bottomAnchor),
+            cancelButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: 40),
+            cancelButton.topAnchor.constraint(equalTo: editingButton.topAnchor)
+        ])
+        
+        cancelButton.isHidden = true
         
         // MARK: IndicatorView
         
@@ -353,11 +363,6 @@ class ProfileViewController: UIViewController {
     
     // MARK: - Frontend
     
-    // MARK: Вспомогательные поля
-    var isPresentMode = true
-    var isAlerted = false
-    let nameFile = "Name.txt"
-    let descriptionFile = "Description.txt"
     
     
     // MARK: setProfileImage
@@ -404,135 +409,46 @@ class ProfileViewController: UIViewController {
         editingMode()
     }
     
-    // MARK: saveGCDButton
+    // MARK: saveButton
         
-    @objc func saveGCDButton(sender: UIButton) {
-        if !activityIndicator.isAnimating {
+    @objc func saveButton(sender: CustomButton) {
+        activityIndicator.startAnimating()
         
-            //Если данные не менялись, то ничего не сохраняю
-            if (nameLabel.text == nameTextField.text) && (descriptionTextView.text == editingDescriptionTextView.text) {
-                presentMode()
-                
-                hideKeyboard()
-                return
-            }
+        if let name = nameTextField.text,
+            let description = editingDescriptionTextView.text,
+            let image = profileImage.image  {
             
-            if nameLabel.text != nameTextField.text {
-                if let nameText = nameTextField.text {
-                    activityIndicator.startAnimating()
-                    GCDDataManager.writeToFile(self, name: nameFile, data: nameText)
-                }
-            }
-            
-            if descriptionTextView.text != editingDescriptionTextView.text {
-                if let descrText = editingDescriptionTextView.text {
-                    activityIndicator.startAnimating()
-                    GCDDataManager.writeToFile(self, name: descriptionFile, data: descrText)
-                }
-            }
+            saveButton.changeBackroundColor(UIColor.lightGray)
+            saveButton.isEnabled = false
+            fileManager?.saveData(name: name, description: description, image: image)
         }
-            
+        
+
         hideKeyboard()
             
     }
     
-    // MARK: saveOperationButton
+    
+    // MARK: cancelButton
         
-    @objc func saveOperationButton(sender: UIButton) {
-        if !activityIndicator.isAnimating {
-            
-            //Если данные не менялись, то ничего не сохраняю
-            if (nameLabel.text == nameTextField.text) && (descriptionTextView.text == editingDescriptionTextView.text) {
-                presentMode()
-                
-                hideKeyboard()
-                return
+    @objc func cancelButton(sender: UIButton) {
+        presentMode()
+        if imageChanged {
+            if let data = fileManager?.getData().image {
+                profileImage.image = UIImage(data: data)
             }
-            
-            let operationQueue: OperationQueue = OperationQueue()
-            
-            if nameLabel.text != nameTextField.text {
-                if let nameText = nameTextField.text {
-                    activityIndicator.startAnimating()
-                    let operation = WriteOperation(self, fileName: nameFile, data: nameText)
-                    operation.completionBlock = {
-                        DispatchQueue.main.async { [weak self] in
-                            if operation.isSuccessesed {
-                                self?.showSuccessesAlert()
-                                self?.activityIndicator.stopAnimating()
-                                self?.presentMode()
-                            } else {
-                                self?.showErrorAlert()
-                                self?.activityIndicator.stopAnimating()
-                            }
-                        }
-                    }
-                    operationQueue.addOperation(operation)
-                }
-            }
-            
-            if descriptionTextView.text != editingDescriptionTextView.text {
-                if let descrText = editingDescriptionTextView.text {
-                    activityIndicator.startAnimating()
-                    let operation = WriteOperation(self, fileName: descriptionFile, data: descrText)
-                    operation.completionBlock = {
-                        DispatchQueue.main.async { [weak self] in
-                            if operation.isSuccessesed {
-                                self?.showSuccessesAlert()
-                                self?.activityIndicator.stopAnimating()
-                                self?.presentMode()
-                            } else {
-                                self?.showErrorAlert()
-                                self?.activityIndicator.stopAnimating()
-                            }
-                        }
-                    }
-                    operationQueue.addOperation(operation)
-                }
-            }
-        
+            imageChanged = false
         }
         hideKeyboard()
     }
     
-    // MARK: Alerts
+    // MARK: showSuccessesAlert
     
     @objc func showSuccessesAlert() {
-        if !isAlerted {
-            isAlerted = true
-            let alert = UIAlertController(title: "Уведомление", message: "Изменения сохранены", preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: .cancel, handler: { [weak self] action in
-                self?.isAlerted = false
-            })
-            alert.addAction(action)
-            present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    @objc func showErrorAlert() {
-        if !isAlerted {
-            isAlerted = true
-            let alert = UIAlertController(title: "Ошибка", message: "Что-то пошло не так и данные не сохранились", preferredStyle: .alert)
-
-            alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: { [weak self] action in
-                self?.presentMode()
-            }))
-            
-            alert.addAction(UIAlertAction(title: "Повторить", style: .default, handler: { [weak self] action in
-                
-                if let nameText = self?.nameTextField.text, let VC = self {
-                    GCDDataManager.writeToFile(VC, name: VC.nameFile, data: nameText)
-                }
-                
-                if let descrText = self?.editingDescriptionTextView.text, let VC = self {
-                    GCDDataManager.writeToFile(VC, name: VC.descriptionFile, data: descrText)
-                }
-                self?.isAlerted = false
-            }))
-
-            self.present(alert, animated: true)
-        }
-        
+        let alert = UIAlertController(title: "Уведомление", message: "Изменения сохранены", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Backend
@@ -541,37 +457,43 @@ class ProfileViewController: UIViewController {
     
     // MARK: profile modes
     
-    func changeMode() {
+    private func changeMode() {
         nameTextField.isHidden = !nameTextField.isHidden
         editingDescriptionTextView.isHidden = !editingDescriptionTextView.isHidden
         nameLabel.isHidden = !nameLabel.isHidden
         descriptionTextView.isHidden = !descriptionTextView.isHidden
-        isPresentMode = false
+        setProfileImageButton.isHidden = !setProfileImageButton.isHidden
     }
     
     func editingMode() {
 
         changeMode()
         editingButton.isHidden = true
-        GCDSaveButton.isHidden = false
-        OperationSaveButton.isHidden = false
+        saveButton.isHidden = false
+        cancelButton.isHidden = false
     }
     
     func presentMode() {
-        if !isPresentMode {
-            changeMode()
-            editingButton.isHidden = false
-            OperationSaveButton.isHidden = true
-            GCDSaveButton.isHidden = true
-            isPresentMode = true
-            
-            
-            GCDDataManager.readFromTheFile(self, name: nameFile)
-            GCDDataManager.readFromTheFile(self, name: descriptionFile)
-            
-            
-            
+        changeMode()
+        editingButton.isHidden = false
+        cancelButton.isHidden = true
+        saveButton.isHidden = true
+    }
+    
+    // MARK: - Save Notification
+    
+    @objc func successfulSave() {
+        DispatchQueue.main.async { [weak self] in
+            self?.saveButton.changeBackroundColor(UIColor(red: 61/255, green: 119/255, blue: 236/255, alpha: 1))
+            self?.saveButton.isEnabled = true
+            self?.activityIndicator.stopAnimating()
+            self?.nameLabel.text = self?.nameTextField.text
+            self?.descriptionTextView.text = self?.editingDescriptionTextView.text
+            self?.presentMode()
+            self?.showSuccessesAlert()
         }
+        
+
     }
     
     // MARK: keyboard notification
@@ -594,7 +516,7 @@ class ProfileViewController: UIViewController {
         scrollView.endEditing(true)
     }
     
-    
+    var imageChanged = false
 }
 
 // MARK: - ImagePickerDelegate
@@ -606,8 +528,7 @@ extension ProfileViewController : UIImagePickerControllerDelegate, UINavigationC
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         
         profileImage.image = image
-        
-        GCDDataManager.saveImage(image: image)
+        imageChanged = true
         
         picker.dismiss(animated: true, completion: nil)
     }

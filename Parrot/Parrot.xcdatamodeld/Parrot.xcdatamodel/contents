@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19E266" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="ProfileInformation" representedClassName="ProfileInformation" syncable="YES" codeGenerationType="class">
-        <attribute name="imageData" optional="YES" attributeType="Binary"/>
+    <entity name="ProfileInformation" representedClassName=".ProfileInformation" syncable="YES">
+        <attribute name="imageData" attributeType="Binary"/>
         <attribute name="name" attributeType="String"/>
-        <attribute name="userDescription" optional="YES" attributeType="String"/>
+        <attribute name="userDescription" attributeType="String"/>
     </entity>
     <elements>
         <element name="ProfileInformation" positionX="-77.85546875" positionY="-18" width="142.85546875" height="88"/>
