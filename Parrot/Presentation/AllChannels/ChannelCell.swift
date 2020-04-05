@@ -14,11 +14,12 @@ class ChannelCell: UITableViewCell, ConfigurableView {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-    
+    var identifier: String?
     
     // MARK: - Configure
     
     func configure(with model: ChannelCellModel) {
+        identifier = model.identifier
         nameLabel.text = model.name
         if model.name == "" {
             nameLabel.text = " "

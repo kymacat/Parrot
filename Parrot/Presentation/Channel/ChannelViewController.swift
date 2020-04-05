@@ -29,8 +29,8 @@ class ChannelViewController: UIViewController {
         }
     }
     
-    private var messages: [Message] = []
-    private var groupedMessages: [[Message]] = []
+    private var messages: [MessageModel] = []
+    private var groupedMessages: [[MessageModel]] = []
     
     private lazy var db = Firestore.firestore()
     
@@ -39,7 +39,7 @@ class ChannelViewController: UIViewController {
         return db.collection("channels").document(channelIdentifier).collection("messages")
     }()
     
-    var channel: Channel?
+    var channel: ChannelModel?
     
     
     // MARK: - UI
@@ -192,7 +192,7 @@ class ChannelViewController: UIViewController {
             if text.replacingOccurrences(of: " ", with: "") != "" {
                 let trueText = text.trimmingCharacters(in: .whitespaces)
                 
-                let message = Message(content: trueText, created: Date(), senderID: senderID, senderName: senderName)
+                let message = MessageModel(content: trueText, created: Date(), senderID: senderID, senderName: senderName)
                 firebase.sendMessage(reference: reference, message: message)
             }
         }
@@ -262,7 +262,7 @@ class ChannelViewController: UIViewController {
             return dateFormatter.string(from: element.created)
         }
         
-        var newGroupMessages: [[Message]] = []
+        var newGroupMessages: [[MessageModel]] = []
         groupedMessages.keys.forEach { key in
             if let values = groupedMessages[key] {
                 newGroupMessages.append(values)
@@ -278,7 +278,7 @@ class ChannelViewController: UIViewController {
         }
     }
     
-    func updateMessages(with newMessages: [Message]) {
+    func updateMessages(with newMessages: [MessageModel]) {
         messages = newMessages.sorted(by: { (mes1, mes2) -> Bool in
             if mes1.created < mes2.created {
                 return true

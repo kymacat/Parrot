@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19E266" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E266" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Channel" representedClassName="Channel" syncable="YES">
+        <attribute name="activeDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="identifier" attributeType="String"/>
+        <attribute name="isActive" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="lastMessage" optional="YES" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Message" inverseName="channel" inverseEntity="Message"/>
+    </entity>
+    <entity name="Message" representedClassName="Message" syncable="YES">
+        <attribute name="content" attributeType="String"/>
+        <attribute name="created" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="senderID" attributeType="String"/>
+        <attribute name="senderName" attributeType="String"/>
+        <relationship name="channel" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Channel" inverseName="messages" inverseEntity="Channel"/>
+    </entity>
     <entity name="ProfileInformation" representedClassName=".ProfileInformation" syncable="YES">
         <attribute name="imageData" attributeType="Binary"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="userDescription" attributeType="String"/>
     </entity>
     <elements>
-        <element name="ProfileInformation" positionX="-77.85546875" positionY="-18" width="142.85546875" height="88"/>
+        <element name="Channel" positionX="-403.984375" positionY="1.42578125" width="128" height="133"/>
+        <element name="Message" positionX="-171.4609375" positionY="1.6328125" width="128" height="118"/>
+        <element name="ProfileInformation" positionX="-251.87890625" positionY="-187.87890625" width="142.85546875" height="88"/>
     </elements>
 </model>

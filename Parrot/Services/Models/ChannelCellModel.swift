@@ -12,4 +12,5 @@ struct ChannelCellModel {
     let name: String
     let lastMessage: String?
     let activeDate: Date?
+    let identifier: String
 }

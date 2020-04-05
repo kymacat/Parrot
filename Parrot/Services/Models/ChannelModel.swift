@@ -1,5 +1,5 @@
 //
-//  Channel.swift
+//  ChannelModel.swift
 //  Parrot
 //
 //  Created by Const. on 20.03.2020.
@@ -9,12 +9,21 @@
 import Foundation
 import Firebase
 
-struct Channel {
+struct ChannelModel {
     
     let identifier: String
     let name: String
     let lastMessage: String?
     let activeDate: Date?
+    let isActive: Bool
+    
+    init(identifier: String, name: String, lastMessage: String?, activeDate: Date?, isActive: Bool) {
+        self.identifier = identifier
+        self.name = name
+        self.lastMessage = lastMessage
+        self.activeDate = activeDate
+        self.isActive = isActive
+    }
     
     init?(identifier: String, with data: [String: Any]) {
         guard
@@ -34,8 +43,15 @@ struct Channel {
         
         if let date = data["lastActivity"] as? Timestamp {
             self.activeDate = date.dateValue()
+            if date.dateValue() > Date() - (60*10) {
+                isActive = true
+            } else {
+                isActive = false
+            }
+            
         } else {
             self.activeDate = nil
+            isActive = false
         }
     }
     

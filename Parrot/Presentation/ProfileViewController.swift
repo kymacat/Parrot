@@ -44,14 +44,14 @@ class ProfileViewController: UIViewController {
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         scrollView.addGestureRecognizer(hideKeyboardGesture)
         
-        fileManager = CoreDataFileManager()
-        if let data = fileManager?.getData() {
+        if let data = fileManager?.getProfileData() {
             profileImage.image = UIImage(data: data.image)
             nameLabel.text = data.name
             descriptionTextView.text = data.description
                
         }
     
+        
         
     }
     
@@ -420,7 +420,7 @@ class ProfileViewController: UIViewController {
             
             saveButton.changeBackroundColor(UIColor.lightGray)
             saveButton.isEnabled = false
-            fileManager?.saveData(name: name, description: description, image: image)
+            fileManager?.saveProfileData(name: name, description: description, image: image)
         }
         
 
@@ -434,7 +434,7 @@ class ProfileViewController: UIViewController {
     @objc func cancelButton(sender: UIButton) {
         presentMode()
         if imageChanged {
-            if let data = fileManager?.getData().image {
+            if let data = fileManager?.getProfileData().image {
                 profileImage.image = UIImage(data: data)
             }
             imageChanged = false

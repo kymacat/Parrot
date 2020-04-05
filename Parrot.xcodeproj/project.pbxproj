@@ -15,15 +15,19 @@
 		CF240180240BE61D0075BE25 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24017F240BE61D0075BE25 /* MessageCell.swift */; };
 		CF2DCCBE24306D4200259C78 /* ProfileInformation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2DCCBC24306D4200259C78 /* ProfileInformation+CoreDataClass.swift */; };
 		CF2DCCBF24306D4200259C78 /* ProfileInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2DCCBD24306D4200259C78 /* ProfileInformation+CoreDataProperties.swift */; };
+		CF32DEBE243A3911002D6CFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF32DEBD243A3911002D6CFF /* GoogleService-Info.plist */; };
 		CF70528523FF2DD70095B5C3 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70528423FF2DD70095B5C3 /* CustomButton.swift */; };
 		CF751EC72424402800B4239A /* MessageCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF751EC62424402800B4239A /* MessageCellModel.swift */; };
+		CF965F40243A275200238731 /* Channel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF965F3E243A275200238731 /* Channel+CoreDataClass.swift */; };
+		CF965F41243A275200238731 /* Channel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF965F3F243A275200238731 /* Channel+CoreDataProperties.swift */; };
 		CF9EB68D240933A80081470E /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB68C240933A80081470E /* ChannelsViewController.swift */; };
 		CF9EB68F24093C2D0081470E /* ConfigurableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB68E24093C2D0081470E /* ConfigurableView.swift */; };
 		CF9EB69324093F430081470E /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB69124093F430081470E /* ChannelCell.swift */; };
 		CF9EB69424093F430081470E /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9EB69224093F430081470E /* ChannelCell.xib */; };
-		CFAD05A2242446F200E471FF /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD05A1242446F200E471FF /* Channel.swift */; };
-		CFAD05A42424524700E471FF /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD05A32424524700E471FF /* Message.swift */; };
-		CFDEAFC424240212008E467A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CFDEAFC324240212008E467A /* GoogleService-Info.plist */; };
+		CFAD05A2242446F200E471FF /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD05A1242446F200E471FF /* ChannelModel.swift */; };
+		CFAD05A42424524700E471FF /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD05A32424524700E471FF /* MessageModel.swift */; };
+		CFDAAC282439EBEF000916EA /* Message+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDAAC242439EBEF000916EA /* Message+CoreDataClass.swift */; };
+		CFDAAC292439EBEF000916EA /* Message+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDAAC252439EBEF000916EA /* Message+CoreDataProperties.swift */; };
 		CFE2AED82426634800815E30 /* ChannelCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE2AED72426634800815E30 /* ChannelCellModel.swift */; };
 		CFEBAC8F242FAF9C0099D2CE /* CoreDataFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEBAC8E242FAF9C0099D2CE /* CoreDataFileManager.swift */; };
 		CFF6806123F5D98200339A79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6806023F5D98200339A79 /* AppDelegate.swift */; };
@@ -56,15 +60,19 @@
 		CF24017F240BE61D0075BE25 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		CF2DCCBC24306D4200259C78 /* ProfileInformation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileInformation+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CF2DCCBD24306D4200259C78 /* ProfileInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CF32DEBD243A3911002D6CFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CF70528423FF2DD70095B5C3 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		CF751EC62424402800B4239A /* MessageCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellModel.swift; sourceTree = "<group>"; };
+		CF965F3E243A275200238731 /* Channel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Channel+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		CF965F3F243A275200238731 /* Channel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Channel+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		CF9EB68C240933A80081470E /* ChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
 		CF9EB68E24093C2D0081470E /* ConfigurableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableView.swift; sourceTree = "<group>"; };
 		CF9EB69124093F430081470E /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
 		CF9EB69224093F430081470E /* ChannelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
-		CFAD05A1242446F200E471FF /* Channel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
-		CFAD05A32424524700E471FF /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		CFDEAFC324240212008E467A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CFAD05A1242446F200E471FF /* ChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
+		CFAD05A32424524700E471FF /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
+		CFDAAC242439EBEF000916EA /* Message+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CFDAAC252439EBEF000916EA /* Message+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CFE2AED72426634800815E30 /* ChannelCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCellModel.swift; sourceTree = "<group>"; };
 		CFEBAC8E242FAF9C0099D2CE /* CoreDataFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFileManager.swift; sourceTree = "<group>"; };
 		CFF6805D23F5D98200339A79 /* Parrot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parrot.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,8 +129,9 @@
 			isa = PBXGroup;
 			children = (
 				CFEBAC8E242FAF9C0099D2CE /* CoreDataFileManager.swift */,
-				CF2DCCBC24306D4200259C78 /* ProfileInformation+CoreDataClass.swift */,
-				CF2DCCBD24306D4200259C78 /* ProfileInformation+CoreDataProperties.swift */,
+				CFDAAC2A2439ECAE000916EA /* Channel */,
+				CFDAAC2B2439ECBB000916EA /* Message */,
+				CFDAAC192439EA09000916EA /* Profile Information */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -154,8 +163,8 @@
 			children = (
 				CF751EC62424402800B4239A /* MessageCellModel.swift */,
 				CFE2AED72426634800815E30 /* ChannelCellModel.swift */,
-				CFAD05A1242446F200E471FF /* Channel.swift */,
-				CFAD05A32424524700E471FF /* Message.swift */,
+				CFAD05A1242446F200E471FF /* ChannelModel.swift */,
+				CFAD05A32424524700E471FF /* MessageModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -178,6 +187,33 @@
 				CF9EB69224093F430081470E /* ChannelCell.xib */,
 			);
 			path = AllChannels;
+			sourceTree = "<group>";
+		};
+		CFDAAC192439EA09000916EA /* Profile Information */ = {
+			isa = PBXGroup;
+			children = (
+				CF2DCCBC24306D4200259C78 /* ProfileInformation+CoreDataClass.swift */,
+				CF2DCCBD24306D4200259C78 /* ProfileInformation+CoreDataProperties.swift */,
+			);
+			path = "Profile Information";
+			sourceTree = "<group>";
+		};
+		CFDAAC2A2439ECAE000916EA /* Channel */ = {
+			isa = PBXGroup;
+			children = (
+				CF965F3E243A275200238731 /* Channel+CoreDataClass.swift */,
+				CF965F3F243A275200238731 /* Channel+CoreDataProperties.swift */,
+			);
+			path = Channel;
+			sourceTree = "<group>";
+		};
+		CFDAAC2B2439ECBB000916EA /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				CFDAAC242439EBEF000916EA /* Message+CoreDataClass.swift */,
+				CFDAAC252439EBEF000916EA /* Message+CoreDataProperties.swift */,
+			);
+			path = Message;
 			sourceTree = "<group>";
 		};
 		CFF6805423F5D98200339A79 = {
@@ -209,7 +245,7 @@
 				CFF6806623F5D98200339A79 /* Main.storyboard */,
 				CFF6806E23F5D98300339A79 /* LaunchScreen.storyboard */,
 				CFF6806C23F5D98300339A79 /* Assets.xcassets */,
-				CFDEAFC324240212008E467A /* GoogleService-Info.plist */,
+				CF32DEBD243A3911002D6CFF /* GoogleService-Info.plist */,
 				CFF6807123F5D98300339A79 /* Info.plist */,
 				CFF6806923F5D98200339A79 /* Parrot.xcdatamodeld */,
 			);
@@ -318,7 +354,7 @@
 			files = (
 				CF9EB69424093F430081470E /* ChannelCell.xib in Resources */,
 				CFF6807023F5D98300339A79 /* LaunchScreen.storyboard in Resources */,
-				CFDEAFC424240212008E467A /* GoogleService-Info.plist in Resources */,
+				CF32DEBE243A3911002D6CFF /* GoogleService-Info.plist in Resources */,
 				CFF6806D23F5D98300339A79 /* Assets.xcassets in Resources */,
 				CFF6806823F5D98200339A79 /* Main.storyboard in Resources */,
 			);
@@ -381,12 +417,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF70528523FF2DD70095B5C3 /* CustomButton.swift in Sources */,
-				CFAD05A2242446F200E471FF /* Channel.swift in Sources */,
+				CFAD05A2242446F200E471FF /* ChannelModel.swift in Sources */,
 				CF240180240BE61D0075BE25 /* MessageCell.swift in Sources */,
 				CF9EB68D240933A80081470E /* ChannelsViewController.swift in Sources */,
 				CF017B48240BDCB40013D7FD /* ChannelViewController.swift in Sources */,
 				CFF6806523F5D98200339A79 /* ProfileViewController.swift in Sources */,
 				CFEBAC8F242FAF9C0099D2CE /* CoreDataFileManager.swift in Sources */,
+				CFDAAC282439EBEF000916EA /* Message+CoreDataClass.swift in Sources */,
 				CF9EB68F24093C2D0081470E /* ConfigurableView.swift in Sources */,
 				CF2DCCBE24306D4200259C78 /* ProfileInformation+CoreDataClass.swift in Sources */,
 				CF1C22AD242776CA0004C82D /* HeaderLabel.swift in Sources */,
@@ -394,10 +431,13 @@
 				CFF6806123F5D98200339A79 /* AppDelegate.swift in Sources */,
 				CF2DCCBF24306D4200259C78 /* ProfileInformation+CoreDataProperties.swift in Sources */,
 				CFF6806B23F5D98200339A79 /* Parrot.xcdatamodeld in Sources */,
+				CF965F40243A275200238731 /* Channel+CoreDataClass.swift in Sources */,
 				CF1561A7242468A9008D531C /* FirebaseRequests.swift in Sources */,
 				CF00B9A0240B173B00FDDE1F /* GradientView.swift in Sources */,
 				CF9EB69324093F430081470E /* ChannelCell.swift in Sources */,
-				CFAD05A42424524700E471FF /* Message.swift in Sources */,
+				CFAD05A42424524700E471FF /* MessageModel.swift in Sources */,
+				CFDAAC292439EBEF000916EA /* Message+CoreDataProperties.swift in Sources */,
+				CF965F41243A275200238731 /* Channel+CoreDataProperties.swift in Sources */,
 				CF751EC72424402800B4239A /* MessageCellModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -569,7 +609,7 @@
 					"@executable_path/Frameworks",
 				);
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-D SHOWLIFECYCLE";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.tcsbank.TinkoffChat;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.messenger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -589,7 +629,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.tcsbank.TinkoffChat;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.messenger;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

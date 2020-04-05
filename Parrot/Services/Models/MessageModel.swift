@@ -1,5 +1,5 @@
 //
-//  Message.swift
+//  MessageModel.swift
 //  Parrot
 //
 //  Created by Const. on 20.03.2020.
@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct Message {
+struct MessageModel {
     let content: String
     let created: Date
     let senderID: String
@@ -39,7 +39,7 @@ struct Message {
     }
 }
 
-extension Message {
+extension MessageModel {
     var toDict:[String: Any] {
         return [
             "content": content,

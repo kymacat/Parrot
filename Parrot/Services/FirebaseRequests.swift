@@ -17,7 +17,7 @@ protocol FirebaseRequests {
     
     func getMessages(reference: CollectionReference, for controller: ChannelViewController)
     
-    func sendMessage(reference: CollectionReference, message: Message)
+    func sendMessage(reference: CollectionReference, message: MessageModel)
     
 }
 
@@ -30,16 +30,15 @@ class Requests: FirebaseRequests {
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                var newChannels: [Channel] = []
+                var newChannels: [ChannelModel] = []
                 for document in querySnapshot!.documents {
-                    if let chanel = Channel(identifier: document.documentID, with: document.data()) {
+                    if let chanel = ChannelModel(identifier: document.documentID, with: document.data()) {
                         newChannels.append(chanel)
                     }
-                    
                 }
-                DispatchQueue.main.async {
-                    controller.updateChannels(with: newChannels)
-                }
+                
+                controller.updateChannels(with: newChannels)
+                
                 
             }
         }
@@ -48,7 +47,7 @@ class Requests: FirebaseRequests {
     
     func addChannel(reference: CollectionReference, name: String, senderName: String) {
         let document = reference.addDocument(data: ["name": name, "lastMessage": ""])
-        let message = Message(content: "\(senderName) создал новый канал", created: Date(), senderID: "123654", senderName: senderName)
+        let message = MessageModel(content: "\(senderName) создал новый канал", created: Date(), senderID: "123654", senderName: senderName)
         
         document.collection("messages").addDocument(data: message.toDict)
         
@@ -59,9 +58,9 @@ class Requests: FirebaseRequests {
             if let err = err {
                 print("Error getting documents: \(err)")
             } else {
-                var newMessages: [Message] = []
+                var newMessages: [MessageModel] = []
                 for document in querySnapshot!.documents {
-                    if let message = Message(with: document.data()) {
+                    if let message = MessageModel(with: document.data()) {
                         newMessages.append(message)
                     }
                 }
@@ -74,7 +73,7 @@ class Requests: FirebaseRequests {
         }
     }
     
-    func sendMessage(reference: CollectionReference, message: Message) {
+    func sendMessage(reference: CollectionReference, message: MessageModel) {
         reference.addDocument(data: message.toDict)
     }
 }

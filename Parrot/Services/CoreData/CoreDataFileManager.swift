@@ -11,24 +11,52 @@ import CoreData
 
 
 protocol ProfileFileManager {
-    func getData() -> (name: String, description: String, image: Data)
-    func saveData(name: String, description: String, image: UIImage)
+    func getProfileData() -> (name: String, description: String, image: Data)
+    func saveProfileData(name: String, description: String, image: UIImage)
 }
 
+protocol ChannelsFileManager {
+    func appendChannel(channel: ChannelModel)
+    func deleteChannel(channel: ChannelModel)
+}
 
 class CoreDataFileManager : ProfileFileManager {
     
     private var info: ProfileInformation?
     
     init() {
-        let _ = getData()
+        let _ = getProfileData()
     }
     
-    func getData() -> (name: String, description: String, image: Data) {
+    func getProfileData() -> (name: String, description: String, image: Data) {
         if let userInfo = info {
             return (userInfo.name, userInfo.userDescription, userInfo.imageData)
         } else {
-            request()
+            let fetchRequest = NSFetchRequest<ProfileInformation>(entityName: "ProfileInformation")
+            do {
+                let results = try managedObjectContext.fetch(fetchRequest)
+                if results.count == 0 {
+                    if let entityDescription = NSEntityDescription.entity(forEntityName: "ProfileInformation", in: managedObjectContext) {
+                        
+                        let managedObject = ProfileInformation(entity: entityDescription, insertInto: managedObjectContext)
+                        managedObject.name = "Влад Яндола"
+                        managedObject.userDescription = "Люблю программировать под iOS, изучать что-то новое и не стоять на месте"
+                        if let imageData = UIImage(named: "placeholder-user")?.pngData() {
+                            managedObject.imageData = imageData
+                        }
+                        self.info = managedObject
+                        saveContext()
+                    }
+                    
+                } else {
+                    if let userInfo = results.first {
+                        self.info = userInfo
+                    }
+                }
+                
+            } catch {
+                print(error)
+            }
             if let infoAfterReq = info {
                 return (infoAfterReq.name, infoAfterReq.userDescription, infoAfterReq.imageData)
             }
@@ -36,35 +64,7 @@ class CoreDataFileManager : ProfileFileManager {
         return ("", "", Data())
     }
     
-    private func request() {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ProfileInformation")
-        do {
-            let results = try managedObjectContext.fetch(fetchRequest)
-            if results.count == 0 {
-                if let entityDescription = NSEntityDescription.entity(forEntityName: "ProfileInformation", in: managedObjectContext) {
-                    
-                    let managedObject = ProfileInformation(entity: entityDescription, insertInto: managedObjectContext)
-                    managedObject.name = "Влад Яндола"
-                    managedObject.userDescription = "Люблю программировать под iOS, изучать что-то новое и не стоять на месте"
-                    if let imageData = UIImage(named: "placeholder-user")?.pngData() {
-                        managedObject.imageData = imageData
-                    }
-                    self.info = managedObject
-                    saveContext()
-                }
-                
-            } else {
-                if let userInfo = results.first as? ProfileInformation {
-                    self.info = userInfo
-                }
-            }
-            
-        } catch {
-            print(error)
-        }
-    }
-    
-    func saveData(name: String, description: String, image: UIImage) {
+    func saveProfileData(name: String, description: String, image: UIImage) {
         if let userInfo = info {
             userInfo.name = name
             userInfo.userDescription = description
@@ -142,4 +142,36 @@ class CoreDataFileManager : ProfileFileManager {
         }
     }
     
+}
+
+
+extension CoreDataFileManager : ChannelsFileManager {
+    func appendChannel(channel: ChannelModel) {
+        if let entityDescription = NSEntityDescription.entity(forEntityName: "Channel", in: managedObjectContext) {
+            
+            let managedObject = Channel(entity: entityDescription, insertInto: managedObjectContext)
+            managedObject.name = channel.name
+            managedObject.activeDate = channel.activeDate
+            managedObject.identifier = channel.identifier
+            managedObject.isActive = channel.isActive
+            managedObject.lastMessage = channel.lastMessage
+            saveContext()
+        }
+    }
+    
+    func deleteChannel(channel: ChannelModel) {
+        let fetchRequest = NSFetchRequest<Channel>(entityName: "Channel")
+        do {
+            let results = try managedObjectContext.fetch(fetchRequest)
+            for result in results {
+                if channel.identifier == result.identifier {
+                    managedObjectContext.delete(result)
+                    saveContext()
+                }
+            }
+            
+        } catch {
+            print(error)
+        }
+    }
 }

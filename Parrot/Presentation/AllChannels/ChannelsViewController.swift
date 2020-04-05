@@ -8,28 +8,52 @@
 
 import UIKit
 import Firebase
-
+import CoreData
 
 class ChannelsViewController: UITableViewController {
     
     fileprivate let senderName = "Vlad Yandola"
     fileprivate let reuseIdentifier = String(describing: ChannelCell.self)
     
+    private var channels: [ChannelModel] = []
+    
+    // FireBase
     private lazy var db = Firestore.firestore()
     private lazy var reference = db.collection("channels")
     
-    private var channels: [Channel] = []
-    
-    private var activeChannels: [Channel] = []
-    private var inactiveChannels: [Channel] = []
-    
     private let firebase: FirebaseRequests = Requests()
+    
+    
+    // coreData
+    
+    private var dataManager = CoreDataFileManager()
+    private var fetchedResultsController: NSFetchedResultsController<Channel>!
     
     // MARK: - VC Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchedResultsController = {
+            let fetchRequest = NSFetchRequest<Channel>(entityName: "Channel")
+            let sortDescriptor = NSSortDescriptor(key: "activeDate", ascending: false)
+            fetchRequest.sortDescriptors = [sortDescriptor]
+            return NSFetchedResultsController<Channel>(fetchRequest: fetchRequest, managedObjectContext: dataManager.managedObjectContext, sectionNameKeyPath: "isActive", cacheName: nil)
+        }()
+        fetchedResultsController?.delegate = self
+        
+        do {
+            try fetchedResultsController?.performFetch()
+            if let channels = fetchedResultsController.fetchedObjects {
+                for channel in channels {
+                    let newChannel = ChannelModel(identifier: channel.identifier, name: channel.name, lastMessage: channel.lastMessage, activeDate: channel.activeDate, isActive: channel.isActive)
+                    self.channels.append(newChannel)
+                }
+            }
+        } catch {
+            print(error)
+        }
+    
         firebase.getChannels(reference: reference, for: self)
         
         
@@ -54,35 +78,37 @@ class ChannelsViewController: UITableViewController {
         
         
         
+        
     }
     
     // MARK: - Update channels
     
-    func updateChannels(with newChannels: [Channel]) {
-        channels = newChannels
-        var newActiveChannels: [Channel] = []
-        var newInactiveChannels: [Channel] = []
-        newActiveChannels = channels.filter { (channel) -> Bool in
-            if let date = channel.activeDate {
-                if date > Date() - (60*10) {
-                    return true
+    func updateChannels(with newChannels: [ChannelModel]) {
+        for newChannel in newChannels {
+            var isHere = false
+            for oldChannel in channels {
+                if newChannel.identifier == oldChannel.identifier {
+                    isHere = true
+                    break;
                 }
             }
-            newInactiveChannels.append(channel)
-            return false
+            if !isHere {
+                dataManager.appendChannel(channel: newChannel)
+            }
         }
-        
-        //Сортировка диалогов по времени
-        let sortClosure: (Channel, Channel) -> Bool = {
-            guard let date1 = $0.activeDate else { return false }
-            guard let date2 = $1.activeDate else { return true }
-            return date1 > date2
+        for oldChannel in channels {
+            var isHere = false
+            for newChannel in newChannels {
+                if oldChannel.identifier == newChannel.identifier {
+                    isHere = true
+                    break;
+                }
+            }
+            if !isHere {
+                dataManager.deleteChannel(channel: oldChannel)
+            }
         }
-        newActiveChannels.sort(by: sortClosure)
-        newInactiveChannels.sort(by: sortClosure)
-        activeChannels = newActiveChannels
-        inactiveChannels = newInactiveChannels
-        tableView.reloadData()
+        channels = newChannels
     }
     
     // MARK: - Add channel
@@ -127,11 +153,10 @@ class ChannelsViewController: UITableViewController {
                         
                         destinationViewController.setName(name: cell.nameLabel.text)
                         
-                        if indexPath.section == 0 {
-                            destinationViewController.channel = activeChannels[indexPath.row]
-                        } else {
-                            destinationViewController.channel = inactiveChannels[indexPath.row]
-                        }
+                        let currChannel = fetchedResultsController.object(at: indexPath)
+                        let channel = ChannelModel(identifier: currChannel.identifier, name: currChannel.name, lastMessage: currChannel.lastMessage, activeDate: currChannel.activeDate, isActive: currChannel.isActive)
+                        
+                        destinationViewController.channel = channel
                         
                     }
                 }
@@ -155,15 +180,15 @@ class ChannelsViewController: UITableViewController {
 extension ChannelsViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return 2
+        guard let sections = fetchedResultsController.sections else { return 0 }
+        return sections.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return activeChannels.count
+        if let sections = fetchedResultsController?.sections {
+            return sections[section].numberOfObjects
         } else {
-            return inactiveChannels.count
+            return 0
         }
     }
 
@@ -172,42 +197,120 @@ extension ChannelsViewController {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? ChannelCell else { return UITableViewCell() }
         
-        if indexPath.section == 0 {
-            let currChannel = activeChannels[indexPath.row]
-            let cellModel = ChannelCellModel(name: currChannel.name, lastMessage: currChannel.lastMessage, activeDate: currChannel.activeDate)
+        if let channel = fetchedResultsController?.object(at: indexPath) {
+            let cellModel = ChannelCellModel(name: channel.name, lastMessage: channel.lastMessage, activeDate: channel.activeDate, identifier: channel.identifier)
             cell.configure(with: cellModel)
-            let gradient = GradientView()
-            gradient.configure(startColor: .systemYellow, endColor: .white, startLocation: 0, endLocation: 1, startPoint: CGPoint(x: -0.5, y: 0), endPoint: CGPoint(x: 1, y: 0))
-            cell.backgroundView = gradient
-        } else {
-            let currChannel = inactiveChannels[indexPath.row]
-            let cellModel = ChannelCellModel(name: currChannel.name, lastMessage: currChannel.lastMessage, activeDate: currChannel.activeDate)
-            cell.configure(with: cellModel)
-            cell.backgroundView = UIView()
+            if channel.isActive {
+                let gradient = GradientView()
+                gradient.configure(startColor: .systemYellow, endColor: .white, startLocation: 0, endLocation: 1, startPoint: CGPoint(x: -0.5, y: 0), endPoint: CGPoint(x: 1, y: 0))
+                cell.backgroundView = gradient
+            } else {
+                cell.backgroundView = UIView()
+            }
         }
         return cell
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 25))
         view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
         let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.width - 30, height: 25))
         label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textColor = UIColor.systemYellow
-        if section == 0 {
-            if activeChannels.count == 0 {
-                return UIView()
+        if tableView.numberOfSections == 1 {
+            if let channel = fetchedResultsController.sections?.first?.objects?.first as? Channel {
+                if channel.isActive {
+                    label.text = "Active"
+                } else {
+                    label.text = "Inactive"
+                }
             }
-            label.text = "Active"
         } else {
-            if inactiveChannels.count == 0 {
-                return UIView()
+            if section == 0 {
+                label.text = "Active"
+            } else {
+                label.text = "Inactive"
             }
-            label.text = "Inactive"
         }
+        
         view.addSubview(label)
         return view
     }
     
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            reference.document((tableView.cellForRow(at: indexPath) as! ChannelCell).identifier!).delete()
+            
+        }
+    }
+    
+}
+
+// MARK: - FetchedControllerDelegate
+extension ChannelsViewController : NSFetchedResultsControllerDelegate {
+    
+    
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.beginUpdates()
+        }
+    }
+    
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        DispatchQueue.main.async { [weak self] in
+            switch type {
+            case .insert:
+                self?.tableView.insertSections(NSIndexSet(index: sectionIndex) as IndexSet, with: .fade)
+            case .delete:
+                self?.tableView.deleteSections(NSIndexSet(index: sectionIndex) as IndexSet, with: .fade)
+            default:
+                return
+            }
+        }
+        
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        DispatchQueue.main.async { [weak self] in
+            switch type {
+            case .insert:
+                if let indexPath = newIndexPath {
+                    self?.tableView.insertRows(at: [indexPath], with: .automatic)
+                }
+            case .move:
+                if let indexPath = indexPath {
+                    self?.tableView.deleteRows(at: [indexPath], with: .automatic)
+                }
+                if let newIndexPath = newIndexPath {
+                    self?.tableView.insertRows(at: [newIndexPath], with: .automatic)
+                }
+            case .delete:
+                if let indexPath = indexPath {
+                    self?.tableView.deleteRows(at: [indexPath], with: .automatic)
+                }
+            case .update:
+                if let indexPath = indexPath {
+                    
+                    if let cell = self?.tableView.cellForRow(at: indexPath) as? ChannelCell,
+                        let channel = self?.fetchedResultsController?.object(at: indexPath) {
+                        let cellModel = ChannelCellModel(name: channel.name, lastMessage: channel.lastMessage, activeDate: channel.activeDate, identifier: channel.identifier)
+                        cell.configure(with: cellModel)
+                    }
+                    
+                    
+                }
+            @unknown default:
+                fatalError()
+            }
+        
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.endUpdates()
+        }
+    }
 }
