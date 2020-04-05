@@ -15,7 +15,7 @@ struct ChannelModel {
     let name: String
     let lastMessage: String?
     let activeDate: Date?
-    let isActive: Bool
+    var isActive: Bool
     
     init(identifier: String, name: String, lastMessage: String?, activeDate: Date?, isActive: Bool) {
         self.identifier = identifier

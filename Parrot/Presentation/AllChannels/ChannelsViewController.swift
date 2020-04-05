@@ -108,7 +108,15 @@ class ChannelsViewController: UITableViewController {
                 dataManager.deleteChannel(channel: oldChannel)
             }
         }
+        for channel in channels {
+            if let date = channel.activeDate {
+                if (date < Date() - (60*10)) && channel.isActive {
+                    dataManager.editStatusOfChannel(channel: channel)
+                }
+            }
+        }
         channels = newChannels
+        
     }
     
     // MARK: - Add channel
@@ -239,7 +247,11 @@ extension ChannelsViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            reference.document((tableView.cellForRow(at: indexPath) as! ChannelCell).identifier!).delete()
+            if let cell = tableView.cellForRow(at: indexPath) as? ChannelCell,
+                let identifier = cell.identifier {
+                reference.document(identifier).delete()
+            }
+            
             
         }
     }

@@ -18,6 +18,7 @@ protocol ProfileFileManager {
 protocol ChannelsFileManager {
     func appendChannel(channel: ChannelModel)
     func deleteChannel(channel: ChannelModel)
+    func editStatusOfChannel(channel: ChannelModel)
 }
 
 class CoreDataFileManager : ProfileFileManager {
@@ -166,6 +167,22 @@ extension CoreDataFileManager : ChannelsFileManager {
             for result in results {
                 if channel.identifier == result.identifier {
                     managedObjectContext.delete(result)
+                    saveContext()
+                }
+            }
+            
+        } catch {
+            print(error)
+        }
+    }
+    
+    func editStatusOfChannel(channel: ChannelModel) {
+        let fetchRequest = NSFetchRequest<Channel>(entityName: "Channel")
+        do {
+            let results = try managedObjectContext.fetch(fetchRequest)
+            for result in results {
+                if channel.identifier == result.identifier {
+                    result.isActive = false
                     saveContext()
                 }
             }
