@@ -130,9 +130,6 @@ class CoreDataFileManager : ProfileFileManager {
         if managedObjectContext.hasChanges {
             managedObjectContext.perform {
                 do {
-                    //Эмуляция долгого сохранения
-                    sleep(2)
-                    //
                     try self.managedObjectContext.save()
                 } catch {
                     let nserror = error as NSError
