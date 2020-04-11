@@ -36,10 +36,7 @@ class Requests: FirebaseRequests {
                         newChannels.append(chanel)
                     }
                 }
-                
                 controller.updateChannels(with: newChannels)
-                
-                
             }
         }
         

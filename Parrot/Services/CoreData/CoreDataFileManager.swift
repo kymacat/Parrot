@@ -16,8 +16,8 @@ protocol ProfileFileManager {
 }
 
 protocol ChannelsFileManager {
-    func appendChannel(channel: ChannelModel)
-    func deleteChannel(channel: ChannelModel)
+    func appendChannels(channels: [ChannelModel])
+    func deleteChannels(channels: [ChannelModel])
     func editStatusOfChannel(channel: ChannelModel)
 }
 
@@ -144,29 +144,33 @@ class CoreDataFileManager : ProfileFileManager {
 
 
 extension CoreDataFileManager : ChannelsFileManager {
-    func appendChannel(channel: ChannelModel) {
+    func appendChannels(channels: [ChannelModel]) {
         if let entityDescription = NSEntityDescription.entity(forEntityName: "Channel", in: managedObjectContext) {
             
-            let managedObject = Channel(entity: entityDescription, insertInto: managedObjectContext)
-            managedObject.name = channel.name
-            managedObject.activeDate = channel.activeDate
-            managedObject.identifier = channel.identifier
-            managedObject.isActive = channel.isActive
-            managedObject.lastMessage = channel.lastMessage
-            saveContext()
+            for channel in channels {
+                let managedObject = Channel(entity: entityDescription, insertInto: managedObjectContext)
+                managedObject.name = channel.name
+                managedObject.activeDate = channel.activeDate
+                managedObject.identifier = channel.identifier
+                managedObject.isActive = channel.isActive
+                managedObject.lastMessage = channel.lastMessage
+                saveContext()
+            }
         }
     }
     
-    func deleteChannel(channel: ChannelModel) {
+    func deleteChannels(channels: [ChannelModel]) {
         let fetchRequest = NSFetchRequest<Channel>(entityName: "Channel")
         do {
             let results = try managedObjectContext.fetch(fetchRequest)
-            for result in results {
-                if channel.identifier == result.identifier {
-                    managedObjectContext.delete(result)
-                    saveContext()
+            for channel in channels {
+                for result in results {
+                    if channel.identifier == result.identifier {
+                        managedObjectContext.delete(result)
+                    }
                 }
             }
+            saveContext()
             
         } catch {
             print(error)

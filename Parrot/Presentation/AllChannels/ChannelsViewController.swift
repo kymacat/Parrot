@@ -84,6 +84,7 @@ class ChannelsViewController: UITableViewController {
     // MARK: - Update channels
     
     func updateChannels(with newChannels: [ChannelModel]) {
+        var channelsForAdd = [ChannelModel]()
         for newChannel in newChannels {
             var isHere = false
             for oldChannel in channels {
@@ -93,9 +94,12 @@ class ChannelsViewController: UITableViewController {
                 }
             }
             if !isHere {
-                dataManager.appendChannel(channel: newChannel)
+                channelsForAdd.append(newChannel)
             }
         }
+        dataManager.appendChannels(channels: channelsForAdd)
+        
+        var channelsToDelete = [ChannelModel]()
         for oldChannel in channels {
             var isHere = false
             for newChannel in newChannels {
@@ -105,9 +109,11 @@ class ChannelsViewController: UITableViewController {
                 }
             }
             if !isHere {
-                dataManager.deleteChannel(channel: oldChannel)
+                channelsToDelete.append(oldChannel)
+                
             }
         }
+        dataManager.deleteChannels(channels: channelsToDelete)
         for channel in channels {
             if let date = channel.activeDate {
                 if (date < Date() - (60*10)) && channel.isActive {
