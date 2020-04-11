@@ -114,6 +114,7 @@ class ChannelsViewController: UITableViewController {
             }
         }
         dataManager.deleteChannels(channels: channelsToDelete)
+        
         for channel in channels {
             if let date = channel.activeDate {
                 if (date < Date() - (60*10)) && channel.isActive {
@@ -121,7 +122,12 @@ class ChannelsViewController: UITableViewController {
                 }
             }
         }
-        channels = newChannels
+        if let channels = fetchedResultsController.fetchedObjects {
+            for channel in channels {
+                let newChannel = ChannelModel(identifier: channel.identifier, name: channel.name, lastMessage: channel.lastMessage, activeDate: channel.activeDate, isActive: channel.isActive)
+                self.channels.append(newChannel)
+            }
+        }
         
     }
     

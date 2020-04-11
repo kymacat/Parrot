@@ -154,8 +154,9 @@ extension CoreDataFileManager : ChannelsFileManager {
                 managedObject.identifier = channel.identifier
                 managedObject.isActive = channel.isActive
                 managedObject.lastMessage = channel.lastMessage
-                saveContext()
+                
             }
+            saveContext()
         }
     }
     
