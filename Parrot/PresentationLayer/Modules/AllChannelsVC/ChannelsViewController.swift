@@ -11,17 +11,32 @@ import CoreData
 
 class ChannelsViewController: UITableViewController {
     
-    private let model = ChannelsVCModel(senderName: "Vlad Yandola")
+    private let reuseIdentifier = String(describing: ChannelCell.self)
+    
+    // Dependencies
+    private let presentationAssembly: IPresentationAssembly
+    private let model: IChannelsVCModel
+    
     
     // MARK: - VC Lifecycle
+    
+    init(model: IChannelsVCModel, presentationAssembly: IPresentationAssembly) {
+        self.model = model
+        self.presentationAssembly = presentationAssembly
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        model.fetchedResultsController.delegate = self
+        model.getFetchedResultsController().delegate = self
         
         do {
-            try model.fetchedResultsController.performFetch()
+            try model.getFetchedResultsController().performFetch()
             model.fetchChannels()
         } catch {
             print(error)
@@ -49,7 +64,7 @@ class ChannelsViewController: UITableViewController {
         navigationItem.leftBarButtonItem = toProfileButton
         
         
-        tableView.register(UINib(nibName: model.reuseIdentifier, bundle: nil), forCellReuseIdentifier: model.reuseIdentifier)
+        tableView.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellReuseIdentifier: reuseIdentifier)
         tableView.rowHeight = 80
         
         
@@ -91,9 +106,9 @@ class ChannelsViewController: UITableViewController {
         if let cell = tableView.cellForRow(at: indexPath) as? ChannelCell {
             
             if let name = cell.nameLabel.text {
-                let currChannel = model.fetchedResultsController.object(at: indexPath)
+                let currChannel = model.getFetchedResultsController().object(at: indexPath)
                 let channel = ChannelModel(identifier: currChannel.identifier, name: currChannel.name, lastMessage: currChannel.lastMessage, activeDate: currChannel.activeDate, isActive: currChannel.isActive)
-                let viewController = ChannelViewController(name: name, channel: channel)
+                let viewController = MessagesViewController(name: name, channel: channel)
                 navigationController?.pushViewController(viewController, animated: true)
             }
             
@@ -107,12 +122,12 @@ class ChannelsViewController: UITableViewController {
 extension ChannelsViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        guard let sections = model.fetchedResultsController.sections else { return 0 }
+        guard let sections = model.getFetchedResultsController().sections else { return 0 }
         return sections.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let sections = model.fetchedResultsController.sections {
+        if let sections = model.getFetchedResultsController().sections {
             return sections[section].numberOfObjects
         } else {
             return 0
@@ -122,9 +137,9 @@ extension ChannelsViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: model.reuseIdentifier, for: indexPath) as? ChannelCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? ChannelCell else { return UITableViewCell() }
         
-        let channel = model.fetchedResultsController.object(at: indexPath)
+        let channel = model.getFetchedResultsController().object(at: indexPath)
         let cellModel = ChannelCellModel(name: channel.name, lastMessage: channel.lastMessage, activeDate: channel.activeDate, identifier: channel.identifier)
         cell.configure(with: cellModel)
         if channel.isActive {
@@ -144,7 +159,7 @@ extension ChannelsViewController {
         label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textColor = UIColor.systemYellow
         if tableView.numberOfSections == 1 {
-            if let channel = model.fetchedResultsController.sections?.first?.objects?.first as? Channel {
+            if let channel = model.getFetchedResultsController().sections?.first?.objects?.first as? Channel {
                 if channel.isActive {
                     label.text = "Active"
                 } else {
@@ -224,7 +239,7 @@ extension ChannelsViewController : NSFetchedResultsControllerDelegate {
                 if let indexPath = indexPath {
                     
                     if let cell = self?.tableView.cellForRow(at: indexPath) as? ChannelCell,
-                       let channel = self?.model.fetchedResultsController.object(at: indexPath) {
+                       let channel = self?.model.getFetchedResultsController().object(at: indexPath) {
                         
                         let cellModel = ChannelCellModel(name: channel.name, lastMessage: channel.lastMessage, activeDate: channel.activeDate, identifier: channel.identifier)
                         cell.configure(with: cellModel)

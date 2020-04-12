@@ -23,6 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var navigationController: UINavigationController?
+    private let rootAssembly = RootAssembly()
     
     // MARK: - Application lifecycle
 
@@ -33,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         FirebaseApp.configure()
         
-        navigationController = UINavigationController(rootViewController: ChannelsViewController())
+        navigationController = UINavigationController(rootViewController: rootAssembly.presentationAssembly.channelsViewController())
         navigationController?.navigationBar.tintColor = .black
         navigationController?.navigationBar.barTintColor = .systemYellow
         window?.rootViewController = navigationController

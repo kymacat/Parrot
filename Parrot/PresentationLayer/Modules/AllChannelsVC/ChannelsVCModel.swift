@@ -9,19 +9,23 @@
 import Foundation
 import CoreData
 
-class ChannelsVCModel {
+protocol IChannelsVCModel {
+    func fetchChannels()
+    func addChannel(with name: String)
+    func deleteChannel(with identifier: String)
+    func getFetchedResultsController() -> NSFetchedResultsController<Channel>
+}
+
+class ChannelsVCModel : IChannelsVCModel {
     
     let channelsService: IAllChannelsService
-    
-    let reuseIdentifier = String(describing: ChannelCell.self)
     let senderName: String
-    let fetchedResultsController: NSFetchedResultsController<Channel>
     
     
-    init(senderName: String) {
+    
+    init(channelsService: IAllChannelsService, senderName: String) {
+        self.channelsService = channelsService
         self.senderName = senderName
-        self.channelsService = AllChannelsService()
-        fetchedResultsController = channelsService.getFetchResultsController()
     }
     
     func fetchChannels() {
@@ -36,5 +40,9 @@ class ChannelsVCModel {
     
     func deleteChannel(with identifier: String) {
         channelsService.deleteChannel(with: identifier)
+    }
+    
+    func getFetchedResultsController() -> NSFetchedResultsController<Channel> {
+        return channelsService.getFetchResultsController()
     }
 }

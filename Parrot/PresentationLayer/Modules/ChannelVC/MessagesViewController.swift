@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ChannelViewController: UIViewController {
+class MessagesViewController: UIViewController {
     
     fileprivate let senderID = "123654"
     fileprivate let senderName = "Vlad Yandola"
@@ -303,7 +303,7 @@ class ChannelViewController: UIViewController {
 
 
 // MARK: - Table view data source
-extension ChannelViewController : UITableViewDataSource, UITableViewDelegate {
+extension MessagesViewController : UITableViewDataSource, UITableViewDelegate {
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -365,7 +365,7 @@ extension ChannelViewController : UITableViewDataSource, UITableViewDelegate {
 }
 
 // MARK: - Text field Delegate
-extension ChannelViewController : UITextFieldDelegate {
+extension MessagesViewController : UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         return false

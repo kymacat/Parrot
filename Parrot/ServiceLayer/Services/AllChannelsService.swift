@@ -23,7 +23,7 @@ class AllChannelsService : IAllChannelsService {
     
     lazy var db = Firestore.firestore()
     lazy var reference = db.collection("channels")
-    let firebase: FirebaseRequests = Requests()
+    let firebase: FirebaseRequests
     
     // coreData
     let fetchedResultsController: NSFetchedResultsController<Channel>
@@ -32,7 +32,8 @@ class AllChannelsService : IAllChannelsService {
     var newChannels: [ChannelModel] = []
     
     
-    init() {
+    init(firebaseRequests: FirebaseRequests) {
+        self.firebase = firebaseRequests
         let fetchRequest = NSFetchRequest<Channel>(entityName: "Channel")
         let sortDescriptor = NSSortDescriptor(key: "activeDate", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]

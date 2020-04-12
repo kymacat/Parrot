@@ -15,7 +15,7 @@ protocol FirebaseRequests {
     
     func deleteChannel(reference: CollectionReference, with identifier: String)
     
-    func getMessages(reference: CollectionReference, for controller: ChannelViewController)
+    func getMessages(reference: CollectionReference, for controller: MessagesViewController)
     
     func sendMessage(reference: CollectionReference, message: MessageModel)
     
@@ -35,7 +35,7 @@ class Requests: FirebaseRequests {
         reference.document(identifier).delete()
     }
     
-    func getMessages(reference: CollectionReference, for controller: ChannelViewController) {
+    func getMessages(reference: CollectionReference, for controller: MessagesViewController) {
         reference.addSnapshotListener { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
