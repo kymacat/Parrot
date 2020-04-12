@@ -98,7 +98,7 @@ class ChannelsViewController: UITableViewController {
     // MARK: - Navigation
     
     @objc func toProfile(sender: UIButton) {
-        let viewController = ProfileViewController()
+        let viewController = presentationAssembly.profileViewController()
         self.present(viewController, animated: true, completion: nil)
     }
     

@@ -20,12 +20,13 @@ class ChannelsVCModel : IChannelsVCModel {
     
     let channelsService: IAllChannelsService
     let senderName: String
+    let senderID: String
     
     
-    
-    init(channelsService: IAllChannelsService, senderName: String) {
+    init(channelsService: IAllChannelsService, senderName: String, senderID: String) {
         self.channelsService = channelsService
         self.senderName = senderName
+        self.senderID = senderID
     }
     
     func fetchChannels() {
@@ -34,7 +35,7 @@ class ChannelsVCModel : IChannelsVCModel {
     
     
     func addChannel(with name: String) {
-        channelsService.addChannel(senderName: senderName, senderID: "123654", with: name)
+        channelsService.addChannel(senderName: senderName, senderID: senderID, with: name)
     }
     
     

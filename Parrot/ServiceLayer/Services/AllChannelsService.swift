@@ -23,21 +23,19 @@ class AllChannelsService : IAllChannelsService {
     
     lazy var db = Firestore.firestore()
     lazy var reference = db.collection("channels")
-    let firebase: FirebaseRequests
+    let firebase: IFirebaseRequests
     
     // coreData
     let fetchedResultsController: NSFetchedResultsController<Channel>
-    let dataManager = CoreDataFileManager()
+    let dataManager: IChannelsFileManager
     var channels: [ChannelModel] = []
     var newChannels: [ChannelModel] = []
     
     
-    init(firebaseRequests: FirebaseRequests) {
+    init(firebaseRequests: IFirebaseRequests, channelsFileManager: IChannelsFileManager) {
         self.firebase = firebaseRequests
-        let fetchRequest = NSFetchRequest<Channel>(entityName: "Channel")
-        let sortDescriptor = NSSortDescriptor(key: "activeDate", ascending: false)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        fetchedResultsController = NSFetchedResultsController<Channel>(fetchRequest: fetchRequest, managedObjectContext: dataManager.managedObjectContext, sectionNameKeyPath: "isActive", cacheName: nil)
+        self.dataManager = channelsFileManager
+        self.fetchedResultsController = channelsFileManager.getFetchResultsController()
     }
     
     // MARK: - FetchChannels

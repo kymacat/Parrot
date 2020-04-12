@@ -15,7 +15,7 @@ class MessagesViewController: UIViewController {
     fileprivate let senderName = "Vlad Yandola"
     fileprivate let reuseIdentifier = "MessageCell"
     
-    private let firebase: FirebaseRequests = Requests()
+    private let firebase: IFirebaseRequests = Requests()
     
     // MARK: - Private
     

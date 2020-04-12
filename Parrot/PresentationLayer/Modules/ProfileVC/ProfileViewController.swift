@@ -32,10 +32,20 @@ class ProfileViewController: UIViewController {
     
     weak var activityIndicator: UIActivityIndicatorView!
     
+    // Dependencies
+    private var model: IProfileVCModel
+    
     
     // MARK: - VC Lifecycle
     
-    var fileManager: ProfileFileManager = CoreDataFileManager()
+    init(model: IProfileVCModel) {
+        self.model = model
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +55,8 @@ class ProfileViewController: UIViewController {
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         scrollView.addGestureRecognizer(hideKeyboardGesture)
         
-        let data = fileManager.getProfileData()
+        
+        let data = model.getUserData()
         profileImage.image = UIImage(data: data.image)
         nameLabel.text = data.name
         descriptionTextView.text = data.description
@@ -59,7 +70,7 @@ class ProfileViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(successfulSave), name: NSNotification.Name.NSManagedObjectContextDidSave, object: (fileManager as? CoreDataFileManager)?.managedObjectContext)
+        NotificationCenter.default.addObserver(self, selector: #selector(successfulSave), name: NSNotification.Name.NSManagedObjectContextDidSave, object: model.getNotificationObject())
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -69,7 +80,7 @@ class ProfileViewController: UIViewController {
         
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSManagedObjectContextDidSave, object: (fileManager as? CoreDataFileManager)?.managedObjectContext)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.NSManagedObjectContextDidSave, object: model.getNotificationObject())
         
     }
     
@@ -417,7 +428,8 @@ class ProfileViewController: UIViewController {
             
             saveButton.changeBackroundColor(UIColor.lightGray)
             saveButton.isEnabled = false
-            fileManager.saveProfileData(name: name, description: description, image: image)
+            
+            model.saveUserData(name: name, description: description, image: image)
         }
         
 
@@ -431,7 +443,7 @@ class ProfileViewController: UIViewController {
     @objc func cancelButton(sender: UIButton) {
         presentMode()
         if imageChanged {
-            let data = fileManager.getProfileData().image
+            let data = model.getUserData().image
             profileImage.image = UIImage(data: data)
             imageChanged = false
         }

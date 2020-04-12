@@ -9,9 +9,13 @@
 import Foundation
 
 protocol ICoreAssembly {
-    var firebaseRequests: FirebaseRequests { get }
+    var firebaseRequests: IFirebaseRequests { get }
+    var profileFileManager: IProfileFileManager { get }
+    var channelsFileManager: IChannelsFileManager { get }
 }
 
 class CoreAssembly: ICoreAssembly {
-    lazy var firebaseRequests: FirebaseRequests = Requests()
+    lazy var firebaseRequests: IFirebaseRequests = Requests()
+    lazy var profileFileManager: IProfileFileManager = ProfileFileManager()
+    lazy var channelsFileManager: IChannelsFileManager = ChannelsFileManager()
 }

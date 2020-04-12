@@ -15,7 +15,7 @@ protocol IPresentationAssembly {
 
     //func messagesViewController() -> MessagesViewController
     
-    //func profileViewController() -> ProfileViewController
+    func profileViewController() -> ProfileViewController
 }
 
 class PresentationAssembly: IPresentationAssembly {
@@ -35,7 +35,7 @@ class PresentationAssembly: IPresentationAssembly {
     }
     
     private func channelsVCModel() -> IChannelsVCModel {
-        return ChannelsVCModel(channelsService: serviceAssembly.allChannelsService, senderName: "Vlad Yandola")
+        return ChannelsVCModel(channelsService: serviceAssembly.allChannelsService, senderName: "Vlad Yandola", senderID: "123654")
     }
     
     // MARK: - PinguinViewController
@@ -46,7 +46,13 @@ class PresentationAssembly: IPresentationAssembly {
     
     // MARK: - profileViewController
     
-//    func profileViewController() -> ProfileViewController {
-//        return ProfileViewController()
-//    }
+    func profileViewController() -> ProfileViewController {
+        let model = profileVCModel()
+        let viewController = ProfileViewController(model: model)
+        return viewController
+    }
+    
+    private func profileVCModel() -> IProfileVCModel {
+        return ProfileVCModel(profileService: serviceAssembly.profileService)
+    }
 }

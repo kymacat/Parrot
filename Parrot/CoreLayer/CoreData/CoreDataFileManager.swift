@@ -5,75 +5,24 @@
 //  Created by Const. on 28.03.2020.
 //  Copyright © 2020 Oleginc. All rights reserved.
 //
-
 import UIKit
 import CoreData
 
 
-protocol ProfileFileManager {
+protocol IProfileFileManager {
     func getProfileData() -> (name: String, description: String, image: Data)
-    func saveProfileData(name: String, description: String, image: UIImage)
+    func saveProfileData(name: String, description: String, image: Data)
+    func getNotificationObject() -> NSManagedObjectContext
 }
 
-protocol ChannelsFileManager {
+protocol IChannelsFileManager {
+    func getFetchResultsController() -> NSFetchedResultsController<Channel>
     func appendChannels(channels: [ChannelModel])
     func deleteChannels(channels: [ChannelModel])
     func editStatusOfChannels(channels: [ChannelModel])
 }
 
-class CoreDataFileManager : ProfileFileManager {
-    
-    private var info: ProfileInformation?
-    
-    func getProfileData() -> (name: String, description: String, image: Data) {
-        if let userInfo = info {
-            return (userInfo.name, userInfo.userDescription, userInfo.imageData)
-        } else {
-            let fetchRequest = NSFetchRequest<ProfileInformation>(entityName: "ProfileInformation")
-            do {
-                let results = try managedObjectContext.fetch(fetchRequest)
-                if results.count == 0 {
-                    if let entityDescription = NSEntityDescription.entity(forEntityName: "ProfileInformation", in: managedObjectContext) {
-                        
-                        let managedObject = ProfileInformation(entity: entityDescription, insertInto: managedObjectContext)
-                        managedObject.name = "Влад Яндола"
-                        managedObject.userDescription = "Люблю программировать под iOS, изучать что-то новое и не стоять на месте"
-                        if let imageData = UIImage(named: "placeholder-user")?.pngData() {
-                            managedObject.imageData = imageData
-                        }
-                        self.info = managedObject
-                        saveContext()
-                    }
-                    
-                } else {
-                    if let userInfo = results.first {
-                        self.info = userInfo
-                    }
-                }
-                
-            } catch {
-                print(error)
-            }
-            if let infoAfterReq = info {
-                return (infoAfterReq.name, infoAfterReq.userDescription, infoAfterReq.imageData)
-            }
-        }
-        return ("", "", Data())
-    }
-    
-    func saveProfileData(name: String, description: String, image: UIImage) {
-        if let userInfo = info {
-            userInfo.name = name
-            userInfo.userDescription = description
-            if let data = image.pngData() {
-                userInfo.imageData = data
-            }
-            saveContext()
-        }
-        
-    }
-    
-
+class CoreDataFileManager {
     // MARK: - Core Data stack
     
     
@@ -138,8 +87,71 @@ class CoreDataFileManager : ProfileFileManager {
     
 }
 
+class ProfileFileManager : CoreDataFileManager, IProfileFileManager {
+    private var info: ProfileInformation?
+    
+    func getProfileData() -> (name: String, description: String, image: Data) {
+        if let userInfo = info {
+            return (userInfo.name, userInfo.userDescription, userInfo.imageData)
+        } else {
+            let fetchRequest = NSFetchRequest<ProfileInformation>(entityName: "ProfileInformation")
+            do {
+                let results = try managedObjectContext.fetch(fetchRequest)
+                if results.count == 0 {
+                    if let entityDescription = NSEntityDescription.entity(forEntityName: "ProfileInformation", in: managedObjectContext) {
+                        
+                        let managedObject = ProfileInformation(entity: entityDescription, insertInto: managedObjectContext)
+                        managedObject.name = "Влад Яндола"
+                        managedObject.userDescription = "Люблю программировать под iOS, изучать что-то новое и не стоять на месте"
+                        if let imageData = UIImage(named: "placeholder-user")?.pngData() {
+                            managedObject.imageData = imageData
+                        }
+                        self.info = managedObject
+                        saveContext()
+                    }
+                    
+                } else {
+                    if let userInfo = results.first {
+                        self.info = userInfo
+                    }
+                }
+                
+            } catch {
+                print(error)
+            }
+            if let infoAfterReq = info {
+                return (infoAfterReq.name, infoAfterReq.userDescription, infoAfterReq.imageData)
+            }
+        }
+        return ("", "", Data())
+    }
+    
+    func saveProfileData(name: String, description: String, image: Data) {
+        if let userInfo = info {
+            userInfo.name = name
+            userInfo.userDescription = description
+            userInfo.imageData = image
+            
+            saveContext()
+        }
+        
+    }
+    
+    func getNotificationObject() -> NSManagedObjectContext {
+        return managedObjectContext
+    }
+}
 
-extension CoreDataFileManager : ChannelsFileManager {
+
+class ChannelsFileManager : CoreDataFileManager, IChannelsFileManager {
+    
+    func getFetchResultsController() -> NSFetchedResultsController<Channel> {
+        let fetchRequest = NSFetchRequest<Channel>(entityName: "Channel")
+        let sortDescriptor = NSSortDescriptor(key: "activeDate", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        return NSFetchedResultsController<Channel>(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: "isActive", cacheName: nil)
+    }
+    
     func appendChannels(channels: [ChannelModel]) {
         if let entityDescription = NSEntityDescription.entity(forEntityName: "Channel", in: managedObjectContext) {
             

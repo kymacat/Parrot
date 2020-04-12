@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-protocol FirebaseRequests {
+protocol IFirebaseRequests {
     
     func addChannel(reference: CollectionReference, name: String, senderName: String, senderID: String)
     
@@ -21,7 +21,7 @@ protocol FirebaseRequests {
     
 }
 
-class Requests: FirebaseRequests {
+class Requests: IFirebaseRequests {
     
     func addChannel(reference: CollectionReference, name: String, senderName: String, senderID: String) {
         let document = reference.addDocument(data: ["name": name, "lastMessage": ""])
