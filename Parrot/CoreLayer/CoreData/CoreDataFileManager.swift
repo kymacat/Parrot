@@ -193,7 +193,25 @@ class ChannelsFileManager : CoreDataFileManager, IChannelsFileManager {
             for channel in channels {
                 for result in results {
                     if channel.identifier == result.identifier {
-                        result.isActive = false
+                        if let date = channel.activeDate {
+                            if (date < Date() - (60*10)) && channel.isActive {
+                                result.isActive = false
+                            }
+                            if (date > Date() - (60*10)) && !channel.isActive {
+                                result.isActive = true
+                            }
+                            if let secondDate = result.activeDate {
+                                if date != secondDate {
+                                    result.activeDate = channel.activeDate
+                                }
+                            } else {
+                                result.activeDate = channel.activeDate
+                            }
+                            
+                        }
+                        if channel.lastMessage != result.lastMessage {
+                            result.lastMessage = channel.lastMessage
+                        }
                     }
                 }
             }

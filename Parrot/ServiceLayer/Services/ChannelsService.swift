@@ -97,12 +97,8 @@ class ChannelsService : IChannelsService {
         dataManager.deleteChannels(channels: channelsToDelete)
         
         var channelsToUpdate = [ChannelModel]()
-        for channel in channels {
-            if let date = channel.activeDate {
-                if (date < Date() - (60*10)) && channel.isActive {
-                    channelsToUpdate.append(channel)
-                }
-            }
+        for channel in newChannels {
+            channelsToUpdate.append(channel)
         }
         dataManager.editStatusOfChannels(channels: channelsToUpdate)
         
