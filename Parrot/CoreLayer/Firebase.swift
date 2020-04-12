@@ -9,19 +9,21 @@
 import Foundation
 import Firebase
 
-protocol IFirebaseRequests {
+protocol IChannelsFirebaseRequests {
     
     func addChannel(reference: CollectionReference, name: String, senderName: String, senderID: String)
     
     func deleteChannel(reference: CollectionReference, with identifier: String)
     
+}
+
+protocol IMessagesFirebaseRequests {
     func getMessages(reference: CollectionReference, for controller: MessagesViewController)
     
     func sendMessage(reference: CollectionReference, message: MessageModel)
-    
 }
 
-class Requests: IFirebaseRequests {
+class ChannelRequests: IChannelsFirebaseRequests {
     
     func addChannel(reference: CollectionReference, name: String, senderName: String, senderID: String) {
         let document = reference.addDocument(data: ["name": name, "lastMessage": ""])
@@ -34,6 +36,9 @@ class Requests: IFirebaseRequests {
     func deleteChannel(reference: CollectionReference, with identifier: String) {
         reference.document(identifier).delete()
     }
+}
+
+class MessagesRequests: IMessagesFirebaseRequests {
     
     func getMessages(reference: CollectionReference, for controller: MessagesViewController) {
         reference.addSnapshotListener { (querySnapshot, err) in

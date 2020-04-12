@@ -13,7 +13,7 @@ import UIKit
 protocol IPresentationAssembly {
     func channelsViewController() -> ChannelsViewController
 
-    //func messagesViewController() -> MessagesViewController
+    func messagesViewController(channel: ChannelModel) -> MessagesViewController
     
     func profileViewController() -> ProfileViewController
 }
@@ -40,9 +40,15 @@ class PresentationAssembly: IPresentationAssembly {
     
     // MARK: - PinguinViewController
     
-//    func messagesViewController() -> MessagesViewController {
-//        return MessagesViewController(
-//    }
+    func messagesViewController(channel: ChannelModel) -> MessagesViewController {
+        let model = messagesVCModel(channel: channel)
+        let viewController = MessagesViewController(model: model, name: channel.name)
+        return viewController
+    }
+    
+    private func messagesVCModel(channel: ChannelModel) -> IMessagesVCModel {
+        return MessagesVCModel(messagesService: serviceAssembly.messagesService, channel: channel, senderName: "Vlad Yandola", senderID: "123654")
+    }
     
     // MARK: - profileViewController
     

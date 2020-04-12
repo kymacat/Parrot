@@ -11,27 +11,15 @@ import Firebase
 
 class MessagesViewController: UIViewController {
     
-    fileprivate let senderID = "123654"
-    fileprivate let senderName = "Vlad Yandola"
     fileprivate let reuseIdentifier = "MessageCell"
-    
-    private let firebase: IFirebaseRequests = Requests()
     
     // MARK: - Private
     
     private var name: String
+    private var model: IMessagesVCModel
     
     private var messages: [MessageModel] = []
     private var groupedMessages: [[MessageModel]] = []
-    
-    private lazy var db = Firestore.firestore()
-    
-    private lazy var reference: CollectionReference = {
-        let channelIdentifier = channel.identifier
-        return db.collection("channels").document(channelIdentifier).collection("messages")
-    }()
-    
-    var channel: ChannelModel
     
     
     // MARK: - UI
@@ -72,9 +60,9 @@ class MessagesViewController: UIViewController {
     
     // MARK: - VC Lifecycle
     
-    init(name: String, channel: ChannelModel) {
+    init(model: IMessagesVCModel, name: String) {
+        self.model = model
         self.name = name
-        self.channel = channel
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -98,8 +86,7 @@ class MessagesViewController: UIViewController {
         tableView.register(MessageCell.self, forCellReuseIdentifier: reuseIdentifier)
         
         navigationItem.title = name
-        
-        firebase.getMessages(reference: reference, for: self)
+        model.getMessages(updatedVC: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -194,8 +181,7 @@ class MessagesViewController: UIViewController {
             if text.replacingOccurrences(of: " ", with: "") != "" {
                 let trueText = text.trimmingCharacters(in: .whitespaces)
                 
-                let message = MessageModel(content: trueText, created: Date(), senderID: senderID, senderName: senderName)
-                firebase.sendMessage(reference: reference, message: message)
+                model.sendMessage(message: trueText)
             }
         }
         
@@ -293,7 +279,7 @@ class MessagesViewController: UIViewController {
             scrollToBottom()
             firstScroll = false
         }
-        if messages.last?.senderID == senderID {
+        if messages.last?.senderID == model.getSenderID() {
             scrollToBottom()
         }
     }
@@ -321,7 +307,7 @@ extension MessagesViewController : UITableViewDataSource, UITableViewDelegate {
 
         let isIncoming: Bool
         
-        if groupedMessages[indexPath.section][indexPath.row].senderID == senderID {
+        if groupedMessages[indexPath.section][indexPath.row].senderID == model.getSenderID() {
             isIncoming = false
         } else {
             isIncoming = true

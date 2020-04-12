@@ -18,12 +18,12 @@ protocol IChannelsVCModel {
 
 class ChannelsVCModel : IChannelsVCModel {
     
-    let channelsService: IAllChannelsService
+    let channelsService: IChannelsService
     let senderName: String
     let senderID: String
     
     
-    init(channelsService: IAllChannelsService, senderName: String, senderID: String) {
+    init(channelsService: IChannelsService, senderName: String, senderID: String) {
         self.channelsService = channelsService
         self.senderName = senderName
         self.senderID = senderID

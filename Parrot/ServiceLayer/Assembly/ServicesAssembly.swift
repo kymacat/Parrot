@@ -8,7 +8,8 @@
 
 import Foundation
 protocol IServicesAssembly {
-    var allChannelsService: IAllChannelsService { get }
+    var allChannelsService: IChannelsService { get }
+    var messagesService: IMessagesService { get }
     var profileService: IProfileService { get }
 }
 
@@ -20,6 +21,7 @@ class ServicesAssembly: IServicesAssembly {
         self.coreAssembly = coreAssembly
     }
     
-    lazy var allChannelsService: IAllChannelsService = AllChannelsService(firebaseRequests: coreAssembly.firebaseRequests, channelsFileManager: coreAssembly.channelsFileManager)
+    lazy var allChannelsService: IChannelsService = ChannelsService(firebaseRequests: coreAssembly.channelsFirebaseRequests, channelsFileManager: coreAssembly.channelsFileManager)
+    lazy var messagesService: IMessagesService = MessagesService(firebaseRequests: coreAssembly.messagesFirebaseRequests)
     lazy var profileService: IProfileService = ProfileService(dataManager: coreAssembly.profileFileManager)
 }

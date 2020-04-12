@@ -103,16 +103,10 @@ class ChannelsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? ChannelCell {
-            
-            if let name = cell.nameLabel.text {
-                let currChannel = model.getFetchedResultsController().object(at: indexPath)
-                let channel = ChannelModel(identifier: currChannel.identifier, name: currChannel.name, lastMessage: currChannel.lastMessage, activeDate: currChannel.activeDate, isActive: currChannel.isActive)
-                let viewController = MessagesViewController(name: name, channel: channel)
-                navigationController?.pushViewController(viewController, animated: true)
-            }
-            
-        }
+        let currChannel = model.getFetchedResultsController().object(at: indexPath)
+        let channel = ChannelModel(identifier: currChannel.identifier, name: currChannel.name, lastMessage: currChannel.lastMessage, activeDate: currChannel.activeDate, isActive: currChannel.isActive)
+        let viewController = presentationAssembly.messagesViewController(channel: channel)
+        navigationController?.pushViewController(viewController, animated: true)
         
     }
 }

@@ -10,20 +10,20 @@ import Foundation
 import Firebase
 import CoreData
 
-protocol IAllChannelsService {
+protocol IChannelsService {
     func fetchChannels()
     func addChannel(senderName: String, senderID: String, with name: String)
     func deleteChannel(with identifier: String)
     func getFetchResultsController() -> NSFetchedResultsController<Channel>
 }
 
-class AllChannelsService : IAllChannelsService {
+class ChannelsService : IChannelsService {
     
     // FireBase
     
     lazy var db = Firestore.firestore()
     lazy var reference = db.collection("channels")
-    let firebase: IFirebaseRequests
+    let firebase: IChannelsFirebaseRequests
     
     // coreData
     let fetchedResultsController: NSFetchedResultsController<Channel>
@@ -32,7 +32,7 @@ class AllChannelsService : IAllChannelsService {
     var newChannels: [ChannelModel] = []
     
     
-    init(firebaseRequests: IFirebaseRequests, channelsFileManager: IChannelsFileManager) {
+    init(firebaseRequests: IChannelsFirebaseRequests, channelsFileManager: IChannelsFileManager) {
         self.firebase = firebaseRequests
         self.dataManager = channelsFileManager
         self.fetchedResultsController = channelsFileManager.getFetchResultsController()
