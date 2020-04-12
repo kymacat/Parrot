@@ -7,54 +7,25 @@
 //
 
 import UIKit
-import Firebase
 import CoreData
 
 class ChannelsViewController: UITableViewController {
     
-    fileprivate let senderName = "Vlad Yandola"
-    fileprivate let reuseIdentifier = String(describing: ChannelCell.self)
-    
-    private var channels: [ChannelModel] = []
-    
-    // FireBase
-    private lazy var db = Firestore.firestore()
-    private lazy var reference = db.collection("channels")
-    
-    private let firebase: FirebaseRequests = Requests()
-    
-    
-    // coreData
-    
-    private var dataManager = CoreDataFileManager()
-    private var fetchedResultsController: NSFetchedResultsController<Channel>!
+    private let model = ChannelsVCModel(senderName: "Vlad Yandola")
     
     // MARK: - VC Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchedResultsController = {
-            let fetchRequest = NSFetchRequest<Channel>(entityName: "Channel")
-            let sortDescriptor = NSSortDescriptor(key: "activeDate", ascending: false)
-            fetchRequest.sortDescriptors = [sortDescriptor]
-            return NSFetchedResultsController<Channel>(fetchRequest: fetchRequest, managedObjectContext: dataManager.managedObjectContext, sectionNameKeyPath: "isActive", cacheName: nil)
-        }()
-        fetchedResultsController?.delegate = self
+        model.fetchedResultsController.delegate = self
         
         do {
-            try fetchedResultsController?.performFetch()
-            if let channels = fetchedResultsController.fetchedObjects {
-                for channel in channels {
-                    let newChannel = ChannelModel(identifier: channel.identifier, name: channel.name, lastMessage: channel.lastMessage, activeDate: channel.activeDate, isActive: channel.isActive)
-                    self.channels.append(newChannel)
-                }
-            }
+            try model.fetchedResultsController.performFetch()
+            model.fetchChannels()
         } catch {
             print(error)
         }
-    
-        firebase.getChannels(reference: reference, for: self)
         
         
         //Блокировка портретного режима
@@ -74,65 +45,19 @@ class ChannelsViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = button
         
-        tableView.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(UINib(nibName: model.reuseIdentifier, bundle: nil), forCellReuseIdentifier: model.reuseIdentifier)
         
         
         
         
     }
     
-    // MARK: - Update channels
-    
-    func updateChannels(with newChannels: [ChannelModel]) {
-        var channelsForAdd = [ChannelModel]()
-        for newChannel in newChannels {
-            var isHere = false
-            for oldChannel in channels {
-                if newChannel.identifier == oldChannel.identifier {
-                    isHere = true
-                    break;
-                }
-            }
-            if !isHere {
-                channelsForAdd.append(newChannel)
-            }
-        }
-        dataManager.appendChannels(channels: channelsForAdd)
-        
-        var channelsToDelete = [ChannelModel]()
-        for oldChannel in channels {
-            var isHere = false
-            for newChannel in newChannels {
-                if oldChannel.identifier == newChannel.identifier {
-                    isHere = true
-                    break;
-                }
-            }
-            if !isHere {
-                channelsToDelete.append(oldChannel)
-                
-            }
-        }
-        dataManager.deleteChannels(channels: channelsToDelete)
-        
-        for channel in channels {
-            if let date = channel.activeDate {
-                if (date < Date() - (60*10)) && channel.isActive {
-                    dataManager.editStatusOfChannel(channel: channel)
-                }
-            }
-        }
-        if let channels = fetchedResultsController.fetchedObjects {
-            for channel in channels {
-                let newChannel = ChannelModel(identifier: channel.identifier, name: channel.name, lastMessage: channel.lastMessage, activeDate: channel.activeDate, isActive: channel.isActive)
-                self.channels.append(newChannel)
-            }
-        }
-        
-    }
     
     // MARK: - Add channel
     
+    
+    
+    // MARK: - !
     @objc func addChannel(sender: UIButton) {
         let alertController = UIAlertController(title: "Add new channel", message: nil, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Add", style: .default) { [weak self] action in
@@ -140,10 +65,8 @@ class ChannelsViewController: UITableViewController {
                 if text.replacingOccurrences(of: " ", with: "") != "" {
                     let trueName = text.trimmingCharacters(in: .whitespaces)
                     
-                    if let ref = self?.reference, let name = self?.senderName {
-                        self?.firebase.addChannel(reference: ref, name: trueName, senderName: name)
-                    }
-                    
+                    self?.model.addChannel(with: trueName)
+
                 }
             }
         }
@@ -173,7 +96,7 @@ class ChannelsViewController: UITableViewController {
                         
                         destinationViewController.setName(name: cell.nameLabel.text)
                         
-                        let currChannel = fetchedResultsController.object(at: indexPath)
+                        let currChannel = model.fetchedResultsController.object(at: indexPath)
                         let channel = ChannelModel(identifier: currChannel.identifier, name: currChannel.name, lastMessage: currChannel.lastMessage, activeDate: currChannel.activeDate, isActive: currChannel.isActive)
                         
                         destinationViewController.channel = channel
@@ -200,12 +123,12 @@ class ChannelsViewController: UITableViewController {
 extension ChannelsViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        guard let sections = fetchedResultsController.sections else { return 0 }
+        guard let sections = model.fetchedResultsController.sections else { return 0 }
         return sections.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let sections = fetchedResultsController?.sections {
+        if let sections = model.fetchedResultsController.sections {
             return sections[section].numberOfObjects
         } else {
             return 0
@@ -215,18 +138,17 @@ extension ChannelsViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath) as? ChannelCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: model.reuseIdentifier, for: indexPath) as? ChannelCell else { return UITableViewCell() }
         
-        if let channel = fetchedResultsController?.object(at: indexPath) {
-            let cellModel = ChannelCellModel(name: channel.name, lastMessage: channel.lastMessage, activeDate: channel.activeDate, identifier: channel.identifier)
-            cell.configure(with: cellModel)
-            if channel.isActive {
-                let gradient = GradientView()
-                gradient.configure(startColor: .systemYellow, endColor: .white, startLocation: 0, endLocation: 1, startPoint: CGPoint(x: -0.5, y: 0), endPoint: CGPoint(x: 1, y: 0))
-                cell.backgroundView = gradient
-            } else {
-                cell.backgroundView = UIView()
-            }
+        let channel = model.fetchedResultsController.object(at: indexPath)
+        let cellModel = ChannelCellModel(name: channel.name, lastMessage: channel.lastMessage, activeDate: channel.activeDate, identifier: channel.identifier)
+        cell.configure(with: cellModel)
+        if channel.isActive {
+            let gradient = GradientView()
+            gradient.configure(startColor: .systemYellow, endColor: .white, startLocation: 0, endLocation: 1, startPoint: CGPoint(x: -0.5, y: 0), endPoint: CGPoint(x: 1, y: 0))
+            cell.backgroundView = gradient
+        } else {
+            cell.backgroundView = UIView()
         }
         return cell
     }
@@ -238,7 +160,7 @@ extension ChannelsViewController {
         label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textColor = UIColor.systemYellow
         if tableView.numberOfSections == 1 {
-            if let channel = fetchedResultsController.sections?.first?.objects?.first as? Channel {
+            if let channel = model.fetchedResultsController.sections?.first?.objects?.first as? Channel {
                 if channel.isActive {
                     label.text = "Active"
                 } else {
@@ -261,7 +183,7 @@ extension ChannelsViewController {
         if editingStyle == .delete {
             if let cell = tableView.cellForRow(at: indexPath) as? ChannelCell,
                 let identifier = cell.identifier {
-                reference.document(identifier).delete()
+                model.deleteChannel(with: identifier)
             }
             
             
@@ -318,7 +240,8 @@ extension ChannelsViewController : NSFetchedResultsControllerDelegate {
                 if let indexPath = indexPath {
                     
                     if let cell = self?.tableView.cellForRow(at: indexPath) as? ChannelCell,
-                        let channel = self?.fetchedResultsController?.object(at: indexPath) {
+                       let channel = self?.model.fetchedResultsController.object(at: indexPath) {
+                        
                         let cellModel = ChannelCellModel(name: channel.name, lastMessage: channel.lastMessage, activeDate: channel.activeDate, identifier: channel.identifier)
                         cell.configure(with: cellModel)
                     }

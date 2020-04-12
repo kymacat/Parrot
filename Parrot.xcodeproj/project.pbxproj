@@ -16,6 +16,8 @@
 		CF2DCCBE24306D4200259C78 /* ProfileInformation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2DCCBC24306D4200259C78 /* ProfileInformation+CoreDataClass.swift */; };
 		CF2DCCBF24306D4200259C78 /* ProfileInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2DCCBD24306D4200259C78 /* ProfileInformation+CoreDataProperties.swift */; };
 		CF32DEBE243A3911002D6CFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF32DEBD243A3911002D6CFF /* GoogleService-Info.plist */; };
+		CF3C762224433518007F2859 /* AllChannelsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3C762124433518007F2859 /* AllChannelsService.swift */; };
+		CF3C76242443388D007F2859 /* ChannelsVCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3C76232443388D007F2859 /* ChannelsVCModel.swift */; };
 		CF70528523FF2DD70095B5C3 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70528423FF2DD70095B5C3 /* CustomButton.swift */; };
 		CF751EC72424402800B4239A /* MessageCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF751EC62424402800B4239A /* MessageCellModel.swift */; };
 		CF965F40243A275200238731 /* Channel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF965F3E243A275200238731 /* Channel+CoreDataClass.swift */; };
@@ -61,6 +63,8 @@
 		CF2DCCBC24306D4200259C78 /* ProfileInformation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileInformation+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CF2DCCBD24306D4200259C78 /* ProfileInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CF32DEBD243A3911002D6CFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		CF3C762124433518007F2859 /* AllChannelsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllChannelsService.swift; sourceTree = "<group>"; };
+		CF3C76232443388D007F2859 /* ChannelsVCModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsVCModel.swift; sourceTree = "<group>"; };
 		CF70528423FF2DD70095B5C3 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		CF751EC62424402800B4239A /* MessageCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellModel.swift; sourceTree = "<group>"; };
 		CF965F3E243A275200238731 /* Channel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Channel+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
@@ -116,13 +120,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		CF017B49240BDCDE0013D7FD /* Channel */ = {
+		CF017B49240BDCDE0013D7FD /* ChannelVC */ = {
 			isa = PBXGroup;
 			children = (
 				CF017B47240BDCB40013D7FD /* ChannelViewController.swift */,
-				CF24017F240BE61D0075BE25 /* MessageCell.swift */,
+				CFAD05A32424524700E471FF /* MessageModel.swift */,
+				CF3C761E2443327F007F2859 /* MessageCell */,
 			);
-			path = Channel;
+			path = ChannelVC;
 			sourceTree = "<group>";
 		};
 		CF2DCCC0243083EC00259C78 /* CoreData */ = {
@@ -136,37 +141,72 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		CF751EC124243EE900B4239A /* Presentation */ = {
+		CF3C761C2443314C007F2859 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				CF9EB69024093F0C0081470E /* AllChannels */,
-				CF017B49240BDCDE0013D7FD /* Channel */,
+				CF9EB69024093F0C0081470E /* AllChannelsVC */,
+				CF017B49240BDCDE0013D7FD /* ChannelVC */,
 				CFF6806423F5D98200339A79 /* ProfileViewController.swift */,
 				CF751EC82424412400B4239A /* CustomUI */,
 				CF9EB68E24093C2D0081470E /* ConfigurableView.swift */,
+				CFF6806623F5D98200339A79 /* Main.storyboard */,
 			);
-			path = Presentation;
+			path = Modules;
 			sourceTree = "<group>";
 		};
-		CF751EC224243F6600B4239A /* Services */ = {
+		CF3C761D24433230007F2859 /* ChannelCell */ = {
 			isa = PBXGroup;
 			children = (
-				CF751EC324243FA100B4239A /* Models */,
-				CF2DCCC0243083EC00259C78 /* CoreData */,
-				CF1561A6242468A9008D531C /* FirebaseRequests.swift */,
+				CF9EB69124093F430081470E /* ChannelCell.swift */,
+				CFE2AED72426634800815E30 /* ChannelCellModel.swift */,
+				CF9EB69224093F430081470E /* ChannelCell.xib */,
+			);
+			path = ChannelCell;
+			sourceTree = "<group>";
+		};
+		CF3C761E2443327F007F2859 /* MessageCell */ = {
+			isa = PBXGroup;
+			children = (
+				CF24017F240BE61D0075BE25 /* MessageCell.swift */,
+				CF751EC62424402800B4239A /* MessageCellModel.swift */,
+			);
+			path = MessageCell;
+			sourceTree = "<group>";
+		};
+		CF3C761F24433393007F2859 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CF3C762124433518007F2859 /* AllChannelsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
 		};
-		CF751EC324243FA100B4239A /* Models */ = {
+		CF3C7620244334F4007F2859 /* CoreLayer */ = {
 			isa = PBXGroup;
 			children = (
-				CF751EC62424402800B4239A /* MessageCellModel.swift */,
-				CFE2AED72426634800815E30 /* ChannelCellModel.swift */,
-				CFAD05A1242446F200E471FF /* ChannelModel.swift */,
-				CFAD05A32424524700E471FF /* MessageModel.swift */,
+				CFBC1C2D2443606C008A45A3 /* Assembly */,
+				CF1561A6242468A9008D531C /* FirebaseRequests.swift */,
+				CF2DCCC0243083EC00259C78 /* CoreData */,
 			);
-			path = Models;
+			path = CoreLayer;
+			sourceTree = "<group>";
+		};
+		CF751EC124243EE900B4239A /* PresentationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				CFBC1C2B2443604A008A45A3 /* Assembly */,
+				CF3C761C2443314C007F2859 /* Modules */,
+			);
+			path = PresentationLayer;
+			sourceTree = "<group>";
+		};
+		CF751EC224243F6600B4239A /* ServiceLayer */ = {
+			isa = PBXGroup;
+			children = (
+				CFBC1C2C24436060008A45A3 /* Assembly */,
+				CF3C761F24433393007F2859 /* Services */,
+			);
+			path = ServiceLayer;
 			sourceTree = "<group>";
 		};
 		CF751EC82424412400B4239A /* CustomUI */ = {
@@ -179,14 +219,48 @@
 			path = CustomUI;
 			sourceTree = "<group>";
 		};
-		CF9EB69024093F0C0081470E /* AllChannels */ = {
+		CF9EB69024093F0C0081470E /* AllChannelsVC */ = {
 			isa = PBXGroup;
 			children = (
 				CF9EB68C240933A80081470E /* ChannelsViewController.swift */,
-				CF9EB69124093F430081470E /* ChannelCell.swift */,
-				CF9EB69224093F430081470E /* ChannelCell.xib */,
+				CF3C76232443388D007F2859 /* ChannelsVCModel.swift */,
+				CFAD05A1242446F200E471FF /* ChannelModel.swift */,
+				CF3C761D24433230007F2859 /* ChannelCell */,
 			);
-			path = AllChannels;
+			path = AllChannelsVC;
+			sourceTree = "<group>";
+		};
+		CFBC1C2B2443604A008A45A3 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		CFBC1C2C24436060008A45A3 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		CFBC1C2D2443606C008A45A3 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		CFBC1C2E24436249008A45A3 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				CFF6807123F5D98300339A79 /* Info.plist */,
+				CFF6806E23F5D98300339A79 /* LaunchScreen.storyboard */,
+				CFF6806C23F5D98300339A79 /* Assets.xcassets */,
+				CF32DEBD243A3911002D6CFF /* GoogleService-Info.plist */,
+				CFF6806923F5D98200339A79 /* Parrot.xcdatamodeld */,
+			);
+			path = "Supporting files";
 			sourceTree = "<group>";
 		};
 		CFDAAC192439EA09000916EA /* Profile Information */ = {
@@ -239,15 +313,11 @@
 		CFF6805F23F5D98200339A79 /* Parrot */ = {
 			isa = PBXGroup;
 			children = (
+				CF751EC124243EE900B4239A /* PresentationLayer */,
+				CF751EC224243F6600B4239A /* ServiceLayer */,
+				CF3C7620244334F4007F2859 /* CoreLayer */,
 				CFF6806023F5D98200339A79 /* AppDelegate.swift */,
-				CF751EC124243EE900B4239A /* Presentation */,
-				CF751EC224243F6600B4239A /* Services */,
-				CFF6806623F5D98200339A79 /* Main.storyboard */,
-				CFF6806E23F5D98300339A79 /* LaunchScreen.storyboard */,
-				CFF6806C23F5D98300339A79 /* Assets.xcassets */,
-				CF32DEBD243A3911002D6CFF /* GoogleService-Info.plist */,
-				CFF6807123F5D98300339A79 /* Info.plist */,
-				CFF6806923F5D98200339A79 /* Parrot.xcdatamodeld */,
+				CFBC1C2E24436249008A45A3 /* Supporting files */,
 			);
 			path = Parrot;
 			sourceTree = "<group>";
@@ -417,6 +487,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF70528523FF2DD70095B5C3 /* CustomButton.swift in Sources */,
+				CF3C762224433518007F2859 /* AllChannelsService.swift in Sources */,
 				CFAD05A2242446F200E471FF /* ChannelModel.swift in Sources */,
 				CF240180240BE61D0075BE25 /* MessageCell.swift in Sources */,
 				CF9EB68D240933A80081470E /* ChannelsViewController.swift in Sources */,
@@ -439,6 +510,7 @@
 				CFDAAC292439EBEF000916EA /* Message+CoreDataProperties.swift in Sources */,
 				CF965F41243A275200238731 /* Channel+CoreDataProperties.swift in Sources */,
 				CF751EC72424402800B4239A /* MessageCellModel.swift in Sources */,
+				CF3C76242443388D007F2859 /* ChannelsVCModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,7 +674,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G62NMGFRS3;
-				INFOPLIST_FILE = Parrot/Info.plist;
+				INFOPLIST_FILE = "Parrot/Supporting files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -623,7 +695,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G62NMGFRS3;
-				INFOPLIST_FILE = Parrot/Info.plist;
+				INFOPLIST_FILE = "Parrot/Supporting files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

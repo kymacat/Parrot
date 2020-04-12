@@ -18,16 +18,12 @@ protocol ProfileFileManager {
 protocol ChannelsFileManager {
     func appendChannels(channels: [ChannelModel])
     func deleteChannels(channels: [ChannelModel])
-    func editStatusOfChannel(channel: ChannelModel)
+    func editStatusOfChannels(channels: [ChannelModel])
 }
 
 class CoreDataFileManager : ProfileFileManager {
     
     private var info: ProfileInformation?
-    
-    init() {
-        let _ = getProfileData()
-    }
     
     func getProfileData() -> (name: String, description: String, image: Data) {
         if let userInfo = info {
@@ -178,16 +174,18 @@ extension CoreDataFileManager : ChannelsFileManager {
         }
     }
     
-    func editStatusOfChannel(channel: ChannelModel) {
+    func editStatusOfChannels(channels: [ChannelModel]) {
         let fetchRequest = NSFetchRequest<Channel>(entityName: "Channel")
         do {
             let results = try managedObjectContext.fetch(fetchRequest)
-            for result in results {
-                if channel.identifier == result.identifier {
-                    result.isActive = false
-                    saveContext()
+            for channel in channels {
+                for result in results {
+                    if channel.identifier == result.identifier {
+                        result.isActive = false
+                    }
                 }
             }
+            saveContext()
             
         } catch {
             print(error)

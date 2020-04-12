@@ -11,9 +11,9 @@ import Firebase
 
 protocol FirebaseRequests {
     
-    func getChannels(reference: CollectionReference, for controller: ChannelsViewController)
+    func addChannel(reference: CollectionReference, name: String, senderName: String, senderID: String)
     
-    func addChannel(reference: CollectionReference, name: String, senderName: String)
+    func deleteChannel(reference: CollectionReference, with identifier: String)
     
     func getMessages(reference: CollectionReference, for controller: ChannelViewController)
     
@@ -23,31 +23,16 @@ protocol FirebaseRequests {
 
 class Requests: FirebaseRequests {
     
-    
-    func getChannels(reference: CollectionReference, for controller: ChannelsViewController) {
-        
-        reference.addSnapshotListener { (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                var newChannels: [ChannelModel] = []
-                for document in querySnapshot!.documents {
-                    if let chanel = ChannelModel(identifier: document.documentID, with: document.data()) {
-                        newChannels.append(chanel)
-                    }
-                }
-                controller.updateChannels(with: newChannels)
-            }
-        }
-        
-    }
-    
-    func addChannel(reference: CollectionReference, name: String, senderName: String) {
+    func addChannel(reference: CollectionReference, name: String, senderName: String, senderID: String) {
         let document = reference.addDocument(data: ["name": name, "lastMessage": ""])
-        let message = MessageModel(content: "\(senderName) создал новый канал", created: Date(), senderID: "123654", senderName: senderName)
+        let message = MessageModel(content: "\(senderName) создал новый канал", created: Date(), senderID: senderID, senderName: senderName)
         
         document.collection("messages").addDocument(data: message.toDict)
         
+    }
+    
+    func deleteChannel(reference: CollectionReference, with identifier: String) {
+        reference.document(identifier).delete()
     }
     
     func getMessages(reference: CollectionReference, for controller: ChannelViewController) {
