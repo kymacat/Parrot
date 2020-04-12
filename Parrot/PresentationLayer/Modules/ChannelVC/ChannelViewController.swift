@@ -19,15 +19,7 @@ class ChannelViewController: UIViewController {
     
     // MARK: - Private
     
-    private var name: String!
-    
-    func setName(name: String?) {
-        if let unrName = name {
-            self.name = unrName
-        } else {
-            self.name = ""
-        }
-    }
+    private var name: String
     
     private var messages: [MessageModel] = []
     private var groupedMessages: [[MessageModel]] = []
@@ -35,11 +27,11 @@ class ChannelViewController: UIViewController {
     private lazy var db = Firestore.firestore()
     
     private lazy var reference: CollectionReference = {
-        guard let channelIdentifier = channel?.identifier else { fatalError() }
+        let channelIdentifier = channel.identifier
         return db.collection("channels").document(channelIdentifier).collection("messages")
     }()
     
-    var channel: ChannelModel?
+    var channel: ChannelModel
     
     
     // MARK: - UI
@@ -79,6 +71,16 @@ class ChannelViewController: UIViewController {
     var messageViewBottomConstraint: NSLayoutConstraint?
     
     // MARK: - VC Lifecycle
+    
+    init(name: String, channel: ChannelModel) {
+        self.name = name
+        self.channel = channel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

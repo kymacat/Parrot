@@ -35,18 +35,22 @@ class ChannelsViewController: UITableViewController {
         
         navigationItem.title = "Tinkoff Chat"
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.backgroundColor = .white
         
         navigationController?.navigationBar.largeTitleTextAttributes =
             [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 25, weight: UIFont.Weight.heavy)]
         
-        let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addChannel(sender:)))
-        button.tintColor = .black
+        let addChannelButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addChannel(sender:)))
+        addChannelButton.tintColor = .black
         
-        navigationItem.rightBarButtonItem = button
+        navigationItem.rightBarButtonItem = addChannelButton
+        
+        let toProfileButton = UIBarButtonItem(image: UIImage(named: "profile"), style: .plain, target: self, action: #selector(toProfile(sender:)))
+        
+        navigationItem.leftBarButtonItem = toProfileButton
+        
         
         tableView.register(UINib(nibName: model.reuseIdentifier, bundle: nil), forCellReuseIdentifier: model.reuseIdentifier)
-        
+        tableView.rowHeight = 80
         
         
         
@@ -54,10 +58,6 @@ class ChannelsViewController: UITableViewController {
     
     
     // MARK: - Add channel
-    
-    
-    
-    // MARK: - !
     @objc func addChannel(sender: UIButton) {
         let alertController = UIAlertController(title: "Add new channel", message: nil, preferredStyle: .alert)
         let confirmAction = UIAlertAction(title: "Add", style: .default) { [weak self] action in
@@ -82,39 +82,23 @@ class ChannelsViewController: UITableViewController {
     
     // MARK: - Navigation
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "toConversation", sender: nil)
+    @objc func toProfile(sender: UIButton) {
+        let viewController = ProfileViewController()
+        self.present(viewController, animated: true, completion: nil)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "toConversation"{
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? ChannelCell {
             
-            if let destinationViewController = segue.destination as? ChannelViewController {
-                if let indexPath = tableView.indexPathForSelectedRow {
-                    if let cell = tableView.cellForRow(at: indexPath) as? ChannelCell {
-                        
-                        destinationViewController.setName(name: cell.nameLabel.text)
-                        
-                        let currChannel = model.fetchedResultsController.object(at: indexPath)
-                        let channel = ChannelModel(identifier: currChannel.identifier, name: currChannel.name, lastMessage: currChannel.lastMessage, activeDate: currChannel.activeDate, isActive: currChannel.isActive)
-                        
-                        destinationViewController.channel = channel
-                        
-                    }
-                }
-                
+            if let name = cell.nameLabel.text {
+                let currChannel = model.fetchedResultsController.object(at: indexPath)
+                let channel = ChannelModel(identifier: currChannel.identifier, name: currChannel.name, lastMessage: currChannel.lastMessage, activeDate: currChannel.activeDate, isActive: currChannel.isActive)
+                let viewController = ChannelViewController(name: name, channel: channel)
+                navigationController?.pushViewController(viewController, animated: true)
             }
+            
         }
         
-        if segue.identifier == "toProfile" {
-            if let destinationViewController = segue.destination as? ProfileViewController {
-                
-                destinationViewController.fileManager = CoreDataFileManager()
-                
-            }
-        }
-
     }
 }
 

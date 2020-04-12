@@ -35,24 +35,21 @@ class ProfileViewController: UIViewController {
     
     // MARK: - VC Lifecycle
     
-    var fileManager: ProfileFileManager!
+    var fileManager: ProfileFileManager = CoreDataFileManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         fillView()
         
         let hideKeyboardGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         scrollView.addGestureRecognizer(hideKeyboardGesture)
         
-        if let data = fileManager?.getProfileData() {
-            profileImage.image = UIImage(data: data.image)
-            nameLabel.text = data.name
-            descriptionTextView.text = data.description
+        let data = fileManager.getProfileData()
+        profileImage.image = UIImage(data: data.image)
+        nameLabel.text = data.name
+        descriptionTextView.text = data.description
                
-        }
-    
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -420,7 +417,7 @@ class ProfileViewController: UIViewController {
             
             saveButton.changeBackroundColor(UIColor.lightGray)
             saveButton.isEnabled = false
-            fileManager?.saveProfileData(name: name, description: description, image: image)
+            fileManager.saveProfileData(name: name, description: description, image: image)
         }
         
 
@@ -434,9 +431,8 @@ class ProfileViewController: UIViewController {
     @objc func cancelButton(sender: UIButton) {
         presentMode()
         if imageChanged {
-            if let data = fileManager?.getProfileData().image {
-                profileImage.image = UIImage(data: data)
-            }
+            let data = fileManager.getProfileData().image
+            profileImage.image = UIImage(data: data)
             imageChanged = false
         }
         hideKeyboard()

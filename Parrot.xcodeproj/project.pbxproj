@@ -34,7 +34,6 @@
 		CFEBAC8F242FAF9C0099D2CE /* CoreDataFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEBAC8E242FAF9C0099D2CE /* CoreDataFileManager.swift */; };
 		CFF6806123F5D98200339A79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6806023F5D98200339A79 /* AppDelegate.swift */; };
 		CFF6806523F5D98200339A79 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6806423F5D98200339A79 /* ProfileViewController.swift */; };
-		CFF6806823F5D98200339A79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFF6806623F5D98200339A79 /* Main.storyboard */; };
 		CFF6806B23F5D98200339A79 /* Parrot.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFF6806923F5D98200339A79 /* Parrot.xcdatamodeld */; };
 		CFF6806D23F5D98300339A79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFF6806C23F5D98300339A79 /* Assets.xcassets */; };
 		CFF6807023F5D98300339A79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFF6806E23F5D98300339A79 /* LaunchScreen.storyboard */; };
@@ -82,7 +81,6 @@
 		CFF6805D23F5D98200339A79 /* Parrot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parrot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFF6806023F5D98200339A79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CFF6806423F5D98200339A79 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		CFF6806723F5D98200339A79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CFF6806A23F5D98200339A79 /* Parrot.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Parrot.xcdatamodel; sourceTree = "<group>"; };
 		CFF6806C23F5D98300339A79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CFF6806F23F5D98300339A79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -149,7 +147,6 @@
 				CFF6806423F5D98200339A79 /* ProfileViewController.swift */,
 				CF751EC82424412400B4239A /* CustomUI */,
 				CF9EB68E24093C2D0081470E /* ConfigurableView.swift */,
-				CFF6806623F5D98200339A79 /* Main.storyboard */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -426,7 +423,6 @@
 				CFF6807023F5D98300339A79 /* LaunchScreen.storyboard in Resources */,
 				CF32DEBE243A3911002D6CFF /* GoogleService-Info.plist in Resources */,
 				CFF6806D23F5D98300339A79 /* Assets.xcassets in Resources */,
-				CFF6806823F5D98200339A79 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,14 +529,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CFF6806623F5D98200339A79 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CFF6806723F5D98200339A79 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CFF6806E23F5D98300339A79 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

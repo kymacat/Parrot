@@ -22,15 +22,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     var window: UIWindow?
+    var navigationController: UINavigationController?
     
     // MARK: - Application lifecycle
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        let navigationBarAppearace = UINavigationBar.appearance()
-        navigationBarAppearace.tintColor = UIColor.black
-            
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        
         FirebaseApp.configure()
+        
+        navigationController = UINavigationController(rootViewController: ChannelsViewController())
+        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.barTintColor = .systemYellow
+        window?.rootViewController = navigationController
         return true
     }
 
