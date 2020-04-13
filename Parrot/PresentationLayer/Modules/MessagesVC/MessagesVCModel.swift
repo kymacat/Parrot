@@ -14,6 +14,7 @@ protocol IMessagesVCModel {
     func getMessages(updatedVC: MessagesViewController)
     func sendMessage(message: String)
     func getSenderID() -> String
+    func groupMessages(messages: [MessageModel]) -> [[MessageModel]]
 }
 
 class MessagesVCModel : IMessagesVCModel {
@@ -43,5 +44,9 @@ class MessagesVCModel : IMessagesVCModel {
     
     func getSenderID() -> String {
         return senderID
+    }
+    
+    func groupMessages(messages: [MessageModel]) -> [[MessageModel]] {
+        return messagesService.groupMessages(newMessages: messages)
     }
 }

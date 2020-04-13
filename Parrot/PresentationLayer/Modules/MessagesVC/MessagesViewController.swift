@@ -18,7 +18,6 @@ class MessagesViewController: UIViewController {
     private var name: String
     private var model: IMessagesVCModel
     
-    private var messages: [MessageModel] = []
     private var groupedMessages: [[MessageModel]] = []
     
     
@@ -226,7 +225,7 @@ class MessagesViewController: UIViewController {
         view.endEditing(true)
     }
     
-    // MARK: - work with data
+    // MARK: - Scroll and update
     
     private var firstScroll = true
     private func scrollToBottom() {
@@ -242,44 +241,15 @@ class MessagesViewController: UIViewController {
     }
     
     
-    private func groupMessagesByDate() {
-        let groupedMessages = Dictionary(grouping: messages) { element -> String in
-            let dateFormatter = DateFormatter()
-            dateFormatter.locale = Locale.init(identifier: "ru_RU")
-            dateFormatter.dateFormat = "dd MMM"
-            return dateFormatter.string(from: element.created)
-        }
-        
-        var newGroupMessages: [[MessageModel]] = []
-        groupedMessages.keys.forEach { key in
-            if let values = groupedMessages[key] {
-                newGroupMessages.append(values)
-            }
-        }
-        self.groupedMessages = newGroupMessages.sorted { (values1, values2) -> Bool in
-            if let first1 = values1.first, let first2 = values2.first {
-                if first1.created < first2.created {
-                    return true
-                }
-            }
-            return false
-        }
-    }
     
     func updateMessages(with newMessages: [MessageModel]) {
-        messages = newMessages.sorted(by: { (mes1, mes2) -> Bool in
-            if mes1.created < mes2.created {
-                return true
-            }
-            return false
-        })
-        groupMessagesByDate()
+        self.groupedMessages = model.groupMessages(messages: newMessages)
         tableView.reloadData()
         if firstScroll {
             scrollToBottom()
             firstScroll = false
         }
-        if messages.last?.senderID == model.getSenderID() {
+        if groupedMessages.last?.last?.senderID == model.getSenderID() {
             scrollToBottom()
         }
     }

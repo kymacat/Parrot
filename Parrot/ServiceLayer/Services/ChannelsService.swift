@@ -96,11 +96,7 @@ class ChannelsService : IChannelsService {
         }
         dataManager.deleteChannels(channels: channelsToDelete)
         
-        var channelsToUpdate = [ChannelModel]()
-        for channel in newChannels {
-            channelsToUpdate.append(channel)
-        }
-        dataManager.editStatusOfChannels(channels: channelsToUpdate)
+        dataManager.editStatusOfChannels(channels: newChannels)
         
         channels = newChannels
         

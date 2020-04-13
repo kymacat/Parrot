@@ -237,6 +237,7 @@ extension ChannelsViewController : NSFetchedResultsControllerDelegate {
                         
                         let cellModel = ChannelCellModel(name: channel.name, lastMessage: channel.lastMessage, activeDate: channel.activeDate, identifier: channel.identifier)
                         cell.configure(with: cellModel)
+                        
                     }
                     
                     
