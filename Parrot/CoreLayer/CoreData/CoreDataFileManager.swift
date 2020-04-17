@@ -72,7 +72,7 @@ class CoreDataFileManager {
 
     // MARK: - Core Data Saving support
 
-    func saveContext () {
+    func saveContext (complition: (() -> ())?) {
         if managedObjectContext.hasChanges {
             managedObjectContext.perform {
                 do {
@@ -80,6 +80,9 @@ class CoreDataFileManager {
                 } catch {
                     let nserror = error as NSError
                     fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+                }
+                if let complitionFunc = complition {
+                    complitionFunc()
                 }
             }
             
@@ -110,7 +113,7 @@ class ProfileFileManager : CoreDataFileManager, IProfileFileManager {
                             managedObject.imageData = imageData
                         }
                         self.info = managedObject
-                        saveContext()
+                        saveContext(complition: nil)
                     }
                     
                 } else {
@@ -135,7 +138,7 @@ class ProfileFileManager : CoreDataFileManager, IProfileFileManager {
             userInfo.userDescription = description
             userInfo.imageData = image
             
-            saveContext()
+            saveContext(complition: nil)
         }
         
     }
@@ -143,7 +146,7 @@ class ProfileFileManager : CoreDataFileManager, IProfileFileManager {
     func saveProfileImage(image: Data) {
         if let userInfo = info {
             userInfo.imageData = image
-            saveContext()
+            saveContext(complition: nil)
         }
     }
     
@@ -174,7 +177,7 @@ class ChannelsFileManager : CoreDataFileManager, IChannelsFileManager {
                 managedObject.lastMessage = channel.lastMessage
                 
             }
-            saveContext()
+            saveContext(complition: nil)
         }
     }
     
@@ -189,7 +192,7 @@ class ChannelsFileManager : CoreDataFileManager, IChannelsFileManager {
                     }
                 }
             }
-            saveContext()
+            saveContext(complition: nil)
             
         } catch {
             print(error)
@@ -204,9 +207,6 @@ class ChannelsFileManager : CoreDataFileManager, IChannelsFileManager {
                 for result in results {
                     if channel.identifier == result.identifier {
                         if let date = channel.activeDate {
-                            if (date < Date() - (60*10)) && result.isActive {
-                                result.isActive = false
-                            }
                             if (date > Date() - (60*10)) && !result.isActive {
                                 result.isActive = true
                             }
@@ -225,7 +225,19 @@ class ChannelsFileManager : CoreDataFileManager, IChannelsFileManager {
                     }
                 }
             }
-            saveContext()
+            saveContext() {
+                for channel in channels {
+                    for result in results {
+                        if channel.identifier == result.identifier {
+                            if let date = channel.activeDate {
+                                if (date < Date() - (60*10)) && result.isActive {
+                                    result.isActive = false
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             
         } catch {
             print(error)

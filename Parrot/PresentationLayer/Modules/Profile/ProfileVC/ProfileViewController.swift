@@ -401,9 +401,15 @@ class ProfileViewController: UIViewController {
             }
         }
         
+        let downloadAction = UIAlertAction(title: "Загрузить", style: .default) { (action: UIAlertAction) in
+            let viewController = ImagesViewController()
+            self.present(viewController, animated: true, completion: nil)
+        }
+        
         alert.addAction(cancelAction)
         alert.addAction(libraryAction)
         alert.addAction(makePhotoAction)
+        alert.addAction(downloadAction)
         
         present(alert, animated: true, completion: nil)
     }

@@ -24,6 +24,9 @@
 		CF3C76242443388D007F2859 /* ChannelsVCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3C76232443388D007F2859 /* ChannelsVCModel.swift */; };
 		CF70528523FF2DD70095B5C3 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70528423FF2DD70095B5C3 /* CustomButton.swift */; };
 		CF751EC72424402800B4239A /* MessageCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF751EC62424402800B4239A /* MessageCellModel.swift */; };
+		CF79628B2449F1A400CE1D41 /* ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF79628A2449F1A400CE1D41 /* ImagesViewController.swift */; };
+		CF79628E2449F26A00CE1D41 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF79628C2449F26A00CE1D41 /* ImageCell.swift */; };
+		CF79628F2449F26A00CE1D41 /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF79628D2449F26A00CE1D41 /* ImageCell.xib */; };
 		CF9EB68D240933A80081470E /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB68C240933A80081470E /* ChannelsViewController.swift */; };
 		CF9EB68F24093C2D0081470E /* ConfigurableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB68E24093C2D0081470E /* ConfigurableView.swift */; };
 		CF9EB69324093F430081470E /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB69124093F430081470E /* ChannelCell.swift */; };
@@ -78,6 +81,9 @@
 		CF3C76232443388D007F2859 /* ChannelsVCModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsVCModel.swift; sourceTree = "<group>"; };
 		CF70528423FF2DD70095B5C3 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		CF751EC62424402800B4239A /* MessageCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellModel.swift; sourceTree = "<group>"; };
+		CF79628A2449F1A400CE1D41 /* ImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewController.swift; sourceTree = "<group>"; };
+		CF79628C2449F26A00CE1D41 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		CF79628D2449F26A00CE1D41 /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
 		CF9EB68C240933A80081470E /* ChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
 		CF9EB68E24093C2D0081470E /* ConfigurableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableView.swift; sourceTree = "<group>"; };
 		CF9EB69124093F430081470E /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
@@ -158,11 +164,9 @@
 		CF3C761C2443314C007F2859 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				CF9EB69024093F0C0081470E /* ChannelsVC */,
-				CF3C761D24433230007F2859 /* ChannelCell */,
-				CF017B49240BDCDE0013D7FD /* MessagesVC */,
-				CF3C761E2443327F007F2859 /* MessageCell */,
-				CFBC1C3B2443856F008A45A3 /* ProfileVC */,
+				CF7962912449F28900CE1D41 /* Channels */,
+				CF7962922449F2A400CE1D41 /* Messages */,
+				CF7962932449F2B600CE1D41 /* Profile */,
 				CF751EC82424412400B4239A /* CustomUI */,
 				CF9EB68E24093C2D0081470E /* ConfigurableView.swift */,
 			);
@@ -202,8 +206,9 @@
 			isa = PBXGroup;
 			children = (
 				CFBC1C2D2443606C008A45A3 /* Assembly */,
-				CF1561A6242468A9008D531C /* Firebase.swift */,
+				CFAE4D63244A19580009207C /* Firebase */,
 				CF2DCCC0243083EC00259C78 /* CoreData */,
+				CFAE4D64244A19750009207C /* Networking */,
 			);
 			path = CoreLayer;
 			sourceTree = "<group>";
@@ -236,6 +241,59 @@
 			path = CustomUI;
 			sourceTree = "<group>";
 		};
+		CF7962892449F16200CE1D41 /* ImagesVC */ = {
+			isa = PBXGroup;
+			children = (
+				CF79628A2449F1A400CE1D41 /* ImagesViewController.swift */,
+			);
+			path = ImagesVC;
+			sourceTree = "<group>";
+		};
+		CF7962902449F27300CE1D41 /* ImageCell */ = {
+			isa = PBXGroup;
+			children = (
+				CF79628C2449F26A00CE1D41 /* ImageCell.swift */,
+				CF79628D2449F26A00CE1D41 /* ImageCell.xib */,
+			);
+			path = ImageCell;
+			sourceTree = "<group>";
+		};
+		CF7962912449F28900CE1D41 /* Channels */ = {
+			isa = PBXGroup;
+			children = (
+				CF9EB69024093F0C0081470E /* ChannelsVC */,
+				CF3C761D24433230007F2859 /* ChannelCell */,
+			);
+			path = Channels;
+			sourceTree = "<group>";
+		};
+		CF7962922449F2A400CE1D41 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				CF017B49240BDCDE0013D7FD /* MessagesVC */,
+				CF3C761E2443327F007F2859 /* MessageCell */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
+		CF7962932449F2B600CE1D41 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				CFBC1C3B2443856F008A45A3 /* ProfileVC */,
+				CF7962942449F2C700CE1D41 /* Images */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		CF7962942449F2C700CE1D41 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				CF7962892449F16200CE1D41 /* ImagesVC */,
+				CF7962902449F27300CE1D41 /* ImageCell */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
 		CF9EB69024093F0C0081470E /* ChannelsVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,6 +302,21 @@
 				CFAD05A1242446F200E471FF /* ChannelModel.swift */,
 			);
 			path = ChannelsVC;
+			sourceTree = "<group>";
+		};
+		CFAE4D63244A19580009207C /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				CF1561A6242468A9008D531C /* Firebase.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		CFAE4D64244A19750009207C /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		CFBC1C2B2443604A008A45A3 /* Assembly */ = {
@@ -454,6 +527,7 @@
 				CF9EB69424093F430081470E /* ChannelCell.xib in Resources */,
 				CFF6807023F5D98300339A79 /* LaunchScreen.storyboard in Resources */,
 				CF32DEBE243A3911002D6CFF /* GoogleService-Info.plist in Resources */,
+				CF79628F2449F26A00CE1D41 /* ImageCell.xib in Resources */,
 				CFF6806D23F5D98300339A79 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -533,6 +607,7 @@
 				CFE2AED82426634800815E30 /* ChannelCellModel.swift in Sources */,
 				CFF6806123F5D98200339A79 /* AppDelegate.swift in Sources */,
 				CF2DCCBF24306D4200259C78 /* ProfileInformation+CoreDataProperties.swift in Sources */,
+				CF79628E2449F26A00CE1D41 /* ImageCell.swift in Sources */,
 				CFF6806B23F5D98200339A79 /* Parrot.xcdatamodeld in Sources */,
 				CF1561A7242468A9008D531C /* Firebase.swift in Sources */,
 				CF02DE7724439E3C00DC055A /* MessagesVCModel.swift in Sources */,
@@ -544,6 +619,7 @@
 				CFBC1C3A24437C16008A45A3 /* CoreAssembly.swift in Sources */,
 				CFDAAC292439EBEF000916EA /* Message+CoreDataProperties.swift in Sources */,
 				CFBC1C3624437702008A45A3 /* PresentationAssembly.swift in Sources */,
+				CF79628B2449F1A400CE1D41 /* ImagesViewController.swift in Sources */,
 				CF751EC72424402800B4239A /* MessageCellModel.swift in Sources */,
 				CF3C76242443388D007F2859 /* ChannelsVCModel.swift in Sources */,
 				CF02DE7124438A6300DC055A /* ProfileService.swift in Sources */,
