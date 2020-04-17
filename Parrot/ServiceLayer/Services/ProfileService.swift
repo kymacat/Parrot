@@ -14,6 +14,7 @@ protocol IProfileService {
     func getUserData() -> (name: String, description: String, image: Data)
     func saveUserData(name: String, description: String, image: UIImage)
     func getNotificationObject() -> NSManagedObjectContext
+    func saveImage(image: UIImage)
 }
 
 class ProfileService: IProfileService {
@@ -33,6 +34,12 @@ class ProfileService: IProfileService {
             dataManager.saveProfileData(name: name, description: description, image: data)
         }
         
+    }
+    
+    func saveImage(image: UIImage) {
+        if let data = image.pngData() {
+            dataManager.saveProfileImage(image: data)
+        }
     }
     
     func getNotificationObject() -> NSManagedObjectContext {

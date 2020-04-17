@@ -12,6 +12,7 @@ import CoreData
 protocol IProfileVCModel {
     func getUserData() -> (name: String, description: String, image: Data)
     func saveUserData(name: String, description: String, image: UIImage)
+    func saveImage(image: UIImage)
     func getNotificationObject() -> NSManagedObjectContext
 }
 
@@ -28,6 +29,10 @@ class ProfileVCModel : IProfileVCModel {
     
     func saveUserData(name: String, description: String, image: UIImage) {
         profileService.saveUserData(name: name, description: description, image: image)
+    }
+    
+    func saveImage(image: UIImage) {
+        profileService.saveImage(image: image)
     }
     
     func getNotificationObject() -> NSManagedObjectContext {

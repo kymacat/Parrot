@@ -154,7 +154,7 @@ class ProfileViewController: UIViewController {
             setProfileImageButton.heightAnchor.constraint(equalTo: profileImage.heightAnchor, multiplier: 1/4)
         ])
             
-        setImageButton.isHidden = true
+        
         // MARK: Картинка для imButton
         let image = UIImageView()
         image.image = UIImage(named: "slr-camera-2-xxl")
@@ -442,11 +442,6 @@ class ProfileViewController: UIViewController {
         
     @objc func cancelButton(sender: UIButton) {
         presentMode()
-        if imageChanged {
-            let data = model.getUserData().image
-            profileImage.image = UIImage(data: data)
-            imageChanged = false
-        }
         hideKeyboard()
     }
     
@@ -470,7 +465,6 @@ class ProfileViewController: UIViewController {
         editingDescriptionTextView.isHidden = !editingDescriptionTextView.isHidden
         nameLabel.isHidden = !nameLabel.isHidden
         descriptionTextView.isHidden = !descriptionTextView.isHidden
-        setProfileImageButton.isHidden = !setProfileImageButton.isHidden
     }
     
     func editingMode() {
@@ -492,13 +486,21 @@ class ProfileViewController: UIViewController {
     
     @objc func successfulSave() {
         DispatchQueue.main.async { [weak self] in
-            self?.saveButton.changeBackroundColor(UIColor(red: 61/255, green: 119/255, blue: 236/255, alpha: 1))
-            self?.saveButton.isEnabled = true
-            self?.activityIndicator.stopAnimating()
-            self?.nameLabel.text = self?.nameTextField.text
-            self?.descriptionTextView.text = self?.editingDescriptionTextView.text
-            self?.presentMode()
-            self?.showSuccessesAlert()
+            if let vc = self {
+                if vc.nameTextField.isHidden {
+                    vc.activityIndicator.stopAnimating()
+                    vc.showSuccessesAlert()
+                } else {
+                    vc.saveButton.changeBackroundColor(UIColor(red: 61/255, green: 119/255, blue: 236/255, alpha: 1))
+                    vc.saveButton.isEnabled = true
+                    vc.activityIndicator.stopAnimating()
+                    vc.nameLabel.text = self?.nameTextField.text
+                    vc.descriptionTextView.text = self?.editingDescriptionTextView.text
+                    vc.presentMode()
+                    vc.showSuccessesAlert()
+                    
+                }
+            }
         }
         
 
@@ -523,8 +525,6 @@ class ProfileViewController: UIViewController {
     @objc func hideKeyboard() {
         scrollView.endEditing(true)
     }
-    
-    var imageChanged = false
 }
 
 // MARK: - ImagePickerDelegate
@@ -536,9 +536,10 @@ extension ProfileViewController : UIImagePickerControllerDelegate, UINavigationC
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
         
         profileImage.image = image
-        imageChanged = true
         
         picker.dismiss(animated: true, completion: nil)
+        
+        model.saveImage(image: image)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

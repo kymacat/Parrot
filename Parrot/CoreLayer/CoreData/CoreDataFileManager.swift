@@ -12,6 +12,7 @@ import CoreData
 protocol IProfileFileManager {
     func getProfileData() -> (name: String, description: String, image: Data)
     func saveProfileData(name: String, description: String, image: Data)
+    func saveProfileImage(image: Data)
     func getNotificationObject() -> NSManagedObjectContext
 }
 
@@ -87,6 +88,8 @@ class CoreDataFileManager {
     
 }
 
+// MARK: - ProfileFileManager
+
 class ProfileFileManager : CoreDataFileManager, IProfileFileManager {
     private var info: ProfileInformation?
     
@@ -137,12 +140,19 @@ class ProfileFileManager : CoreDataFileManager, IProfileFileManager {
         
     }
     
+    func saveProfileImage(image: Data) {
+        if let userInfo = info {
+            userInfo.imageData = image
+            saveContext()
+        }
+    }
+    
     func getNotificationObject() -> NSManagedObjectContext {
         return managedObjectContext
     }
 }
 
-
+// MARK: - ChannelsFileManager
 class ChannelsFileManager : CoreDataFileManager, IChannelsFileManager {
     
     func getFetchResultsController() -> NSFetchedResultsController<Channel> {
