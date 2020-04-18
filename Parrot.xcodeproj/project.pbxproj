@@ -27,6 +27,8 @@
 		CF79628B2449F1A400CE1D41 /* ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF79628A2449F1A400CE1D41 /* ImagesViewController.swift */; };
 		CF79628E2449F26A00CE1D41 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF79628C2449F26A00CE1D41 /* ImageCell.swift */; };
 		CF79628F2449F26A00CE1D41 /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF79628D2449F26A00CE1D41 /* ImageCell.xib */; };
+		CF7B1AE8244B64990080386A /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B1AE7244B64990080386A /* ImageRequest.swift */; };
+		CF7B1AEA244B65330080386A /* ImageParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B1AE9244B65330080386A /* ImageParser.swift */; };
 		CF9EB68D240933A80081470E /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB68C240933A80081470E /* ChannelsViewController.swift */; };
 		CF9EB68F24093C2D0081470E /* ConfigurableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB68E24093C2D0081470E /* ConfigurableView.swift */; };
 		CF9EB69324093F430081470E /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB69124093F430081470E /* ChannelCell.swift */; };
@@ -93,6 +95,8 @@
 		CF79628A2449F1A400CE1D41 /* ImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewController.swift; sourceTree = "<group>"; };
 		CF79628C2449F26A00CE1D41 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		CF79628D2449F26A00CE1D41 /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
+		CF7B1AE7244B64990080386A /* ImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
+		CF7B1AE9244B65330080386A /* ImageParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageParser.swift; sourceTree = "<group>"; };
 		CF9EB68C240933A80081470E /* ChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
 		CF9EB68E24093C2D0081470E /* ConfigurableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableView.swift; sourceTree = "<group>"; };
 		CF9EB69124093F430081470E /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
@@ -164,6 +168,7 @@
 				CF017B47240BDCB40013D7FD /* MessagesViewController.swift */,
 				CF02DE7624439E3C00DC055A /* MessagesVCModel.swift */,
 				CFAD05A32424524700E471FF /* MessageModel.swift */,
+				CF3C761E2443327F007F2859 /* MessageCell */,
 			);
 			path = MessagesVC;
 			sourceTree = "<group>";
@@ -182,8 +187,8 @@
 		CF3C761C2443314C007F2859 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				CF7962912449F28900CE1D41 /* Channels */,
-				CF7962922449F2A400CE1D41 /* Messages */,
+				CF9EB69024093F0C0081470E /* ChannelsVC */,
+				CF017B49240BDCDE0013D7FD /* MessagesVC */,
 				CF7962932449F2B600CE1D41 /* Profile */,
 				CF751EC82424412400B4239A /* CustomUI */,
 				CF9EB68E24093C2D0081470E /* ConfigurableView.swift */,
@@ -265,6 +270,7 @@
 			children = (
 				CF79628A2449F1A400CE1D41 /* ImagesViewController.swift */,
 				CFAE4D65244A2DEC0009207C /* ImagesVCModel.swift */,
+				CF7962902449F27300CE1D41 /* ImageCell */,
 			);
 			path = ImagesVC;
 			sourceTree = "<group>";
@@ -278,40 +284,13 @@
 			path = ImageCell;
 			sourceTree = "<group>";
 		};
-		CF7962912449F28900CE1D41 /* Channels */ = {
-			isa = PBXGroup;
-			children = (
-				CF9EB69024093F0C0081470E /* ChannelsVC */,
-				CF3C761D24433230007F2859 /* ChannelCell */,
-			);
-			path = Channels;
-			sourceTree = "<group>";
-		};
-		CF7962922449F2A400CE1D41 /* Messages */ = {
-			isa = PBXGroup;
-			children = (
-				CF017B49240BDCDE0013D7FD /* MessagesVC */,
-				CF3C761E2443327F007F2859 /* MessageCell */,
-			);
-			path = Messages;
-			sourceTree = "<group>";
-		};
 		CF7962932449F2B600CE1D41 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
 				CFBC1C3B2443856F008A45A3 /* ProfileVC */,
-				CF7962942449F2C700CE1D41 /* Images */,
+				CF7962892449F16200CE1D41 /* ImagesVC */,
 			);
 			path = Profile;
-			sourceTree = "<group>";
-		};
-		CF7962942449F2C700CE1D41 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				CF7962892449F16200CE1D41 /* ImagesVC */,
-				CF7962902449F27300CE1D41 /* ImageCell */,
-			);
-			path = Images;
 			sourceTree = "<group>";
 		};
 		CF9EB69024093F0C0081470E /* ChannelsVC */ = {
@@ -320,6 +299,7 @@
 				CF9EB68C240933A80081470E /* ChannelsViewController.swift */,
 				CF3C76232443388D007F2859 /* ChannelsVCModel.swift */,
 				CFAD05A1242446F200E471FF /* ChannelModel.swift */,
+				CF3C761D24433230007F2859 /* ChannelCell */,
 			);
 			path = ChannelsVC;
 			sourceTree = "<group>";
@@ -357,6 +337,7 @@
 			children = (
 				CFAE4D6F244A42340009207C /* IParser.swift */,
 				CFAE4D6D244A41860009207C /* ImagesParser.swift */,
+				CF7B1AE9244B65330080386A /* ImageParser.swift */,
 			);
 			path = Parsers;
 			sourceTree = "<group>";
@@ -366,6 +347,7 @@
 			children = (
 				CFAE4D72244A43920009207C /* IRequest.swift */,
 				CFAE4D74244A444B0009207C /* ImagesRequest.swift */,
+				CF7B1AE7244B64990080386A /* ImageRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -673,6 +655,7 @@
 				CFAE4D6E244A41860009207C /* ImagesParser.swift in Sources */,
 				CFAE4D79244A4C910009207C /* RequestsFactory.swift in Sources */,
 				CFAE4D70244A42340009207C /* IParser.swift in Sources */,
+				CF7B1AE8244B64990080386A /* ImageRequest.swift in Sources */,
 				CFAE4D77244A45E00009207C /* RequestSender.swift in Sources */,
 				CFBC1C3A24437C16008A45A3 /* CoreAssembly.swift in Sources */,
 				CFDAAC292439EBEF000916EA /* Message+CoreDataProperties.swift in Sources */,
@@ -680,6 +663,7 @@
 				CFBC1C3624437702008A45A3 /* PresentationAssembly.swift in Sources */,
 				CF79628B2449F1A400CE1D41 /* ImagesViewController.swift in Sources */,
 				CF751EC72424402800B4239A /* MessageCellModel.swift in Sources */,
+				CF7B1AEA244B65330080386A /* ImageParser.swift in Sources */,
 				CF3C76242443388D007F2859 /* ChannelsVCModel.swift in Sources */,
 				CFAE4D6B244A40DE0009207C /* IRequestSender.swift in Sources */,
 				CF02DE7124438A6300DC055A /* ProfileService.swift in Sources */,

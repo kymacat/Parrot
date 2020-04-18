@@ -11,7 +11,7 @@ import Foundation
 class ImagesRequest: IRequest {
     private var baseUrl: String = "https://pixabay.com/api/"
     private let apiKey: String
-    private let perPage = "99"
+    private let perPage = "198"
     private var getParameters: [String : String]  {
         return ["key": apiKey,
                 "per_page": perPage]

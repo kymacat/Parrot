@@ -404,7 +404,7 @@ class ProfileViewController: UIViewController {
         }
         
         let downloadAction = UIAlertAction(title: "Загрузить", style: .default) { (action: UIAlertAction) in
-            let viewController = self.presentationAssembly.imagesViewController()
+            let viewController = self.presentationAssembly.imagesViewController(unwindController: self)
             self.present(viewController, animated: true, completion: nil)
         }
         
@@ -510,8 +510,11 @@ class ProfileViewController: UIViewController {
                 }
             }
         }
-        
 
+    }
+    
+    func saveImage(image: UIImage) {
+        model.saveImage(image: image)
     }
     
     // MARK: keyboard notification
@@ -547,7 +550,7 @@ extension ProfileViewController : UIImagePickerControllerDelegate, UINavigationC
         
         picker.dismiss(animated: true, completion: nil)
         
-        model.saveImage(image: image)
+        saveImage(image: image)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

@@ -9,13 +9,10 @@
 import UIKit
 import Foundation
 
-struct CellDisplayModel {
-    let imageUrl: String
-}
-
 protocol IImagesVCModel {
     var delegate: IImagesVCDelegate? { get set }
     func fetchImages()
+    func getImageForCell(imageUrl: String, completionHandler: @escaping (UIImage?, String, String?) -> Void)
 }
 
 protocol IImagesVCDelegate {
@@ -42,6 +39,11 @@ class ImagesVCModel: IImagesVCModel {
             
         }
     }
+    
+    func getImageForCell(imageUrl: String, completionHandler: @escaping (UIImage?, String, String?) -> Void) {
+        imagesService.loadImageForCell(imageUrl: imageUrl, completionHandler: completionHandler)
+    }
+    
 }
 
 

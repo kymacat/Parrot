@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 class ImagesViewController: UIViewController, IImagesVCDelegate {
     
     private let reuseIdentifier = String(describing: ImageCell.self)
@@ -32,10 +30,12 @@ class ImagesViewController: UIViewController, IImagesVCDelegate {
         return indicator
     }()
     
+    private let unwindController: ProfileViewController
     
-    init(model: IImagesVCModel, presentationAssembly: IPresentationAssembly) {
+    init(model: IImagesVCModel, presentationAssembly: IPresentationAssembly, unwindController: ProfileViewController) {
         self.model = model
         self.presentationAssembly = presentationAssembly
+        self.unwindController = unwindController
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -91,7 +91,7 @@ class ImagesViewController: UIViewController, IImagesVCDelegate {
 
 // MARK: UICollectionViewDataSource
 
-extension ImagesViewController : UICollectionViewDataSource, UICollectionViewDelegate {
+extension ImagesViewController : UICollectionViewDataSource {
 
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -100,10 +100,29 @@ extension ImagesViewController : UICollectionViewDataSource, UICollectionViewDel
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? ImageCell else { return UICollectionViewCell() }
-        
+        cell.model = model
+        cell.configure(with: dataSource[indexPath.row])
         return cell
     }
 
+}
+// MARK: - UICollectionViewDelegate
+
+extension ImagesViewController : UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? ImageCell {
+            if cell.image.image != UIImage(named: "placeholder") {
+                if let image = cell.image.image {
+                    unwindController.profileImage.image = image
+                    unwindController.saveImage(image: image)
+                }
+                self.dismiss(animated: true, completion: nil)
+            }
+            
+            
+        }
+        
+    }
 }
 
 // MARK: - Collection View Flow Layout Delegate

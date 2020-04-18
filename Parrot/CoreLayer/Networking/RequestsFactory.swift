@@ -10,9 +10,14 @@ import Foundation
 
 struct RequestsFactory {
     struct ImagesRequests {
-        static func imageConfig() -> RequestConfig<ImagesParser> {
+        static func imagesConfig() -> RequestConfig<ImagesParser> {
             let request = ImagesRequest(apiKey: "16093875-adcbf163144f82e25dc3cb60f")
             return RequestConfig<ImagesParser>(request: request, parser: ImagesParser())
+        }
+        
+        static func imageConfig(imageUrl: String) -> RequestConfig<ImageParser> {
+            let request = ImageRequest(imageUrl: imageUrl)
+            return RequestConfig<ImageParser>(request: request, parser: ImageParser())
         }
     }
 }

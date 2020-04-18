@@ -17,7 +17,7 @@ protocol IPresentationAssembly {
     
     func profileViewController() -> ProfileViewController
     
-    func imagesViewController() -> ImagesViewController
+    func imagesViewController(unwindController: ProfileViewController) -> ImagesViewController
 }
 
 class PresentationAssembly: IPresentationAssembly {
@@ -66,9 +66,9 @@ class PresentationAssembly: IPresentationAssembly {
     
     // MARK: - imagesViewController
     
-    func imagesViewController() -> ImagesViewController {
+    func imagesViewController(unwindController: ProfileViewController) -> ImagesViewController {
         var model = imagesVCModel()
-        let viewController = ImagesViewController(model: model, presentationAssembly: self)
+        let viewController = ImagesViewController(model: model, presentationAssembly: self, unwindController: unwindController)
         model.delegate = viewController
         return viewController
     }
