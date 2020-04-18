@@ -16,6 +16,8 @@ protocol IPresentationAssembly {
     func messagesViewController(channel: ChannelModel) -> MessagesViewController
     
     func profileViewController() -> ProfileViewController
+    
+    func imagesViewController() -> ImagesViewController
 }
 
 class PresentationAssembly: IPresentationAssembly {
@@ -42,7 +44,7 @@ class PresentationAssembly: IPresentationAssembly {
     
     func messagesViewController(channel: ChannelModel) -> MessagesViewController {
         let model = messagesVCModel(channel: channel)
-        let viewController = MessagesViewController(model: model, name: channel.name)
+        let viewController = MessagesViewController(model: model, presentationAssembly: self, name: channel.name)
         return viewController
     }
     
@@ -54,11 +56,24 @@ class PresentationAssembly: IPresentationAssembly {
     
     func profileViewController() -> ProfileViewController {
         let model = profileVCModel()
-        let viewController = ProfileViewController(model: model)
+        let viewController = ProfileViewController(model: model, presentationAssembly: self)
         return viewController
     }
     
     private func profileVCModel() -> IProfileVCModel {
         return ProfileVCModel(profileService: serviceAssembly.profileService)
+    }
+    
+    // MARK: - imagesViewController
+    
+    func imagesViewController() -> ImagesViewController {
+        var model = imagesVCModel()
+        let viewController = ImagesViewController(model: model, presentationAssembly: self)
+        model.delegate = viewController
+        return viewController
+    }
+    
+    private func imagesVCModel() -> IImagesVCModel {
+        return ImagesVCModel(imagesService: serviceAssembly.imagesService)
     }
 }

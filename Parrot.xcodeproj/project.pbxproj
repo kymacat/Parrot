@@ -33,6 +33,15 @@
 		CF9EB69424093F430081470E /* ChannelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF9EB69224093F430081470E /* ChannelCell.xib */; };
 		CFAD05A2242446F200E471FF /* ChannelModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD05A1242446F200E471FF /* ChannelModel.swift */; };
 		CFAD05A42424524700E471FF /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAD05A32424524700E471FF /* MessageModel.swift */; };
+		CFAE4D66244A2DEC0009207C /* ImagesVCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE4D65244A2DEC0009207C /* ImagesVCModel.swift */; };
+		CFAE4D68244A381D0009207C /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE4D67244A381D0009207C /* ImageService.swift */; };
+		CFAE4D6B244A40DE0009207C /* IRequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE4D6A244A40DE0009207C /* IRequestSender.swift */; };
+		CFAE4D6E244A41860009207C /* ImagesParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE4D6D244A41860009207C /* ImagesParser.swift */; };
+		CFAE4D70244A42340009207C /* IParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE4D6F244A42340009207C /* IParser.swift */; };
+		CFAE4D73244A43920009207C /* IRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE4D72244A43920009207C /* IRequest.swift */; };
+		CFAE4D75244A444B0009207C /* ImagesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE4D74244A444B0009207C /* ImagesRequest.swift */; };
+		CFAE4D77244A45E00009207C /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE4D76244A45E00009207C /* RequestSender.swift */; };
+		CFAE4D79244A4C910009207C /* RequestsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE4D78244A4C910009207C /* RequestsFactory.swift */; };
 		CFBC1C3124437646008A45A3 /* Channel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC1C2F24437646008A45A3 /* Channel+CoreDataClass.swift */; };
 		CFBC1C3224437646008A45A3 /* Channel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC1C3024437646008A45A3 /* Channel+CoreDataProperties.swift */; };
 		CFBC1C34244376D6008A45A3 /* RootAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC1C33244376D6008A45A3 /* RootAssembly.swift */; };
@@ -90,6 +99,15 @@
 		CF9EB69224093F430081470E /* ChannelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChannelCell.xib; sourceTree = "<group>"; };
 		CFAD05A1242446F200E471FF /* ChannelModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelModel.swift; sourceTree = "<group>"; };
 		CFAD05A32424524700E471FF /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
+		CFAE4D65244A2DEC0009207C /* ImagesVCModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesVCModel.swift; sourceTree = "<group>"; };
+		CFAE4D67244A381D0009207C /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		CFAE4D6A244A40DE0009207C /* IRequestSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRequestSender.swift; sourceTree = "<group>"; };
+		CFAE4D6D244A41860009207C /* ImagesParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesParser.swift; sourceTree = "<group>"; };
+		CFAE4D6F244A42340009207C /* IParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IParser.swift; sourceTree = "<group>"; };
+		CFAE4D72244A43920009207C /* IRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRequest.swift; sourceTree = "<group>"; };
+		CFAE4D74244A444B0009207C /* ImagesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesRequest.swift; sourceTree = "<group>"; };
+		CFAE4D76244A45E00009207C /* RequestSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
+		CFAE4D78244A4C910009207C /* RequestsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsFactory.swift; sourceTree = "<group>"; };
 		CFBC1C2F24437646008A45A3 /* Channel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Channel+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CFBC1C3024437646008A45A3 /* Channel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Channel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CFBC1C33244376D6008A45A3 /* RootAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAssembly.swift; sourceTree = "<group>"; };
@@ -198,6 +216,7 @@
 				CF3C762124433518007F2859 /* ChannelsService.swift */,
 				CF02DE7424439AF200DC055A /* MessagesService.swift */,
 				CF02DE7024438A6300DC055A /* ProfileService.swift */,
+				CFAE4D67244A381D0009207C /* ImageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -245,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				CF79628A2449F1A400CE1D41 /* ImagesViewController.swift */,
+				CFAE4D65244A2DEC0009207C /* ImagesVCModel.swift */,
 			);
 			path = ImagesVC;
 			sourceTree = "<group>";
@@ -315,8 +335,39 @@
 		CFAE4D64244A19750009207C /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				CFAE4D69244A40A80009207C /* RequestManager */,
+				CFAE4D6C244A415A0009207C /* Parsers */,
+				CFAE4D71244A43430009207C /* Requests */,
+				CFAE4D78244A4C910009207C /* RequestsFactory.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		CFAE4D69244A40A80009207C /* RequestManager */ = {
+			isa = PBXGroup;
+			children = (
+				CFAE4D6A244A40DE0009207C /* IRequestSender.swift */,
+				CFAE4D76244A45E00009207C /* RequestSender.swift */,
+			);
+			path = RequestManager;
+			sourceTree = "<group>";
+		};
+		CFAE4D6C244A415A0009207C /* Parsers */ = {
+			isa = PBXGroup;
+			children = (
+				CFAE4D6F244A42340009207C /* IParser.swift */,
+				CFAE4D6D244A41860009207C /* ImagesParser.swift */,
+			);
+			path = Parsers;
+			sourceTree = "<group>";
+		};
+		CFAE4D71244A43430009207C /* Requests */ = {
+			isa = PBXGroup;
+			children = (
+				CFAE4D72244A43920009207C /* IRequest.swift */,
+				CFAE4D74244A444B0009207C /* ImagesRequest.swift */,
+			);
+			path = Requests;
 			sourceTree = "<group>";
 		};
 		CFBC1C2B2443604A008A45A3 /* Assembly */ = {
@@ -592,6 +643,7 @@
 				CFBC1C3224437646008A45A3 /* Channel+CoreDataProperties.swift in Sources */,
 				CF3C762224433518007F2859 /* ChannelsService.swift in Sources */,
 				CFAD05A2242446F200E471FF /* ChannelModel.swift in Sources */,
+				CFAE4D73244A43920009207C /* IRequest.swift in Sources */,
 				CF240180240BE61D0075BE25 /* MessageCell.swift in Sources */,
 				CFBC1C34244376D6008A45A3 /* RootAssembly.swift in Sources */,
 				CF9EB68D240933A80081470E /* ChannelsViewController.swift in Sources */,
@@ -610,18 +662,26 @@
 				CF79628E2449F26A00CE1D41 /* ImageCell.swift in Sources */,
 				CFF6806B23F5D98200339A79 /* Parrot.xcdatamodeld in Sources */,
 				CF1561A7242468A9008D531C /* Firebase.swift in Sources */,
+				CFAE4D66244A2DEC0009207C /* ImagesVCModel.swift in Sources */,
 				CF02DE7724439E3C00DC055A /* MessagesVCModel.swift in Sources */,
+				CFAE4D75244A444B0009207C /* ImagesRequest.swift in Sources */,
 				CF00B9A0240B173B00FDDE1F /* GradientView.swift in Sources */,
 				CF9EB69324093F430081470E /* ChannelCell.swift in Sources */,
 				CFAD05A42424524700E471FF /* MessageModel.swift in Sources */,
 				CF02DE7324438ABA00DC055A /* ProfileVCModel.swift in Sources */,
 				CF02DE7524439AF200DC055A /* MessagesService.swift in Sources */,
+				CFAE4D6E244A41860009207C /* ImagesParser.swift in Sources */,
+				CFAE4D79244A4C910009207C /* RequestsFactory.swift in Sources */,
+				CFAE4D70244A42340009207C /* IParser.swift in Sources */,
+				CFAE4D77244A45E00009207C /* RequestSender.swift in Sources */,
 				CFBC1C3A24437C16008A45A3 /* CoreAssembly.swift in Sources */,
 				CFDAAC292439EBEF000916EA /* Message+CoreDataProperties.swift in Sources */,
+				CFAE4D68244A381D0009207C /* ImageService.swift in Sources */,
 				CFBC1C3624437702008A45A3 /* PresentationAssembly.swift in Sources */,
 				CF79628B2449F1A400CE1D41 /* ImagesViewController.swift in Sources */,
 				CF751EC72424402800B4239A /* MessageCellModel.swift in Sources */,
 				CF3C76242443388D007F2859 /* ChannelsVCModel.swift in Sources */,
+				CFAE4D6B244A40DE0009207C /* IRequestSender.swift in Sources */,
 				CF02DE7124438A6300DC055A /* ProfileService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

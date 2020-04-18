@@ -13,6 +13,7 @@ protocol ICoreAssembly {
     var messagesFirebaseRequests: IMessagesFirebaseRequests { get }
     var profileFileManager: IProfileFileManager { get }
     var channelsFileManager: IChannelsFileManager { get }
+    var requestSender: IRequestSender { get }
 }
 
 class CoreAssembly: ICoreAssembly {
@@ -20,4 +21,5 @@ class CoreAssembly: ICoreAssembly {
     lazy var messagesFirebaseRequests: IMessagesFirebaseRequests = MessagesRequests()
     lazy var profileFileManager: IProfileFileManager = ProfileFileManager()
     lazy var channelsFileManager: IChannelsFileManager = ChannelsFileManager()
+    lazy var requestSender: IRequestSender = RequestSender()
 }

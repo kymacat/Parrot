@@ -17,6 +17,7 @@ class MessagesViewController: UIViewController {
     
     private var name: String
     private var model: IMessagesVCModel
+    private let presentationAssembly: IPresentationAssembly
     
     private var groupedMessages: [[MessageModel]] = []
     
@@ -59,8 +60,9 @@ class MessagesViewController: UIViewController {
     
     // MARK: - VC Lifecycle
     
-    init(model: IMessagesVCModel, name: String) {
+    init(model: IMessagesVCModel, presentationAssembly: IPresentationAssembly, name: String) {
         self.model = model
+        self.presentationAssembly = presentationAssembly
         self.name = name
         super.init(nibName: nil, bundle: nil)
     }

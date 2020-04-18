@@ -11,6 +11,7 @@ protocol IServicesAssembly {
     var allChannelsService: IChannelsService { get }
     var messagesService: IMessagesService { get }
     var profileService: IProfileService { get }
+    var imagesService: IImagesService { get }
 }
 
 class ServicesAssembly: IServicesAssembly {
@@ -24,4 +25,5 @@ class ServicesAssembly: IServicesAssembly {
     lazy var allChannelsService: IChannelsService = ChannelsService(firebaseRequests: coreAssembly.channelsFirebaseRequests, channelsFileManager: coreAssembly.channelsFileManager)
     lazy var messagesService: IMessagesService = MessagesService(firebaseRequests: coreAssembly.messagesFirebaseRequests)
     lazy var profileService: IProfileService = ProfileService(dataManager: coreAssembly.profileFileManager)
+    lazy var imagesService: IImagesService = ImagesService(requestSender: coreAssembly.requestSender)
 }

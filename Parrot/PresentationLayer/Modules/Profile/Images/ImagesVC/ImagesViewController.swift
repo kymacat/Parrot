@@ -10,20 +10,61 @@ import UIKit
 
 
 
-class ImagesViewController: UIViewController {
+class ImagesViewController: UIViewController, IImagesVCDelegate {
     
     private let reuseIdentifier = String(describing: ImageCell.self)
     
     var collectionView: UICollectionView?
-    
-    
     private let itemsPerRow: CGFloat = 3
     private let sectionInsets = UIEdgeInsets(top: 15, left: 15, bottom: 40, right: 15)
     
+    //Dependencies
+    let model: IImagesVCModel
+    let presentationAssembly: IPresentationAssembly
+    
+    private var dataSource: [CellDisplayModel] = []
+    
+    let loadingIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.hidesWhenStopped = true
+        indicator.color = .black
+        indicator.style = .whiteLarge
+        return indicator
+    }()
+    
+    
+    init(model: IImagesVCModel, presentationAssembly: IPresentationAssembly) {
+        self.model = model
+        self.presentationAssembly = presentationAssembly
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-               
-               
+        
+        configureCollectionView()
+        model.fetchImages()
+        
+        // MARK: IndicatorView
+        view.addSubview(loadingIndicator)
+        
+        loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            loadingIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            loadingIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+        loadingIndicator.startAnimating()
+          
+    }
+    
+    // MARK: - Private
+    
+    private func configureCollectionView() {
         collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: UICollectionViewFlowLayout())
         
         collectionView?.register(UINib(nibName: reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: reuseIdentifier)
@@ -33,8 +74,18 @@ class ImagesViewController: UIViewController {
         collectionView?.delegate = self
         
         self.view.addSubview(collectionView ?? UICollectionView())
-               
-        
+    }
+    
+    
+    // MARK: - IImagesVCDelegate
+    
+    func setup(dataSource: [CellDisplayModel]) {
+        self.dataSource = dataSource
+
+        DispatchQueue.main.async {
+            self.loadingIndicator.stopAnimating()
+            self.collectionView?.reloadData()
+        }
     }
 }
 
@@ -44,7 +95,7 @@ extension ImagesViewController : UICollectionViewDataSource, UICollectionViewDel
 
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 50
+        return dataSource.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

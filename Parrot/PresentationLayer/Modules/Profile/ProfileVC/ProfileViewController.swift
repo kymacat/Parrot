@@ -34,12 +34,14 @@ class ProfileViewController: UIViewController {
     
     // Dependencies
     private var model: IProfileVCModel
+    private let presentationAssembly: IPresentationAssembly
     
     
     // MARK: - VC Lifecycle
     
-    init(model: IProfileVCModel) {
+    init(model: IProfileVCModel, presentationAssembly: IPresentationAssembly) {
         self.model = model
+        self.presentationAssembly = presentationAssembly
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -402,7 +404,7 @@ class ProfileViewController: UIViewController {
         }
         
         let downloadAction = UIAlertAction(title: "Загрузить", style: .default) { (action: UIAlertAction) in
-            let viewController = ImagesViewController()
+            let viewController = self.presentationAssembly.imagesViewController()
             self.present(viewController, animated: true, completion: nil)
         }
         
