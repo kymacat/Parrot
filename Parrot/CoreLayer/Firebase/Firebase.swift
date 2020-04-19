@@ -11,6 +11,8 @@ import Firebase
 
 protocol IChannelsFirebaseRequests {
     
+    func getChannels(reference: CollectionReference, completionHandler: @escaping ([ChannelModel]) -> Void)
+    
     func addChannel(reference: CollectionReference, name: String, senderName: String, senderID: String)
     
     func deleteChannel(reference: CollectionReference, with identifier: String)
@@ -18,12 +20,30 @@ protocol IChannelsFirebaseRequests {
 }
 
 protocol IMessagesFirebaseRequests {
-    func getMessages(reference: CollectionReference, for controller: MessagesViewController)
+    func getMessages(reference: CollectionReference, completionHandler: @escaping ([MessageModel]) -> Void)
     
     func sendMessage(reference: CollectionReference, message: MessageModel)
 }
 
 class ChannelRequests: IChannelsFirebaseRequests {
+    
+    func getChannels(reference: CollectionReference, completionHandler: @escaping ([ChannelModel]) -> Void) {
+        reference.addSnapshotListener {(querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                var newChannels: [ChannelModel] = []
+                if let snapshot = querySnapshot {
+                    for document in snapshot.documents {
+                        if let chanel = ChannelModel(identifier: document.documentID, with: document.data()) {
+                            newChannels.append(chanel)
+                        }
+                    }
+                    completionHandler(newChannels)
+                }
+            }
+        }
+    }
     
     func addChannel(reference: CollectionReference, name: String, senderName: String, senderID: String) {
         let document = reference.addDocument(data: ["name": name, "lastMessage": ""])
@@ -40,7 +60,7 @@ class ChannelRequests: IChannelsFirebaseRequests {
 
 class MessagesRequests: IMessagesFirebaseRequests {
     
-    func getMessages(reference: CollectionReference, for controller: MessagesViewController) {
+    func getMessages(reference: CollectionReference, completionHandler: @escaping ([MessageModel]) -> Void) {
         reference.addSnapshotListener { (querySnapshot, err) in
             if let err = err {
                 print("Error getting documents: \(err)")
@@ -51,10 +71,7 @@ class MessagesRequests: IMessagesFirebaseRequests {
                         newMessages.append(message)
                     }
                 }
-                DispatchQueue.main.async {
-                    controller.updateMessages(with: newMessages)
-                    
-                }
+                completionHandler(newMessages)
                 
             }
         }

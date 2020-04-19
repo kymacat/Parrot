@@ -40,11 +40,12 @@ class PresentationAssembly: IPresentationAssembly {
         return ChannelsVCModel(channelsService: serviceAssembly.allChannelsService, senderName: "Vlad Yandola", senderID: "123654")
     }
     
-    // MARK: - PinguinViewController
+    // MARK: - messagesViewController
     
     func messagesViewController(channel: ChannelModel) -> MessagesViewController {
-        let model = messagesVCModel(channel: channel)
+        var model = messagesVCModel(channel: channel)
         let viewController = MessagesViewController(model: model, presentationAssembly: self, name: channel.name)
+        model.delegate = viewController
         return viewController
     }
     

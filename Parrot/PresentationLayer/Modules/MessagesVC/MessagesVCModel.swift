@@ -11,13 +11,20 @@ import CoreData
 import Firebase
 
 protocol IMessagesVCModel {
-    func getMessages(updatedVC: MessagesViewController)
+    var delegate: IMessagesDelegate? { get set }
+    func getMessages()
     func sendMessage(message: String)
     func getSenderID() -> String
     func groupMessages(messages: [MessageModel]) -> [[MessageModel]]
 }
 
+protocol IMessagesDelegate {
+    func setup(with newMessages: [MessageModel])
+}
+
 class MessagesVCModel : IMessagesVCModel {
+    
+    var delegate: IMessagesDelegate?
     
     let messagesService: IMessagesService
     let senderName: String
@@ -33,8 +40,10 @@ class MessagesVCModel : IMessagesVCModel {
     }
     
     
-    func getMessages(updatedVC: MessagesViewController) {
-        messagesService.getMessages(channelIdentifier: channel.identifier, for: updatedVC)
+    func getMessages() {
+        if let delegate = delegate {
+            messagesService.getMessages(channelIdentifier: channel.identifier, completionHandler: delegate.setup(with:))
+        }
     }
     
     func sendMessage(message: String) {

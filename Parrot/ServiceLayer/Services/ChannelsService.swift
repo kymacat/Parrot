@@ -47,21 +47,7 @@ class ChannelsService : IChannelsService {
                 self.channels.append(newChannel)
             }
         }
-        reference.addSnapshotListener {[weak self] (querySnapshot, err) in
-            if let err = err {
-                print("Error getting documents: \(err)")
-            } else {
-                var newChannels: [ChannelModel] = []
-                if let snapshot = querySnapshot {
-                    for document in snapshot.documents {
-                        if let chanel = ChannelModel(identifier: document.documentID, with: document.data()) {
-                            newChannels.append(chanel)
-                        }
-                    }
-                    self?.updateChannels(with: newChannels)
-                }
-            }
-        }
+        firebase.getChannels(reference: reference, completionHandler: updateChannels(with:))
     }
     
     func updateChannels(with newChannels: [ChannelModel]) {

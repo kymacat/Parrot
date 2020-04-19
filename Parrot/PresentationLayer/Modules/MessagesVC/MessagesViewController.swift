@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class MessagesViewController: UIViewController {
+class MessagesViewController: UIViewController, IMessagesDelegate {
     
     fileprivate let reuseIdentifier = "MessageCell"
     
@@ -87,7 +87,7 @@ class MessagesViewController: UIViewController {
         tableView.register(MessageCell.self, forCellReuseIdentifier: reuseIdentifier)
         
         navigationItem.title = name
-        model.getMessages(updatedVC: self)
+        model.getMessages()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -243,16 +243,19 @@ class MessagesViewController: UIViewController {
     }
     
     
+    // MARK: - IMessagesDelegate
     
-    func updateMessages(with newMessages: [MessageModel]) {
+    func setup(with newMessages: [MessageModel]) {
         self.groupedMessages = model.groupMessages(messages: newMessages)
-        tableView.reloadData()
-        if firstScroll {
-            scrollToBottom()
-            firstScroll = false
-        }
-        if groupedMessages.last?.last?.senderID == model.getSenderID() {
-            scrollToBottom()
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadData()
+            if let firstScroll = self?.firstScroll, firstScroll {
+                self?.scrollToBottom()
+                self?.firstScroll = false
+            }
+            if self?.groupedMessages.last?.last?.senderID == self?.model.getSenderID() {
+                self?.scrollToBottom()
+            }
         }
     }
 

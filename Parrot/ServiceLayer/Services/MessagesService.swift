@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 
 protocol IMessagesService {
-    func getMessages(channelIdentifier: String, for VC: MessagesViewController)
+    func getMessages(channelIdentifier: String, completionHandler: @escaping ([MessageModel]) -> Void)
     func sendMessage(message: MessageModel, channelIdentifier: String)
     func groupMessages(newMessages: [MessageModel]) -> [[MessageModel]]
 }
@@ -29,16 +29,14 @@ class MessagesService : IMessagesService {
         self.firebase = firebaseRequests
     }
     
-    func getMessages(channelIdentifier: String, for VC: MessagesViewController) {
-        let reference: CollectionReference = {
-            return db.collection("channels").document(channelIdentifier).collection("messages")
-        }()
-        firebase.getMessages(reference: reference, for: VC)
+    func getMessages(channelIdentifier: String, completionHandler: @escaping ([MessageModel]) -> Void) {
+        let reference = db.collection("channels").document(channelIdentifier).collection("messages")
+    
+        firebase.getMessages(reference: reference, completionHandler: completionHandler)
     }
     func sendMessage(message: MessageModel, channelIdentifier: String) {
-        let reference: CollectionReference = {
-            return db.collection("channels").document(channelIdentifier).collection("messages")
-        }()
+        let reference = db.collection("channels").document(channelIdentifier).collection("messages")
+        
         firebase.sendMessage(reference: reference, message: message)
     }
     
