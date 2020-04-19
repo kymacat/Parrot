@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ImagesViewController: UIViewController, IImagesVCDelegate {
+class ImagesViewController: UIViewController, IImagesVCDelegate, IImageCellDelegate {
     
     private let reuseIdentifier = String(describing: ImageCell.self)
     
@@ -20,7 +20,8 @@ class ImagesViewController: UIViewController, IImagesVCDelegate {
     let model: IImagesVCModel
     let presentationAssembly: IPresentationAssembly
     
-    private var dataSource: [CellDisplayModel] = []
+    private var dataSource: [ImageCellModel] = []
+    private var cachedDataSource: [String: UIImage] = [:]
     
     let loadingIndicator: UIActivityIndicatorView = {
         let indicator = UIActivityIndicatorView()
@@ -79,13 +80,23 @@ class ImagesViewController: UIViewController, IImagesVCDelegate {
     
     // MARK: - IImagesVCDelegate
     
-    func setup(dataSource: [CellDisplayModel]) {
+    func setup(dataSource: [ImageCellModel]) {
         self.dataSource = dataSource
 
         DispatchQueue.main.async {
             self.loadingIndicator.stopAnimating()
             self.collectionView?.reloadData()
         }
+    }
+    
+    // MARK: - IImageCellDelegate
+    
+    func cacheImage(imageUrl: String, image: UIImage) {
+        cachedDataSource[imageUrl] = image
+    }
+    
+    func getImage(imageUrl: String, completionHandler: @escaping (UIImage?, String, String?) -> Void) {
+        model.getImageForCell(imageUrl: imageUrl, completionHandler: completionHandler)
     }
 }
 
@@ -100,8 +111,16 @@ extension ImagesViewController : UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? ImageCell else { return UICollectionViewCell() }
-        cell.model = model
-        cell.configure(with: dataSource[indexPath.row])
+        
+        let model = dataSource[indexPath.row]
+        
+        if let image = cachedDataSource[model.imageUrl] {
+            cell.imageView.image = image
+        } else {
+            cell.delegate = self
+            cell.configure(with: dataSource[indexPath.row])
+        }
+        
         return cell
     }
 
@@ -111,8 +130,8 @@ extension ImagesViewController : UICollectionViewDataSource {
 extension ImagesViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let cell = collectionView.cellForItem(at: indexPath) as? ImageCell {
-            if cell.image.image != UIImage(named: "placeholder") {
-                if let image = cell.image.image {
+            if cell.imageView.image != UIImage(named: "placeholder") {
+                if let image = cell.imageView.image {
                     unwindController.profileImage.image = image
                     unwindController.saveImage(image: image)
                 }

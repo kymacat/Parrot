@@ -16,7 +16,7 @@ protocol IImagesVCModel {
 }
 
 protocol IImagesVCDelegate {
-    func setup(dataSource: [CellDisplayModel])
+    func setup(dataSource: [ImageCellModel])
 }
 
 class ImagesVCModel: IImagesVCModel {
@@ -31,7 +31,7 @@ class ImagesVCModel: IImagesVCModel {
     func fetchImages() {
         imagesService.loadImages { (images: [ImageApiModel]?, error: String?) in
             if let images = images {
-                let cells = images.map({ CellDisplayModel(imageUrl: $0.webformatURL) })
+                let cells = images.map({ ImageCellModel(imageUrl: $0.webformatURL) })
                 self.delegate?.setup(dataSource: cells)
             } else {
                 print(error ?? "")

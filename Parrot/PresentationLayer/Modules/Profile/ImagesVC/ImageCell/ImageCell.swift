@@ -8,25 +8,33 @@
 
 import UIKit
 
-struct CellDisplayModel {
+protocol IImageCellDelegate {
+    func cacheImage(imageUrl: String, image: UIImage)
+    func getImage(imageUrl: String, completionHandler: @escaping (UIImage?, String, String?) -> Void)
+}
+
+struct ImageCellModel {
     let imageUrl: String
 }
 
 class ImageCell: UICollectionViewCell, ConfigurableView {
-    var model: IImagesVCModel?
+    var delegate: IImageCellDelegate?
     
-    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var imageView: UIImageView!
     
     var imageUrl = ""
     
-    func configure(with model: CellDisplayModel) {
-        image.image = UIImage(named: "placeholder")
+    func configure(with model: ImageCellModel) {
+        imageView.image = UIImage(named: "placeholder")
         imageUrl = model.imageUrl
-        self.model?.getImageForCell(imageUrl: model.imageUrl, completionHandler: { (image: UIImage?, url: String, error: String?) in
+        
+        self.delegate?.getImage(imageUrl: model.imageUrl, completionHandler: {
+            (image: UIImage?, url: String, error: String?) in
             if let image = image {
                 DispatchQueue.main.async {
                     if self.imageUrl == url {
-                        self.image.image = image
+                        self.imageView.image = image
+                        self.delegate?.cacheImage(imageUrl: url, image: image)
                     }
                 }
                 
