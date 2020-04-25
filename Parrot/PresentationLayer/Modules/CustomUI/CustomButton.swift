@@ -24,7 +24,6 @@ class CustomButton : UIButton {
     }
     
     func setup() {
-        backgroundColor = .clear
         layer.backgroundColor = color.cgColor
     }
     

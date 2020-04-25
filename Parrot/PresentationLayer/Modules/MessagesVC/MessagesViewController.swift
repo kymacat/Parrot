@@ -46,7 +46,7 @@ class MessagesViewController: UIViewController, IMessagesDelegate {
         return textField
     }()
     
-    let sendButton: UIButton = {
+    let sendButton: CustomButton = {
         let button = CustomButton()
         button.changeBackroundColor(.systemYellow)
         button.setTitle("Send", for: .normal)
@@ -88,6 +88,7 @@ class MessagesViewController: UIViewController, IMessagesDelegate {
         
         navigationItem.title = name
         model.getMessages()
+        animateSendButton(with: .lightGray)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -114,6 +115,7 @@ class MessagesViewController: UIViewController, IMessagesDelegate {
         view.addSubview(tableView)
         view.addSubview(messageInputView)
         
+        // MARK: - messageInputView
         messageInputView.translatesAutoresizingMaskIntoConstraints = false
         
         messageViewBottomConstraint = messageInputView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
@@ -125,6 +127,7 @@ class MessagesViewController: UIViewController, IMessagesDelegate {
             messageInputView.heightAnchor.constraint(equalToConstant: 60)
         ])
         
+        // MARK: - colorView
         let colorView = UIView()
         colorView.backgroundColor = .darkGray
 
@@ -140,6 +143,7 @@ class MessagesViewController: UIViewController, IMessagesDelegate {
         ])
         
         
+        // MARK: - TableView
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         
@@ -150,6 +154,7 @@ class MessagesViewController: UIViewController, IMessagesDelegate {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
         
+        // MARK: - inputTextField
         messageInputView.addSubview(inputTextField)
         
         inputTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -160,6 +165,7 @@ class MessagesViewController: UIViewController, IMessagesDelegate {
             inputTextField.leadingAnchor.constraint(equalTo: messageInputView.leadingAnchor, constant: 10)
         ])
         
+        // MARK: - sendButton
         messageInputView.addSubview(sendButton)
         
         sendButton.translatesAutoresizingMaskIntoConstraints = false
@@ -188,6 +194,29 @@ class MessagesViewController: UIViewController, IMessagesDelegate {
         
         inputTextField.text = ""
         hideKeyboard()
+        
+    }
+    
+    // MARK: - Send Button animation
+    
+    private var sendButtonAnimationIsFinished = true
+    
+    private func animateSendButton(with color: UIColor) {
+        
+        UIView.animate(withDuration: 1, animations: {
+            self.sendButton.changeBackroundColor(color)
+        })
+        if sendButtonAnimationIsFinished {
+            UIView.animate(withDuration: 0.5, delay: 0.5, options: [], animations: {
+                self.sendButton.transform = CGAffineTransform(scaleX: 1.15, y: 1.15)
+                self.sendButtonAnimationIsFinished = false
+            }, completion: { _ in
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.0, options: [.allowUserInteraction], animations: {
+                    self.sendButton.transform = CGAffineTransform.identity
+                })
+                self.sendButtonAnimationIsFinished = true
+            })
+        }
         
     }
     
@@ -327,6 +356,15 @@ extension MessagesViewController : UITableViewDataSource, UITableViewDelegate {
 
 // MARK: - Text field Delegate
 extension MessagesViewController : UITextFieldDelegate {
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if (textField.text! != "" && sendButton.backgroundColor == UIColor.lightGray) {
+            animateSendButton(with: .systemYellow)
+        } else if (textField.text! == "") {
+            animateSendButton(with: .lightGray)
+        }
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         return false
