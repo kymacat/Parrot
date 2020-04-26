@@ -29,6 +29,7 @@
 		CF79628F2449F26A00CE1D41 /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CF79628D2449F26A00CE1D41 /* ImageCell.xib */; };
 		CF7B1AE8244B64990080386A /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B1AE7244B64990080386A /* ImageRequest.swift */; };
 		CF7B1AEA244B65330080386A /* ImageParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B1AE9244B65330080386A /* ImageParser.swift */; };
+		CF7FA898245482B600A61472 /* SingleTouchRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7FA897245482B600A61472 /* SingleTouchRecognizer.swift */; };
 		CF9EB68D240933A80081470E /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB68C240933A80081470E /* ChannelsViewController.swift */; };
 		CF9EB68F24093C2D0081470E /* ConfigurableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB68E24093C2D0081470E /* ConfigurableView.swift */; };
 		CF9EB69324093F430081470E /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB69124093F430081470E /* ChannelCell.swift */; };
@@ -44,6 +45,7 @@
 		CFAE4D75244A444B0009207C /* ImagesRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE4D74244A444B0009207C /* ImagesRequest.swift */; };
 		CFAE4D77244A45E00009207C /* RequestSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE4D76244A45E00009207C /* RequestSender.swift */; };
 		CFAE4D79244A4C910009207C /* RequestsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAE4D78244A4C910009207C /* RequestsFactory.swift */; };
+		CFB8BF8F24555D65007C1DA1 /* FingerAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB8BF8E24555D65007C1DA1 /* FingerAnimation.swift */; };
 		CFBC1C3124437646008A45A3 /* Channel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC1C2F24437646008A45A3 /* Channel+CoreDataClass.swift */; };
 		CFBC1C3224437646008A45A3 /* Channel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC1C3024437646008A45A3 /* Channel+CoreDataProperties.swift */; };
 		CFBC1C34244376D6008A45A3 /* RootAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC1C33244376D6008A45A3 /* RootAssembly.swift */; };
@@ -97,6 +99,7 @@
 		CF79628D2449F26A00CE1D41 /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
 		CF7B1AE7244B64990080386A /* ImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
 		CF7B1AE9244B65330080386A /* ImageParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageParser.swift; sourceTree = "<group>"; };
+		CF7FA897245482B600A61472 /* SingleTouchRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTouchRecognizer.swift; sourceTree = "<group>"; };
 		CF9EB68C240933A80081470E /* ChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
 		CF9EB68E24093C2D0081470E /* ConfigurableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableView.swift; sourceTree = "<group>"; };
 		CF9EB69124093F430081470E /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
@@ -112,6 +115,7 @@
 		CFAE4D74244A444B0009207C /* ImagesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesRequest.swift; sourceTree = "<group>"; };
 		CFAE4D76244A45E00009207C /* RequestSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestSender.swift; sourceTree = "<group>"; };
 		CFAE4D78244A4C910009207C /* RequestsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsFactory.swift; sourceTree = "<group>"; };
+		CFB8BF8E24555D65007C1DA1 /* FingerAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerAnimation.swift; sourceTree = "<group>"; };
 		CFBC1C2F24437646008A45A3 /* Channel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Channel+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CFBC1C3024437646008A45A3 /* Channel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Channel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CFBC1C33244376D6008A45A3 /* RootAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAssembly.swift; sourceTree = "<group>"; };
@@ -452,6 +456,8 @@
 				CF3C7620244334F4007F2859 /* CoreLayer */,
 				CFF6806023F5D98200339A79 /* AppDelegate.swift */,
 				CFBC1C33244376D6008A45A3 /* RootAssembly.swift */,
+				CF7FA897245482B600A61472 /* SingleTouchRecognizer.swift */,
+				CFB8BF8E24555D65007C1DA1 /* FingerAnimation.swift */,
 				CFBC1C2E24436249008A45A3 /* Supporting files */,
 			);
 			path = Parrot;
@@ -632,12 +638,14 @@
 				CF017B48240BDCB40013D7FD /* MessagesViewController.swift in Sources */,
 				CFF6806523F5D98200339A79 /* ProfileViewController.swift in Sources */,
 				CFEBAC8F242FAF9C0099D2CE /* CoreDataFileManager.swift in Sources */,
+				CFB8BF8F24555D65007C1DA1 /* FingerAnimation.swift in Sources */,
 				CFDAAC282439EBEF000916EA /* Message+CoreDataClass.swift in Sources */,
 				CF9EB68F24093C2D0081470E /* ConfigurableView.swift in Sources */,
 				CF2DCCBE24306D4200259C78 /* ProfileInformation+CoreDataClass.swift in Sources */,
 				CFBC1C3824437B48008A45A3 /* ServicesAssembly.swift in Sources */,
 				CFBC1C3124437646008A45A3 /* Channel+CoreDataClass.swift in Sources */,
 				CF1C22AD242776CA0004C82D /* HeaderLabel.swift in Sources */,
+				CF7FA898245482B600A61472 /* SingleTouchRecognizer.swift in Sources */,
 				CFE2AED82426634800815E30 /* ChannelCellModel.swift in Sources */,
 				CFF6806123F5D98200339A79 /* AppDelegate.swift in Sources */,
 				CF2DCCBF24306D4200259C78 /* ProfileInformation+CoreDataProperties.swift in Sources */,

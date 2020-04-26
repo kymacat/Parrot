@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var navigationController: UINavigationController?
     private let rootAssembly = RootAssembly()
+    private let animation: IFingerAnimation = FingerAnimation()
     
     // MARK: - Application lifecycle
 
@@ -37,6 +38,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationController = UINavigationController(rootViewController: rootAssembly.presentationAssembly.channelsViewController())
         navigationController?.navigationBar.tintColor = .black
         navigationController?.navigationBar.barTintColor = .systemYellow
+        
+        let recognizer = SingleTouchRecognizer(target: self, action: nil, animation: animation)
+        window?.addGestureRecognizer(recognizer)
+        
         window?.rootViewController = navigationController
         return true
     }
