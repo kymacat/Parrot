@@ -19,7 +19,7 @@ class FingerAnimation: NSObject, IFingerAnimation {
     private var recognizer: UIGestureRecognizer?
     
     private func recurseAnimation(with views: [UIView], animations: @escaping () -> Void) {
-        UIView.animate(withDuration: 0.75, delay: 0, options: [.curveEaseOut], animations: animations, completion: { [weak self] _ in
+        UIView.animate(withDuration: 1, delay: 0, options: [.curveEaseOut], animations: animations, completion: { [weak self] _ in
             if let recognizer = self?.recognizer {
                 if recognizer.state == .began || recognizer.state == .changed {
                     if let position = self?.curPosition {
@@ -45,13 +45,12 @@ class FingerAnimation: NSObject, IFingerAnimation {
         if let touch = touches.first {
             curPosition = CGPoint(x: touch.location(in: touch.window).x, y: touch.location(in: touch.window).y)
             let views = [
-                UIView(frame: CGRect(x: touch.location(in: touch.window).x, y: touch.location(in: touch.window).y, width: 25, height: 25)),
-                UIView(frame: CGRect(x: touch.location(in: touch.window).x, y: touch.location(in: touch.window).y, width: 25, height: 25)),
-                UIView(frame: CGRect(x: touch.location(in: touch.window).x, y: touch.location(in: touch.window).y, width: 25, height: 25))
+                UIImageView(frame: CGRect(x: touch.location(in: touch.window).x, y: touch.location(in: touch.window).y, width: 35, height: 35)),
+                UIImageView(frame: CGRect(x: touch.location(in: touch.window).x, y: touch.location(in: touch.window).y, width: 30, height: 30)),
+                UIImageView(frame: CGRect(x: touch.location(in: touch.window).x, y: touch.location(in: touch.window).y, width: 27, height: 27))
             ]
-            for (num, view) in views.enumerated() {
-                view.backgroundColor = .black
-                view.accessibilityIdentifier = "view\(num)"
+            for view in views {
+                view.image = UIImage(named: "tinkoff")
                 touch.window?.addSubview(view)
             }
             let animations = {

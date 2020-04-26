@@ -177,6 +177,15 @@
 			path = MessagesVC;
 			sourceTree = "<group>";
 		};
+		CF28532A2455B0EB004A0088 /* Finger animation */ = {
+			isa = PBXGroup;
+			children = (
+				CF7FA897245482B600A61472 /* SingleTouchRecognizer.swift */,
+				CFB8BF8E24555D65007C1DA1 /* FingerAnimation.swift */,
+			);
+			path = "Finger animation";
+			sourceTree = "<group>";
+		};
 		CF2DCCC0243083EC00259C78 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -456,8 +465,7 @@
 				CF3C7620244334F4007F2859 /* CoreLayer */,
 				CFF6806023F5D98200339A79 /* AppDelegate.swift */,
 				CFBC1C33244376D6008A45A3 /* RootAssembly.swift */,
-				CF7FA897245482B600A61472 /* SingleTouchRecognizer.swift */,
-				CFB8BF8E24555D65007C1DA1 /* FingerAnimation.swift */,
+				CF28532A2455B0EB004A0088 /* Finger animation */,
 				CFBC1C2E24436249008A45A3 /* Supporting files */,
 			);
 			path = Parrot;
