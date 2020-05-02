@@ -19,6 +19,8 @@ protocol IChannelsService {
 
 class ChannelsService : IChannelsService {
     
+    var sorter: IChannelsSorter
+    
     // FireBase
     
     lazy var db = Firestore.firestore()
@@ -29,10 +31,10 @@ class ChannelsService : IChannelsService {
     let fetchedResultsController: NSFetchedResultsController<Channel>
     let dataManager: IChannelsFileManager
     var channels: [ChannelModel] = []
-    var newChannels: [ChannelModel] = []
     
     
     init(firebaseRequests: IChannelsFirebaseRequests, channelsFileManager: IChannelsFileManager) {
+        self.sorter = ChannelsSorter()
         self.firebase = firebaseRequests
         self.dataManager = channelsFileManager
         self.fetchedResultsController = channelsFileManager.getFetchResultsController()
@@ -50,9 +52,11 @@ class ChannelsService : IChannelsService {
         firebase.getChannels(reference: reference, completionHandler: updateChannels(with:))
     }
     
-    func updateChannels(with newChannels: [ChannelModel]) {
+    private func updateChannels(with newChannels: [ChannelModel]) {
+        let sortedChannels = sorter.sort(channels: newChannels)
+        
         var channelsForAdd = [ChannelModel]()
-        for newChannel in newChannels {
+        for newChannel in sortedChannels {
             var isHere = false
             for oldChannel in channels {
                 if newChannel.identifier == oldChannel.identifier {
@@ -69,7 +73,7 @@ class ChannelsService : IChannelsService {
         var channelsToDelete = [ChannelModel]()
         for oldChannel in channels {
             var isHere = false
-            for newChannel in newChannels {
+            for newChannel in sortedChannels {
                 if oldChannel.identifier == newChannel.identifier {
                     isHere = true
                     break;
@@ -82,9 +86,9 @@ class ChannelsService : IChannelsService {
         }
         dataManager.deleteChannels(channels: channelsToDelete)
         
-        dataManager.editStatusOfChannels(channels: newChannels)
+        dataManager.editStatusOfChannels(channels: sortedChannels)
         
-        channels = newChannels
+        channels = sortedChannels
         
     }
     

@@ -22,6 +22,8 @@
 		CF32DEBE243A3911002D6CFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF32DEBD243A3911002D6CFF /* GoogleService-Info.plist */; };
 		CF3C762224433518007F2859 /* ChannelsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3C762124433518007F2859 /* ChannelsService.swift */; };
 		CF3C76242443388D007F2859 /* ChannelsVCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3C76232443388D007F2859 /* ChannelsVCModel.swift */; };
+		CF4B91A7245DB4FF00D82839 /* IChannelsSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4B91A6245DB4FF00D82839 /* IChannelsSorter.swift */; };
+		CF4B91A9245DB5A400D82839 /* ChannelsSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4B91A8245DB5A400D82839 /* ChannelsSorter.swift */; };
 		CF70528523FF2DD70095B5C3 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF70528423FF2DD70095B5C3 /* CustomButton.swift */; };
 		CF751EC72424402800B4239A /* MessageCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF751EC62424402800B4239A /* MessageCellModel.swift */; };
 		CF79628B2449F1A400CE1D41 /* ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF79628A2449F1A400CE1D41 /* ImagesViewController.swift */; };
@@ -95,6 +97,8 @@
 		CF32DEBD243A3911002D6CFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CF3C762124433518007F2859 /* ChannelsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsService.swift; sourceTree = "<group>"; };
 		CF3C76232443388D007F2859 /* ChannelsVCModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsVCModel.swift; sourceTree = "<group>"; };
+		CF4B91A6245DB4FF00D82839 /* IChannelsSorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IChannelsSorter.swift; sourceTree = "<group>"; };
+		CF4B91A8245DB5A400D82839 /* ChannelsSorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsSorter.swift; sourceTree = "<group>"; };
 		CF70528423FF2DD70095B5C3 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		CF751EC62424402800B4239A /* MessageCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCellModel.swift; sourceTree = "<group>"; };
 		CF79628A2449F1A400CE1D41 /* ImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewController.swift; sourceTree = "<group>"; };
@@ -238,7 +242,7 @@
 		CF3C761F24433393007F2859 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				CF3C762124433518007F2859 /* ChannelsService.swift */,
+				CF4B91A5245DB49600D82839 /* ChannelsService */,
 				CF02DE7424439AF200DC055A /* MessagesService.swift */,
 				CF02DE7024438A6300DC055A /* ProfileService.swift */,
 				CFAE4D67244A381D0009207C /* ImageService.swift */,
@@ -255,6 +259,16 @@
 				CFAE4D64244A19750009207C /* Networking */,
 			);
 			path = CoreLayer;
+			sourceTree = "<group>";
+		};
+		CF4B91A5245DB49600D82839 /* ChannelsService */ = {
+			isa = PBXGroup;
+			children = (
+				CF3C762124433518007F2859 /* ChannelsService.swift */,
+				CF4B91A6245DB4FF00D82839 /* IChannelsSorter.swift */,
+				CF4B91A8245DB5A400D82839 /* ChannelsSorter.swift */,
+			);
+			path = ChannelsService;
 			sourceTree = "<group>";
 		};
 		CF751EC124243EE900B4239A /* PresentationLayer */ = {
@@ -680,6 +694,7 @@
 				CFB8BF8F24555D65007C1DA1 /* FingerAnimation.swift in Sources */,
 				CFDAAC282439EBEF000916EA /* Message+CoreDataClass.swift in Sources */,
 				CF9EB68F24093C2D0081470E /* ConfigurableView.swift in Sources */,
+				CF4B91A9245DB5A400D82839 /* ChannelsSorter.swift in Sources */,
 				CF2DCCBE24306D4200259C78 /* ProfileInformation+CoreDataClass.swift in Sources */,
 				CFBC1C3824437B48008A45A3 /* ServicesAssembly.swift in Sources */,
 				CFBC1C3124437646008A45A3 /* Channel+CoreDataClass.swift in Sources */,
@@ -701,6 +716,7 @@
 				CF02DE7524439AF200DC055A /* MessagesService.swift in Sources */,
 				CFAE4D6E244A41860009207C /* ImagesParser.swift in Sources */,
 				CFAE4D79244A4C910009207C /* RequestsFactory.swift in Sources */,
+				CF4B91A7245DB4FF00D82839 /* IChannelsSorter.swift in Sources */,
 				CFAE4D70244A42340009207C /* IParser.swift in Sources */,
 				CF7B1AE8244B64990080386A /* ImageRequest.swift in Sources */,
 				CFAE4D77244A45E00009207C /* RequestSender.swift in Sources */,
