@@ -9,6 +9,7 @@
 import Foundation
 
 class ChannelsSorter: IChannelsSorter {
+    
     func sort(channels: [ChannelModel]) -> [ChannelModel] {
         let sortClosure: (ChannelModel, ChannelModel) -> Bool = {
             guard let date1 = $0.activeDate else { return false }
@@ -22,14 +23,13 @@ class ChannelsSorter: IChannelsSorter {
         var activeChannels: [ChannelModel] = []
         var inactiveChannels: [ChannelModel] = []
         activeChannels = channels.filter { (channel) -> Bool in
-            if let date = channel.activeDate {
-                if date > Date() - (60*10) {
-                    return true
-                }
+            if channel.isActive {
+                return true
             }
             inactiveChannels.append(channel)
             return false
         }
         return [activeChannels, inactiveChannels]
     }
+    
 }

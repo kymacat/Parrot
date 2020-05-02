@@ -19,7 +19,7 @@ protocol IChannelsService {
 
 class ChannelsService : IChannelsService {
     
-    var sorter: IChannelsSorter
+    var channelsSorter: IChannelsSorter
     
     // FireBase
     
@@ -34,7 +34,7 @@ class ChannelsService : IChannelsService {
     
     
     init(firebaseRequests: IChannelsFirebaseRequests, channelsFileManager: IChannelsFileManager) {
-        self.sorter = ChannelsSorter()
+        self.channelsSorter = ChannelsSorter()
         self.firebase = firebaseRequests
         self.dataManager = channelsFileManager
         self.fetchedResultsController = channelsFileManager.getFetchResultsController()
@@ -45,7 +45,7 @@ class ChannelsService : IChannelsService {
     func fetchChannels() {
         if let channels = fetchedResultsController.fetchedObjects {
             for channel in channels {
-                let newChannel = ChannelModel(identifier: channel.identifier, name: channel.name, lastMessage: channel.lastMessage, activeDate: channel.activeDate, isActive: channel.isActive)
+                let newChannel = ChannelModel(identifier: channel.identifier, name: channel.name, lastMessage: channel.lastMessage, activeDate: channel.activeDate)
                 self.channels.append(newChannel)
             }
         }
@@ -53,7 +53,7 @@ class ChannelsService : IChannelsService {
     }
     
     private func updateChannels(with newChannels: [ChannelModel]) {
-        let sortedChannels = sorter.sort(channels: newChannels)
+        let sortedChannels = channelsSorter.sort(channels: newChannels)
         
         var channelsForAdd = [ChannelModel]()
         for newChannel in sortedChannels {

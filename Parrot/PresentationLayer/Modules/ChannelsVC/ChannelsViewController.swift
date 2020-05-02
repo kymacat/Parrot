@@ -104,7 +104,7 @@ class ChannelsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currChannel = model.getFetchedResultsController().object(at: indexPath)
-        let channel = ChannelModel(identifier: currChannel.identifier, name: currChannel.name, lastMessage: currChannel.lastMessage, activeDate: currChannel.activeDate, isActive: currChannel.isActive)
+        let channel = ChannelModel(identifier: currChannel.identifier, name: currChannel.name, lastMessage: currChannel.lastMessage, activeDate: currChannel.activeDate)
         let viewController = presentationAssembly.messagesViewController(channel: channel)
         navigationController?.pushViewController(viewController, animated: true)
         
