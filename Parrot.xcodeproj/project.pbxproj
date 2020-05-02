@@ -62,6 +62,7 @@
 		CFF6806D23F5D98300339A79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CFF6806C23F5D98300339A79 /* Assets.xcassets */; };
 		CFF6807023F5D98300339A79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CFF6806E23F5D98300339A79 /* LaunchScreen.storyboard */; };
 		CFF6807B23F5D98300339A79 /* ParrotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6807A23F5D98300339A79 /* ParrotTests.swift */; };
+		F6720E31CDFB58E19FAEDA94 /* libPods-ParrotTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2FDE581F68130A42B7FA5A4 /* libPods-ParrotTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,8 @@
 		2E2DCBEB81111536476FDAE2 /* Pods_Parrot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Parrot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8067997FB6B4212DFB0E0D56 /* Pods-Parrot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parrot.release.xcconfig"; path = "Target Support Files/Pods-Parrot/Pods-Parrot.release.xcconfig"; sourceTree = "<group>"; };
 		841E8B7C81D12A57EC1C320C /* Pods-Parrot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parrot.debug.xcconfig"; path = "Target Support Files/Pods-Parrot/Pods-Parrot.debug.xcconfig"; sourceTree = "<group>"; };
+		AF2B8E8FB3705BF440291D5B /* Pods-ParrotTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParrotTests.release.xcconfig"; path = "Target Support Files/Pods-ParrotTests/Pods-ParrotTests.release.xcconfig"; sourceTree = "<group>"; };
+		C57040137115D762F4748BF5 /* Pods-ParrotTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ParrotTests.debug.xcconfig"; path = "Target Support Files/Pods-ParrotTests/Pods-ParrotTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CF00B99F240B173B00FDDE1F /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		CF017B47240BDCB40013D7FD /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		CF02DE7024438A6300DC055A /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
@@ -136,6 +139,7 @@
 		CFF6807623F5D98300339A79 /* ParrotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ParrotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFF6807A23F5D98300339A79 /* ParrotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParrotTests.swift; sourceTree = "<group>"; };
 		CFF6807C23F5D98300339A79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2FDE581F68130A42B7FA5A4 /* libPods-ParrotTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ParrotTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +155,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6720E31CDFB58E19FAEDA94 /* libPods-ParrotTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +167,8 @@
 			children = (
 				841E8B7C81D12A57EC1C320C /* Pods-Parrot.debug.xcconfig */,
 				8067997FB6B4212DFB0E0D56 /* Pods-Parrot.release.xcconfig */,
+				C57040137115D762F4748BF5 /* Pods-ParrotTests.debug.xcconfig */,
+				AF2B8E8FB3705BF440291D5B /* Pods-ParrotTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -484,6 +491,7 @@
 			isa = PBXGroup;
 			children = (
 				2E2DCBEB81111536476FDAE2 /* Pods_Parrot.framework */,
+				E2FDE581F68130A42B7FA5A4 /* libPods-ParrotTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -514,6 +522,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CFF6808223F5D98300339A79 /* Build configuration list for PBXNativeTarget "ParrotTests" */;
 			buildPhases = (
+				2A73D166FBB548467C476ED7 /* [CP] Check Pods Manifest.lock */,
 				CFF6807223F5D98300339A79 /* Sources */,
 				CFF6807323F5D98300339A79 /* Frameworks */,
 				CFF6807423F5D98300339A79 /* Resources */,
@@ -605,6 +614,28 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Parrot-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2A73D166FBB548467C476ED7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ParrotTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -874,6 +905,7 @@
 		};
 		CFF6808323F5D98300339A79 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C57040137115D762F4748BF5 /* Pods-ParrotTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -896,6 +928,7 @@
 		};
 		CFF6808423F5D98300339A79 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AF2B8E8FB3705BF440291D5B /* Pods-ParrotTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

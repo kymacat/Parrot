@@ -11,3 +11,10 @@ target 'Parrot' do
   pod 'Firebase/Firestore'
 
 end
+
+target ‘ParrotTests’ do
+ inherit! :search_paths
+ # Pods for testing
+ pod ‘Firebase/Auth’
+ pod ‘Firebase/Storage’
+end
