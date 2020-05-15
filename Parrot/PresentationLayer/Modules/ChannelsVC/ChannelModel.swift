@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-struct ChannelModel {
+struct ChannelModel: Equatable {
     
     let identifier: String
     let name: String
@@ -17,12 +17,21 @@ struct ChannelModel {
     let activeDate: Date?
     var isActive: Bool
     
-    init(identifier: String, name: String, lastMessage: String?, activeDate: Date?, isActive: Bool) {
+    init(identifier: String, name: String, lastMessage: String?, activeDate: Date?) {
         self.identifier = identifier
         self.name = name
         self.lastMessage = lastMessage
         self.activeDate = activeDate
-        self.isActive = isActive
+        if let date = activeDate {
+            if date > Date() - (60*10) {
+                self.isActive = true
+            } else {
+                self.isActive = false
+            }
+            
+        } else {
+            self.isActive = false
+        }
     }
     
     init?(identifier: String, with data: [String: Any]) {
@@ -68,4 +77,9 @@ struct ChannelModel {
             ]
         }
     }
+    
+    static func ==(lhs: ChannelModel, rhs: ChannelModel) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
 }
+

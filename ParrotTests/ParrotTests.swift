@@ -10,25 +10,54 @@ import XCTest
 @testable import Parrot
 
 class ParrotTests: XCTestCase {
+    
+    // MARK: - Lifecycle
+    
+    private var channelsSorter: IChannelsSorter!
+    
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        channelsSorter = ChannelsSorter()
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    // MARK: - Tests
+    
+    func testThatChannelsSorterReturnsSortedChannels() {
+        //Given
+        let expectedResult = [
+            ChannelModel(identifier: "1", name: "1", lastMessage: nil, activeDate: Date() - (60*29*6)),
+            ChannelModel(identifier: "2", name: "2", lastMessage: nil, activeDate: Date() - (60*29*7)),
+            ChannelModel(identifier: "3", name: "3", lastMessage: nil, activeDate: Date() - (60*29*8))
+        ]
+        let unsorted = [
+            ChannelModel(identifier: "3", name: "3", lastMessage: nil, activeDate: Date() - (60*29*8)),
+            ChannelModel(identifier: "1", name: "1", lastMessage: nil, activeDate: Date() - (60*29*6)),
+            ChannelModel(identifier: "2", name: "2", lastMessage: nil, activeDate: Date() - (60*29*7))
+        ]
+        
+        //When
+        let result = channelsSorter.sort(channels: unsorted)
+        
+        XCTAssertEqual(expectedResult, result)
     }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func testThatChannelsSorterReturnsGroupsByDateChannels() {
+        //Given
+        let expectedResult = [
+            [ChannelModel(identifier: "1", name: "1", lastMessage: nil, activeDate: Date()),
+             ChannelModel(identifier: "2", name: "2", lastMessage: nil, activeDate: Date())],
+            [ChannelModel(identifier: "3", name: "3", lastMessage: nil, activeDate: Date() - (60*60*25))]
+        ]
+        let unsorted = [
+            ChannelModel(identifier: "1", name: "1", lastMessage: nil, activeDate: Date()),
+            ChannelModel(identifier: "3", name: "3", lastMessage: nil, activeDate: Date() - (60*60*25)),
+            ChannelModel(identifier: "2", name: "2", lastMessage: nil, activeDate: Date())
+        ]
+        
+        //When
+        let result = channelsSorter.groupByDate(channels: unsorted)
+        
+        XCTAssertEqual(expectedResult, result)
     }
 
 }
