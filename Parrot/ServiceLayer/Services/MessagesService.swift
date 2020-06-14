@@ -35,7 +35,7 @@ class MessagesService : IMessagesService {
         firebase.getMessages(reference: reference, completionHandler: completionHandler)
     }
     func sendMessage(message: MessageModel, channelIdentifier: String) {
-        let reference = db.collection("channels").document(channelIdentifier).collection("messages")
+        let reference = db.collection("channels").document(channelIdentifier)
         
         firebase.sendMessage(reference: reference, message: message)
     }

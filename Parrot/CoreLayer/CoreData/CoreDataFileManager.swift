@@ -108,7 +108,7 @@ class ProfileFileManager : CoreDataFileManager, IProfileFileManager {
                         
                         let managedObject = ProfileInformation(entity: entityDescription, insertInto: managedObjectContext)
                         managedObject.name = "Влад Яндола"
-                        managedObject.userDescription = "Люблю программировать под iOS, изучать что-то новое и не стоять на месте"
+                        managedObject.userDescription = "Меланхолик, анархист и просто хороший человек"
                         if let imageData = UIImage(named: "placeholder-user")?.pngData() {
                             managedObject.imageData = imageData
                         }

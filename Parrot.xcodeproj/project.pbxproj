@@ -19,7 +19,6 @@
 		CF240180240BE61D0075BE25 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF24017F240BE61D0075BE25 /* MessageCell.swift */; };
 		CF2DCCBE24306D4200259C78 /* ProfileInformation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2DCCBC24306D4200259C78 /* ProfileInformation+CoreDataClass.swift */; };
 		CF2DCCBF24306D4200259C78 /* ProfileInformation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2DCCBD24306D4200259C78 /* ProfileInformation+CoreDataProperties.swift */; };
-		CF32DEBE243A3911002D6CFF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF32DEBD243A3911002D6CFF /* GoogleService-Info.plist */; };
 		CF3C762224433518007F2859 /* ChannelsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3C762124433518007F2859 /* ChannelsService.swift */; };
 		CF3C76242443388D007F2859 /* ChannelsVCModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3C76232443388D007F2859 /* ChannelsVCModel.swift */; };
 		CF4B91A7245DB4FF00D82839 /* IChannelsSorter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4B91A6245DB4FF00D82839 /* IChannelsSorter.swift */; };
@@ -32,6 +31,7 @@
 		CF7B1AE8244B64990080386A /* ImageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B1AE7244B64990080386A /* ImageRequest.swift */; };
 		CF7B1AEA244B65330080386A /* ImageParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7B1AE9244B65330080386A /* ImageParser.swift */; };
 		CF7FA898245482B600A61472 /* SingleTouchRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF7FA897245482B600A61472 /* SingleTouchRecognizer.swift */; };
+		CF906B432496C36900AE51A5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CF906B422496C36800AE51A5 /* GoogleService-Info.plist */; };
 		CF9EB68D240933A80081470E /* ChannelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB68C240933A80081470E /* ChannelsViewController.swift */; };
 		CF9EB68F24093C2D0081470E /* ConfigurableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB68E24093C2D0081470E /* ConfigurableView.swift */; };
 		CF9EB69324093F430081470E /* ChannelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9EB69124093F430081470E /* ChannelCell.swift */; };
@@ -94,7 +94,6 @@
 		CF24017F240BE61D0075BE25 /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		CF2DCCBC24306D4200259C78 /* ProfileInformation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileInformation+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CF2DCCBD24306D4200259C78 /* ProfileInformation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfileInformation+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		CF32DEBD243A3911002D6CFF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CF3C762124433518007F2859 /* ChannelsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsService.swift; sourceTree = "<group>"; };
 		CF3C76232443388D007F2859 /* ChannelsVCModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsVCModel.swift; sourceTree = "<group>"; };
 		CF4B91A6245DB4FF00D82839 /* IChannelsSorter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IChannelsSorter.swift; sourceTree = "<group>"; };
@@ -107,6 +106,7 @@
 		CF7B1AE7244B64990080386A /* ImageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRequest.swift; sourceTree = "<group>"; };
 		CF7B1AE9244B65330080386A /* ImageParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageParser.swift; sourceTree = "<group>"; };
 		CF7FA897245482B600A61472 /* SingleTouchRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTouchRecognizer.swift; sourceTree = "<group>"; };
+		CF906B422496C36800AE51A5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CF9EB68C240933A80081470E /* ChannelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelsViewController.swift; sourceTree = "<group>"; };
 		CF9EB68E24093C2D0081470E /* ConfigurableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurableView.swift; sourceTree = "<group>"; };
 		CF9EB69124093F430081470E /* ChannelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCell.swift; sourceTree = "<group>"; };
@@ -416,7 +416,7 @@
 				CFF6807123F5D98300339A79 /* Info.plist */,
 				CFF6806E23F5D98300339A79 /* LaunchScreen.storyboard */,
 				CFF6806C23F5D98300339A79 /* Assets.xcassets */,
-				CF32DEBD243A3911002D6CFF /* GoogleService-Info.plist */,
+				CF906B422496C36800AE51A5 /* GoogleService-Info.plist */,
 				CFF6806923F5D98200339A79 /* Parrot.xcdatamodeld */,
 			);
 			path = "Supporting files";
@@ -596,7 +596,7 @@
 			files = (
 				CF9EB69424093F430081470E /* ChannelCell.xib in Resources */,
 				CFF6807023F5D98300339A79 /* LaunchScreen.storyboard in Resources */,
-				CF32DEBE243A3911002D6CFF /* GoogleService-Info.plist in Resources */,
+				CF906B432496C36900AE51A5 /* GoogleService-Info.plist in Resources */,
 				CF79628F2449F26A00CE1D41 /* ImageCell.xib in Resources */,
 				CFF6806D23F5D98300339A79 /* Assets.xcassets in Resources */,
 			);
@@ -892,7 +892,7 @@
 					"@executable_path/Frameworks",
 				);
 				"OTHER_SWIFT_FLAGS[arch=*]" = "-D SHOWLIFECYCLE";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.messenger;
+				PRODUCT_BUNDLE_IDENTIFIER = OGI.Parrot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -912,7 +912,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.tinkoff.messenger;
+				PRODUCT_BUNDLE_IDENTIFIER = OGI.Parrot;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

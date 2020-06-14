@@ -22,6 +22,9 @@ protocol IPresentationAssembly {
 
 class PresentationAssembly: IPresentationAssembly {
     
+    private let name = "Aslan Namazov"
+    private let id = "123456"
+    
     private let serviceAssembly: IServicesAssembly
     
     init(serviceAssembly: IServicesAssembly) {
@@ -37,7 +40,7 @@ class PresentationAssembly: IPresentationAssembly {
     }
     
     private func channelsVCModel() -> IChannelsVCModel {
-        return ChannelsVCModel(channelsService: serviceAssembly.allChannelsService, senderName: "Vlad Yandola", senderID: "123654")
+        return ChannelsVCModel(channelsService: serviceAssembly.allChannelsService, senderName: name, senderID: id)
     }
     
     // MARK: - messagesViewController
@@ -50,7 +53,7 @@ class PresentationAssembly: IPresentationAssembly {
     }
     
     private func messagesVCModel(channel: ChannelModel) -> IMessagesVCModel {
-        return MessagesVCModel(messagesService: serviceAssembly.messagesService, channel: channel, senderName: "Vlad Yandola", senderID: "123654")
+        return MessagesVCModel(messagesService: serviceAssembly.messagesService, channel: channel, senderName: name, senderID: id)
     }
     
     // MARK: - profileViewController

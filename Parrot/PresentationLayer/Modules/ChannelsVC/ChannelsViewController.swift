@@ -48,7 +48,7 @@ class ChannelsViewController: UITableViewController {
             delegate.orientationLock = .portrait
         }
         
-        navigationItem.title = "Tinkoff Chat"
+        navigationItem.title = "Parrot"
         navigationController?.navigationBar.prefersLargeTitles = true
         
         navigationController?.navigationBar.largeTitleTextAttributes =

@@ -198,7 +198,7 @@ class ProfileViewController: UIViewController {
         dTextView.font =
             UIFont.systemFont(ofSize: self.view.frame.width/20, weight: UIFont.Weight.medium)
 
-        dTextView.text = "Люблю программировать под iOS, изучать что-то новое и не стоять на месте"
+        dTextView.text = "Меланхолик, анархист и просто хороший человек"
         dTextView.isEditable = false
         dTextView.isSelectable = false
 

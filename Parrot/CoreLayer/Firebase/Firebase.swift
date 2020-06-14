@@ -22,7 +22,7 @@ protocol IChannelsFirebaseRequests {
 protocol IMessagesFirebaseRequests {
     func getMessages(reference: CollectionReference, completionHandler: @escaping ([MessageModel]) -> Void)
     
-    func sendMessage(reference: CollectionReference, message: MessageModel)
+    func sendMessage(reference: DocumentReference, message: MessageModel)
 }
 
 class ChannelRequests: IChannelsFirebaseRequests {
@@ -46,8 +46,9 @@ class ChannelRequests: IChannelsFirebaseRequests {
     }
     
     func addChannel(reference: CollectionReference, name: String, senderName: String, senderID: String) {
-        let document = reference.addDocument(data: ["name": name, "lastMessage": ""])
-        let message = MessageModel(content: "\(senderName) создал новый канал", created: Date(), senderID: senderID, senderName: senderName)
+        let messageContent = "\(senderName) создал новый канал"
+        let document = reference.addDocument(data: ["name": name, "lastMessage": messageContent, "lastActivity": Timestamp(date: Date())])
+        let message = MessageModel(content: messageContent, created: Date(), senderID: senderID, senderName: senderName)
         
         document.collection("messages").addDocument(data: message.toDict)
         
@@ -77,7 +78,8 @@ class MessagesRequests: IMessagesFirebaseRequests {
         }
     }
     
-    func sendMessage(reference: CollectionReference, message: MessageModel) {
-        reference.addDocument(data: message.toDict)
+    func sendMessage(reference: DocumentReference, message: MessageModel) {
+        reference.updateData(["lastActivity": Timestamp(date: message.created), "lastMessage": message.content])
+        reference.collection("messages").addDocument(data: message.toDict)
     }
 }

@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>713648112668-4c470fl47g6k3cadluami9dfmive34jo.apps.googleusercontent.com</string>
+	<string>555801837840-6m405i382covs56fpmvpkttmc8ej89sj.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.713648112668-4c470fl47g6k3cadluami9dfmive34jo</string>
+	<string>com.googleusercontent.apps.555801837840-6m405i382covs56fpmvpkttmc8ej89sj</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCHEJI9T0f1PRVRxfamnPsnCXveuZ_AnZo</string>
+	<string>AIzaSyA64SBcpF-fQ2VsdZd1OZNvoBBhqw7FI7k</string>
 	<key>GCM_SENDER_ID</key>
-	<string>713648112668</string>
+	<string>555801837840</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>ru.tinkoff.messenger</string>
+	<string>OGI.Parrot</string>
 	<key>PROJECT_ID</key>
-	<string>tinkoffmessenger</string>
+	<string>parrot-1e90f</string>
 	<key>STORAGE_BUCKET</key>
-	<string>tinkoffmessenger.appspot.com</string>
+	<string>parrot-1e90f.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:713648112668:ios:c63c1eb75519367fec0bd9</string>
+	<string>1:555801837840:ios:8f1a3b534866073619e595</string>
 	<key>DATABASE_URL</key>
-	<string>https://tinkoffmessenger.firebaseio.com</string>
+	<string>https://parrot-1e90f.firebaseio.com</string>
 </dict>
 </plist>
