@@ -22,8 +22,8 @@ protocol IPresentationAssembly {
 
 class PresentationAssembly: IPresentationAssembly {
     
-    private let name = "Aslan Namazov"
-    private let id = "123456"
+    private let name = "Vlad Yandola"
+    private let id = "123654"
     
     private let serviceAssembly: IServicesAssembly
     
