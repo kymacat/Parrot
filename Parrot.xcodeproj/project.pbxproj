@@ -56,6 +56,7 @@
 		CFBC1C3A24437C16008A45A3 /* CoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBC1C3924437C16008A45A3 /* CoreAssembly.swift */; };
 		CFDAAC282439EBEF000916EA /* Message+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDAAC242439EBEF000916EA /* Message+CoreDataClass.swift */; };
 		CFDAAC292439EBEF000916EA /* Message+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDAAC252439EBEF000916EA /* Message+CoreDataProperties.swift */; };
+		CFDE8BEC249D4E600020E247 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CFDE8BEB249D4E5F0020E247 /* README.md */; };
 		CFE2AED82426634800815E30 /* ChannelCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE2AED72426634800815E30 /* ChannelCellModel.swift */; };
 		CFEBAC8F242FAF9C0099D2CE /* CoreDataFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFEBAC8E242FAF9C0099D2CE /* CoreDataFileManager.swift */; };
 		CFF6806123F5D98200339A79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFF6806023F5D98200339A79 /* AppDelegate.swift */; };
@@ -131,6 +132,7 @@
 		CFBC1C3924437C16008A45A3 /* CoreAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreAssembly.swift; sourceTree = "<group>"; };
 		CFDAAC242439EBEF000916EA /* Message+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CFDAAC252439EBEF000916EA /* Message+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Message+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CFDE8BEB249D4E5F0020E247 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CFE2AED72426634800815E30 /* ChannelCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCellModel.swift; sourceTree = "<group>"; };
 		CFEBAC8E242FAF9C0099D2CE /* CoreDataFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFileManager.swift; sourceTree = "<group>"; };
 		CFF6805D23F5D98200339A79 /* Parrot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Parrot.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -461,6 +463,7 @@
 		CFF6805423F5D98200339A79 = {
 			isa = PBXGroup;
 			children = (
+				CFDE8BEB249D4E5F0020E247 /* README.md */,
 				CFF6805F23F5D98200339A79 /* Parrot */,
 				CFF6807923F5D98300339A79 /* ParrotTests */,
 				CFF6805E23F5D98200339A79 /* Products */,
@@ -594,6 +597,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFDE8BEC249D4E600020E247 /* README.md in Resources */,
 				CF9EB69424093F430081470E /* ChannelCell.xib in Resources */,
 				CFF6807023F5D98300339A79 /* LaunchScreen.storyboard in Resources */,
 				CF906B432496C36900AE51A5 /* GoogleService-Info.plist in Resources */,
